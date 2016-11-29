@@ -14,6 +14,12 @@ public class Square {
 		contents = l;
 		return this;
 	}
+	public String getContentsString(){
+		return contents.letterString;
+	}
+	public int getContentsPoints(){
+		return contents.value;
+	}
 
 	public boolean isActive() {
 		if (contents != null)

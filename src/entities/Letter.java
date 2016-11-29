@@ -6,9 +6,8 @@ public class Letter {
 	 String letterString;
 	 int value;
 
-	public Letter(String contents, int points) {
-		letterString = contents;
-		value = points;
+	public Letter() {
+		
 	}
 	
 /*public static void main(String[] args) {
