@@ -5,16 +5,14 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class Player extends JFrame {
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton button;
+	JButton levelSelectBtn;
+	JButton quitBtn;
 
 	/**
 	 * Launch the application.
@@ -36,57 +34,65 @@ public class Player extends JFrame {
 	 * Create the frame.
 	 */
 	public Player() {
-		initComponents();
-		createEvents();
+		
+		initializeModel();
+		initializeControllers();
+		initializeView();
 
 	}
 
-	private void createEvents() {
-		btnNewButton.addMouseListener(new MouseAdapter() {
 
-			public void mouseClicked(MouseEvent e) {
+	private void initializeModel() {
+		contentPane = new JPanel();
+		
+		levelSelectBtn = new JButton("Level Select");
+		
+		quitBtn = new JButton("Quit Game");
+		
+
+	}
+
+	private void initializeView() {
+		setResizable(false);
+		setTitle("Letter Craze");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1000, 570);
+		
+		
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		
+		levelSelectBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		levelSelectBtn.setBounds(326, 175, 355, 61);
+		contentPane.add(levelSelectBtn);
+
+		
+		quitBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		quitBtn.setBounds(326, 247, 355, 61);
+		contentPane.add(quitBtn);
+		
+		JLabel bg = new JLabel("");
+		bg.setIcon(new ImageIcon(Player.class.getResource("/images/BackgroundTitle.gif")));
+		bg.setBounds(0, 0, 994, 541);
+		contentPane.add(bg);
+	}
+	
+	private void initializeControllers() {
+		levelSelectBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				LevelSelect level = new LevelSelect();
 				level.setVisible(true);
 				dispose();
 			}
 		});
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-
-	}
-
-	private void initComponents() {
-		setResizable(false);
-		setTitle("Letter Craze");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 570);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		btnNewButton = new JButton("Level Select - Blah Blah");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(326, 175, 355, 61);
-		contentPane.add(btnNewButton);
-
-		button = new JButton("Quit Game" + "");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
-		button.addActionListener(new ActionListener() {
+		
+		quitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		button.setBounds(326, 247, 355, 61);
-		contentPane.add(button);
-
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(Menu.class.getResource("/images/BackgroundTitle.gif")));
-		lblNewLabel.setBounds(0, 0, 994, 541);
-		contentPane.add(lblNewLabel);
+		
 	}
 }
