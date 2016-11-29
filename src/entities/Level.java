@@ -23,4 +23,7 @@ public abstract class Level {
 	abstract boolean saveLevel();
 	abstract Board fillBoard();
 
+	public Board getBoard(){
+		return board;
+	}
 }

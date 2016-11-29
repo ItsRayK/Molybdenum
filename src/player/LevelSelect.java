@@ -170,6 +170,13 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
+		btnLevel3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ThemeView temp = new ThemeView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
 
 	}
 }
