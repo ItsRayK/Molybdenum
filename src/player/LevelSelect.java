@@ -162,6 +162,14 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
+		
+		btnLevel2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LightningView temp = new LightningView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
 
 	}
 }

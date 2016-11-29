@@ -27,4 +27,7 @@ public class Square {
 		else
 			return false;
 	}
+	public void setActivity(boolean tf){
+		active = tf;
+	}
 }
