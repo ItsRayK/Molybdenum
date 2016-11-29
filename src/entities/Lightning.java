@@ -31,6 +31,12 @@ public class Lightning extends Level{
 	/*
 	 * Builder functions
 	 */
+		void setTimer(int t){
+			time = t;		//in milliseconds
+		}
+		public int getTimer(){
+			return time;
+		}
 		@Override
 		boolean saveLevel() {
 			// TODO Auto-generated method stub
