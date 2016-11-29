@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import entities.Letter;
 import entities.Square;
+import entities.Lightning;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.awt.event.ActionEvent;
 public class LightningView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
+	Lightning level;
 	Square[][] squares = new Square[6][6];
 
 	/**
@@ -68,7 +70,7 @@ public class LightningView extends JFrame {
 					squares[i][j].setActivity(true);
 				}
 			}
-			
+
 		}
 
 	}
@@ -124,10 +126,11 @@ public class LightningView extends JFrame {
 		label_2.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		contentPane.add(label_2);
 
-		JLabel label = new JLabel("");
-		label.setBounds(392, 82, 400, 400);
-		label.setIcon(new ImageIcon(LightningView.class.getResource("/images/Grid.gif")));
-		contentPane.add(label);
+	
+		JLabel time = new JLabel("");
+		time.setBounds(392, 82, 400, 400);
+		time.setIcon(new ImageIcon(LightningView.class.getResource("/images/Grid.gif")));
+		contentPane.add(time);
 
 		JLabel lblPuzzle = new JLabel("Lightning");
 		lblPuzzle.setBounds(392, 34, 400, 37);

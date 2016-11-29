@@ -12,6 +12,7 @@ import entities.*;
 public class PuzzleView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
+	Puzzle level;
 	Square[][] squares = new Square[6][6];
 
 	/**
@@ -43,9 +44,9 @@ public class PuzzleView extends JFrame {
 	public void initializeEntities() {
 		// for (int i = 0; i <= 5; i++) {
 		// for (int j = 0; j <= 5; j++) {
-		// Letter r = new Letter();
-		// r.randomLetter();
-		// squares[i][j].fillSquare(r);
+		// if (i % 2 == 0 && j % 2 == 1) {
+		// level.getBoard().activateSquare(squares[i][j]);
+		// }
 		// }
 		// }
 
@@ -75,12 +76,14 @@ public class PuzzleView extends JFrame {
 				l.randomLetter();
 
 				JButton boardSquares[][] = new JButton[6][6];
-				boardSquares[i][j] = new JButton("<html><b>"+l.getString() +"</b><font size = '3'><sub>" +  l.getScore() +"</sub></font></html>");
+				boardSquares[i][j] = new JButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
+						+ l.getScore() + "</sub></font></html>");
 				boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 				boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
 				contentPane.add(boardSquares[i][j]);
 
 			}
+
 		}
 
 		JScrollPane wordsFoundList = new JScrollPane();
@@ -99,15 +102,15 @@ public class PuzzleView extends JFrame {
 		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		lblScore.setBounds(141, 411, 66, 31);
 		contentPane.add(lblScore);
-		
+
 		JLabel lblPuzzle = new JLabel("Puzzle");
 		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPuzzle.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
 		lblPuzzle.setBounds(392, 34, 400, 37);
 		contentPane.add(lblPuzzle);
-		
-		//////STAR IMAGES//////
-		
+
+		////// STAR IMAGES//////
+
 		JLabel starimg1 = new JLabel("");
 		starimg1.setBounds(797, 217, 90, 90);
 		starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
@@ -124,12 +127,11 @@ public class PuzzleView extends JFrame {
 		contentPane.add(starimg3);
 
 		///////////////////////////
-		
+
 		JLabel gridimg = new JLabel("");
 		gridimg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
 		gridimg.setBounds(392, 82, 400, 400);
 		contentPane.add(gridimg);
-
 
 		btnExitLevel = new JButton("Exit Level");
 

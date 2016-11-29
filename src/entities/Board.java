@@ -15,5 +15,8 @@ public class Board {
 		}
 		return activeOnes;
 	}
+	public void activateSquare(Square s){
+		s.setActivity(true);
+	}
 
 }
