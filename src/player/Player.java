@@ -87,8 +87,38 @@ public class Player extends JFrame {
 				dispose();
 			}
 		});
+<<<<<<< HEAD
 		
 		quitBtn.addActionListener(new ActionListener() {
+=======
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
+	}
+
+	private void initComponents() {
+		setResizable(false);
+		setTitle("Letter Craze");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1000, 570);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		btnNewButton = new JButton("Level Select");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(326, 175, 355, 61);
+		contentPane.add(btnNewButton);
+
+		button = new JButton("Quit Game" + "");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+
+		button.addActionListener(new ActionListener() {
+>>>>>>> branch 'master' of https://github.com/ItsRayK/Molybdenum.git
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
