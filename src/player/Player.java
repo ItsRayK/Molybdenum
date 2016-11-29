@@ -23,8 +23,20 @@ public class Player extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Player frame = new Player();
+					PlayerSplash frame = new PlayerSplash();
+					Player mainMenu = new Player();
+					
 					frame.setVisible(true);
+					
+					Timer timer = new Timer(3500, new ActionListener() {
+				        public void actionPerformed(ActionEvent evt) {
+				        	mainMenu.setVisible(true);
+							frame.dispose();
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
+				    
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -21,21 +21,8 @@ public class PlayerSplash extends JFrame {
 				try {
 					
 					PlayerSplash frame = new PlayerSplash();
-					Player mainMenu = new Player();
-					
 					frame.setVisible(true);
-					
-					Timer timer = new Timer(3000, new ActionListener() {
-				        public void actionPerformed(ActionEvent evt) {
-				        	mainMenu.setVisible(true);
-							frame.dispose();
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-					
-				    
-					
+								
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
