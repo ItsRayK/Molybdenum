@@ -4,7 +4,9 @@ public class Board {
 	Square[][] squares = new Square[6][6];
 
 	
-	
+	public boolean testTrue(){
+		return false;
+	}
 	
 	public Square[][] activeSquares() {
 		Square[][] activeOnes = new Square[6][6];
