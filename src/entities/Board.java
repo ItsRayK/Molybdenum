@@ -4,10 +4,6 @@ public class Board {
 	Square[][] squares = new Square[6][6];
 
 	
-	public boolean testTrue(){
-		return true;
-	}
-	
 	public Square[][] activeSquares() {
 		Square[][] activeOnes = new Square[6][6];
 		for(int i = 1; i<=6; i++){
@@ -19,6 +15,5 @@ public class Board {
 		}
 		return activeOnes;
 	}
-	
-	//Test github push and pull
+
 }
