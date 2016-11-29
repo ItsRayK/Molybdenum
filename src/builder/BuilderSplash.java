@@ -1,11 +1,11 @@
-package player;
+package builder;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
-public class PlayerSplash extends JFrame {
+public class BuilderSplash extends JFrame {
 	private JPanel contentPane;
 
 	/**
@@ -16,7 +16,7 @@ public class PlayerSplash extends JFrame {
 			public void run() {
 				try {
 					
-					PlayerSplash frame = new PlayerSplash();
+					BuilderSplash frame = new BuilderSplash();
 					frame.setVisible(true);
 								
 				} catch (Exception e) {
@@ -30,7 +30,7 @@ public class PlayerSplash extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PlayerSplash() {
+	public BuilderSplash() {
 		splash();	
 
 	}
@@ -62,7 +62,7 @@ public class PlayerSplash extends JFrame {
 
 		JLabel bg = new JLabel("");
 		bg.setBounds(5, 5, 984, 531);
-		bg.setIcon(new ImageIcon(PlayerSplash.class.getResource("/images/PlayerSplash.gif")));
+		bg.setIcon(new ImageIcon(BuilderSplash.class.getResource("/images/BuilderSplash.gif")));
 		contentPane.add(bg);
 		
 		
