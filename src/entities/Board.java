@@ -5,7 +5,7 @@ public class Board {
 
 	
 	public boolean testTrue(){
-		return false;
+		return true;
 	}
 	
 	public Square[][] activeSquares() {
