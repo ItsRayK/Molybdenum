@@ -140,5 +140,11 @@ public class Letter {
 		return this;
 
 	}
+	public String getString(){
+		return letterString;
+	}
+	public int getScore(){
+		return value;
+	}
 
 }
