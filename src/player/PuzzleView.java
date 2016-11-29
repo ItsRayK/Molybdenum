@@ -35,12 +35,12 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void initialize() {
-		initEntities();
-		initView();
+		initializeEntities();
+		initializeView();
 		initControllers();
 	}
 
-	public void initEntities() {
+	public void initializeEntities() {
 		// for (int i = 0; i <= 5; i++) {
 		// for (int j = 0; j <= 5; j++) {
 		// Letter r = new Letter();
@@ -51,7 +51,7 @@ public class PuzzleView extends JFrame {
 
 	}
 
-	public void initView() {
+	public void initializeView() {
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
@@ -83,37 +83,11 @@ public class PuzzleView extends JFrame {
 			}
 		}
 
-		JLabel label_3 = new JLabel("");
-		label_3.setBounds(797, 217, 90, 90);
-		label_3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
-		contentPane.add(label_3);
-
-		JLabel label_4 = new JLabel("");
-		label_4.setBounds(797, 302, 90, 90);
-		label_4.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
-		contentPane.add(label_4);
-
-		JLabel label_5 = new JLabel("");
-		label_5.setBounds(797, 387, 90, 90);
-		label_5.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
-		contentPane.add(label_5);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
-		label.setBounds(392, 82, 400, 400);
-		contentPane.add(label);
-
-		JLabel lblPuzzle = new JLabel("Puzzle");
-		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
-		lblPuzzle.setBounds(392, 34, 400, 37);
-		contentPane.add(lblPuzzle);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(141, 116, 226, 284);
-		contentPane.add(scrollPane);
+		JScrollPane wordsFoundList = new JScrollPane();
+		wordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		wordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		wordsFoundList.setBounds(141, 116, 226, 284);
+		contentPane.add(wordsFoundList);
 
 		JLabel lblWordsFound = new JLabel("Words Found");
 		lblWordsFound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -125,6 +99,37 @@ public class PuzzleView extends JFrame {
 		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		lblScore.setBounds(141, 411, 66, 31);
 		contentPane.add(lblScore);
+		
+		JLabel lblPuzzle = new JLabel("Puzzle");
+		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPuzzle.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
+		lblPuzzle.setBounds(392, 34, 400, 37);
+		contentPane.add(lblPuzzle);
+		
+		//////STAR IMAGES//////
+		
+		JLabel starimg1 = new JLabel("");
+		starimg1.setBounds(797, 217, 90, 90);
+		starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		contentPane.add(starimg1);
+
+		JLabel starimg2 = new JLabel("");
+		starimg2.setBounds(797, 302, 90, 90);
+		starimg2.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		contentPane.add(starimg2);
+
+		JLabel starimg3 = new JLabel("");
+		starimg3.setBounds(797, 387, 90, 90);
+		starimg3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		contentPane.add(starimg3);
+
+		///////////////////////////
+		
+		JLabel gridimg = new JLabel("");
+		gridimg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
+		gridimg.setBounds(392, 82, 400, 400);
+		contentPane.add(gridimg);
+
 
 		btnExitLevel = new JButton("Exit Level");
 
