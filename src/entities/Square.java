@@ -14,10 +14,12 @@ public class Square {
 		contents = l;
 		return this;
 	}
-	public String getContentsString(){
+
+	public String getContentsString() {
 		return contents.letterString;
 	}
-	public int getContentsPoints(){
+
+	public int getContentsPoints() {
 		return contents.value;
 	}
 
@@ -27,7 +29,8 @@ public class Square {
 		else
 			return false;
 	}
-	public void setActivity(boolean tf){
+
+	public void setActivity(boolean tf) {
 		active = tf;
 	}
 }
