@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 
 public class Builder extends JFrame {
 	private JPanel contentPane;
-	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn;
+	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn, editExistingBtn;
 	private JLabel lblBuilder;
 
 	/**
@@ -61,6 +61,8 @@ public class Builder extends JFrame {
 		createPuzzleBtn = new JButton("Build Puzzle");
 		createLightningBtn = new JButton("Build Lightning");
 		createThemeBtn = new JButton("Build Theme");
+		editExistingBtn = new JButton("Edit a Level");
+		
 		
 		lblBuilder = new JLabel("Level Builder");
 		
@@ -82,16 +84,20 @@ public class Builder extends JFrame {
 		contentPane.add(lblBuilder);
 		
 		createPuzzleBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createPuzzleBtn.setBounds(326, 247, 355, 61);
+		createPuzzleBtn.setBounds(326, 200, 355, 61);
 		contentPane.add(createPuzzleBtn);
 		
 		createLightningBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createLightningBtn.setBounds(326, 247+70, 355, 61);
+		createLightningBtn.setBounds(326, 200+70, 355, 61);
 		contentPane.add(createLightningBtn);
 		
 		createThemeBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createThemeBtn.setBounds(326, 247+140, 355, 61);
+		createThemeBtn.setBounds(326, 200+140, 355, 61);
 		contentPane.add(createThemeBtn);
+		
+		editExistingBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		editExistingBtn.setBounds(326, 200+140+70, 355, 61);
+		contentPane.add(editExistingBtn);
 		
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(Player.class.getResource("/images/BackgroundTitle.gif")));
