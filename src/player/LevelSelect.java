@@ -21,7 +21,7 @@ public class LevelSelect extends JFrame {
 	private JPanel contentPane;
 	private JButton btnLevel1,btnLevel2,btnLevel3,btnLevel4,btnLevel5,btnLevel6,btnLevel7,btnLevel8,
 								btnLevel9,btnLevel10,btnLevel11,btnLevel12,btnLevel13,btnLevel14,btnLevel15;
-
+	private JButton btnMainMenu;
 	
 
 	/**
@@ -56,6 +56,7 @@ public class LevelSelect extends JFrame {
 
 	private void initializeModel() {
 
+		btnMainMenu = new JButton("Main Menu");
 		btnLevel1 = new JButton("Level 1");
 		btnLevel2 = new JButton("Level 2");
 		btnLevel3 = new JButton("Level 3");
@@ -87,7 +88,11 @@ public class LevelSelect extends JFrame {
 		btnLevel1.setBounds(260, 155, 80, 80);
 		contentPane.add(btnLevel1);
 		
-		//ONLY BUTTON 1 DOES SOMETHING >> See initializeController
+		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnMainMenu.setBounds(110, 155, 90, 30);
+		contentPane.add(btnMainMenu);
+		
+		//ONLY BUTTONS 1 - 3 DO SOMETHING >> See initializeController
 		
 		btnLevel2.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnLevel2.setBounds(360, 155, 80, 80);
@@ -155,6 +160,14 @@ public class LevelSelect extends JFrame {
 	}
 
 	private void initializeController() {
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Player temp = new Player();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		
 		btnLevel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PuzzleView temp = new PuzzleView();
