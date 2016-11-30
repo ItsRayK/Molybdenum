@@ -12,6 +12,10 @@ import entities.*;
 public class PuzzleView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
+	private JButton boardSquares[][];
+	private JButton btnUndo, btnGiveUp,btnSubmitWord;
+	private JScrollPane spWordsFoundList;
+	
 	Puzzle level;
 	Square[][] squares = new Square[6][6];
 
@@ -36,23 +40,12 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void initialize() {
-		initializeEntities();
+		initializeModel();
 		initializeView();
-		initControllers();
+		initializeController();
 	}
 
-	public void initializeEntities() {
-		// for (int i = 0; i <= 5; i++) {
-		// for (int j = 0; j <= 5; j++) {
-		// if (i % 2 == 0 && j % 2 == 1) {
-		// level.getBoard().activateSquare(squares[i][j]);
-		// }
-		// }
-		// }
-
-	}
-
-	public void initializeView() {
+	public void initializeModel() {
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
@@ -60,22 +53,13 @@ public class PuzzleView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/undo-4-xxl.gif")));
-		button.setBounds(913, 127, 40, 40);
-		contentPane.add(button);
-
+		
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				Letter l = new Letter();
 				l.randomLetter();
 
-				JButton boardSquares[][] = new JButton[6][6];
+				boardSquares = new JButton[6][6];
 				boardSquares[i][j] = new JButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
 						+ l.getScore() + "</sub></font></html>");
 				boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -85,12 +69,27 @@ public class PuzzleView extends JFrame {
 			}
 
 		}
+		
+		btnUndo = new JButton("");
+		spWordsFoundList = new JScrollPane();
+		btnExitLevel = new JButton("Exit Level");
+		btnGiveUp = new JButton("Reset");
+		btnSubmitWord = new JButton("Submit Word");
 
-		JScrollPane wordsFoundList = new JScrollPane();
-		wordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		wordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		wordsFoundList.setBounds(141, 116, 226, 284);
-		contentPane.add(wordsFoundList);
+		
+
+	}
+
+	public void initializeView() {
+				
+		btnUndo.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/undo-4-xxl.gif")));
+		btnUndo.setBounds(913, 127, 40, 40);
+		contentPane.add(btnUndo);
+		
+		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		contentPane.add(spWordsFoundList);
 
 		JLabel lblWordsFound = new JLabel("Words Found");
 		lblWordsFound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,13 +127,34 @@ public class PuzzleView extends JFrame {
 
 		///////////////////////////
 
+		btnExitLevel.setBounds(24, 82, 89, 23);
+		contentPane.add(btnExitLevel);
+
+		btnGiveUp.setBounds(24, 136, 89, 23);
+		contentPane.add(btnGiveUp);
+
+		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnSubmitWord.setBounds(797, 127, 106, 40);
+		contentPane.add(btnSubmitWord);
+		
 		JLabel gridimg = new JLabel("");
 		gridimg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
 		gridimg.setBounds(392, 82, 400, 400);
 		contentPane.add(gridimg);
 
-		btnExitLevel = new JButton("Exit Level");
+		JLabel bg = new JLabel("");
+		bg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/BackgroundBlank.gif")));
+		bg.setBounds(0, 0, 984, 531);
+		contentPane.add(bg);
 
+	}
+
+	public void initializeController() {
+		btnUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
 		btnExitLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LevelSelect levelSelect = new LevelSelect();
@@ -142,10 +162,7 @@ public class PuzzleView extends JFrame {
 				dispose();
 			}
 		});
-		btnExitLevel.setBounds(24, 82, 89, 23);
-		contentPane.add(btnExitLevel);
-
-		JButton btnGiveUp = new JButton("Reset");
+		
 		btnGiveUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PuzzleView temp = new PuzzleView();
@@ -153,23 +170,6 @@ public class PuzzleView extends JFrame {
 				dispose();
 			}
 		});
-		btnGiveUp.setBounds(24, 136, 89, 23);
-		contentPane.add(btnGiveUp);
-
-		JButton btnSubmitWord = new JButton("Submit Word");
-		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnSubmitWord.setBounds(797, 127, 106, 40);
-		contentPane.add(btnSubmitWord);
-
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/BackgroundBlank.gif")));
-		label_1.setBounds(0, 0, 984, 531);
-		contentPane.add(label_1);
-
-	}
-
-	public void initControllers() {
-
 	}
 
 }
