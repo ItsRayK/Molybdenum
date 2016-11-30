@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 
 public abstract class Level {
+	String name;
 	Board board;
 	Score highScore;
 	Score currScore;
