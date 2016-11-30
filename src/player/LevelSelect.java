@@ -21,7 +21,7 @@ public class LevelSelect extends JFrame {
 	private JPanel contentPane;
 	private JButton btnLevel1,btnLevel2,btnLevel3,btnLevel4,btnLevel5,btnLevel6,btnLevel7,btnLevel8,
 								btnLevel9,btnLevel10,btnLevel11,btnLevel12,btnLevel13,btnLevel14,btnLevel15;
-	private JButton btnMainMenu;
+	private JButton btnMainMenu, btnCustom;
 	
 
 	/**
@@ -57,6 +57,7 @@ public class LevelSelect extends JFrame {
 	private void initializeModel() {
 
 		btnMainMenu = new JButton("Main Menu");
+		btnCustom = new JButton("Custom Level");
 		btnLevel1 = new JButton("Level 1");
 		btnLevel2 = new JButton("Level 2");
 		btnLevel3 = new JButton("Level 3");
@@ -89,8 +90,12 @@ public class LevelSelect extends JFrame {
 		contentPane.add(btnLevel1);
 		
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnMainMenu.setBounds(110, 155, 90, 30);
+		btnMainMenu.setBounds(110, 155, 110, 30);
 		contentPane.add(btnMainMenu);
+		
+		btnCustom.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnCustom.setBounds(110, 190, 110, 30);
+		contentPane.add(btnCustom);
 		
 		//ONLY BUTTONS 1 - 3 DO SOMETHING >> See initializeController
 		
