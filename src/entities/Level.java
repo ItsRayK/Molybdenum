@@ -20,7 +20,11 @@ public abstract class Level {
 
 
 	//builder functions
-	abstract boolean saveLevel();
+	abstract boolean saveLevel(
+			/*This overarrching version of the method should assign the level name, the
+			 * checkbox values creating the customized board, and the score values for
+			 * each star level*/
+			);
 	abstract Board fillBoard();
 
 	public Board getBoard(){
