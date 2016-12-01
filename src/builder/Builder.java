@@ -58,10 +58,10 @@ public class Builder extends JFrame {
 	private void initializeModel(){
 		contentPane = new JPanel();
 		
-		createPuzzleBtn = new JButton("Build Puzzle");
-		createLightningBtn = new JButton("Build Lightning");
-		createThemeBtn = new JButton("Build Theme");
-		editExistingBtn = new JButton("Edit a Level");
+		createPuzzleBtn = new JButton("Build New Puzzle");
+		createLightningBtn = new JButton("Build New Lightning");
+		createThemeBtn = new JButton("Build New Theme");
+		editExistingBtn = new JButton("Edit an Existing Level");
 		
 		
 		lblBuilder = new JLabel("Level Builder");
