@@ -38,7 +38,8 @@ public class Theme extends Level {
 	 */
 	@Override
 	boolean saveLevel() {
-		// TODO Auto-generated method stub
+		// save name of theme and words to be found
+		// needs to be saved to a disk (look at online form discussion for more about where)
 		return false;
 	}
 
