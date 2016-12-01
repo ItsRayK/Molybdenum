@@ -39,7 +39,8 @@ public class Lightning extends Level{
 		}
 		@Override
 		boolean saveLevel() {
-			// TODO Auto-generated method stub
+			// The fields that need to be known to save a lightning level are the 
+			// board configuration, total time allotted, and if the level is locked
 			return false;
 		}
 
