@@ -4,8 +4,15 @@ public class Square {
 	Letter contents;
 	int row;
 	int column;
-	boolean active;
+	public boolean active = false;
 
+	public Square(int row, int column, boolean active){
+		this.row = row;
+		this.column = column;
+		this.active = active;
+		
+	}
+	
 	public void removeSquare(Square s) {
 		contents = null;
 	}
@@ -24,10 +31,7 @@ public class Square {
 	}
 
 	public boolean isActive() {
-		if (contents != null)
-			return true;
-		else
-			return false;
+		return active;
 	}
 
 	public void setActivity(boolean tf) {
