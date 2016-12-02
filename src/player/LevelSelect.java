@@ -262,7 +262,8 @@ public class LevelSelect extends JFrame {
 
 		btnLevel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()));
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
+						0);
 				temp.setVisible(true);
 				dispose();
 			}

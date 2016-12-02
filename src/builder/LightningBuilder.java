@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.GetStateOfLightningBuilder;
+import controllers.GetStateOfPuzzleBuilder;
 import entities.Board;
 import entities.Letter;
 import entities.Lightning;
@@ -155,7 +157,7 @@ public class LightningBuilder extends JFrame {
 	}
 
 	private void initializeController() {
-
+		LightningBuilder lightningBuilder = this;
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Builder mainMenu = new Builder();
@@ -166,17 +168,43 @@ public class LightningBuilder extends JFrame {
 
 		btnPreview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (i = 0; i <= 5; i++) {
-					for (j = 0; j <= 5; j++) {
-						if (checkBox[i][j].isSelected())
-							lightning.getBoard().activateSquare(i, j);
-						else
-							lightning.getBoard().deActivateSquare(i, j);
-					}
-				}
-				LightningView lightningView = new LightningView(txtlevelName.getText(), lightning);
-				lightningView.setVisible(true);
+
+				GetStateOfLightningBuilder state = new GetStateOfLightningBuilder(lightningBuilder, lightning);
+				state.makePreview();
 			}
 		});
+	}
+
+	// Getters and Setters of variables
+	public String getNameText() {
+		return txtlevelName.getText();
+	}
+
+	public String getTimerText() {
+		return txtSetTime.getText();
+	}
+
+	public JCheckBox[][] getCheckBox() {
+		return checkBox;
+	}
+
+	public void setCheckBox(JCheckBox checkBox[][]) {
+		this.checkBox = checkBox;
+	}
+
+	public JTextField getTxt1StarThresh() {
+		return txt1StarThresh;
+	}
+
+	public void setTxt1StarThresh(JTextField txt1StarThresh) {
+		this.txt1StarThresh = txt1StarThresh;
+	}
+
+	public JTextField getTxt2StarThresh() {
+		return txt2StarThresh;
+	}
+
+	public JTextField getTxt3StarThresh() {
+		return txt3StarThresh;
 	}
 }

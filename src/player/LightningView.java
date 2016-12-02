@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import entities.Letter;
 import entities.Square;
 import entities.Lightning;
+import entities.Score;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,11 +25,16 @@ public class LightningView extends JFrame {
 	JLabel starimg1, starimg2, starimg3;
 	String name;
 	Lightning level;
-	
-	public LightningView(String n, Lightning l) {
+	int timer;
+	Timer count;
+
+	public LightningView(String n, Lightning l, Score oneStarScore, Score twoStarScore, Score threeStarScore, int t) {
+		timer = t;
 		name = n;
 		level = l;
+
 		initialize();
+
 	}
 
 	/**
@@ -38,7 +44,7 @@ public class LightningView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LightningView frame = new LightningView("default", level);
+					LightningView frame = new LightningView("default", level, null, null, null, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -90,6 +96,17 @@ public class LightningView extends JFrame {
 				}
 			}
 		}
+		int originalTimer = timer;
+		count = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				timer--;
+				if (timer == 0) {
+					timer = originalTimer;
+					count.restart();
+				}
+			}
+
+		});
 
 	}
 
@@ -124,8 +141,8 @@ public class LightningView extends JFrame {
 		txtTimeResetNote.setText("Note: The time\r\nwill continue to\r\ncountdown on\r\nreset.");
 		contentPane.add(txtTimeResetNote);
 
-		JLabel lblTimeLeft = new JLabel("Time Left:");
-		lblTimeLeft.setBounds(141, 453, 100, 31);
+		JLabel lblTimeLeft = new JLabel("Time Left: " + timer);
+		lblTimeLeft.setBounds(141, 453, 200, 31);
 		lblTimeLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		contentPane.add(lblTimeLeft);
 
@@ -175,7 +192,7 @@ public class LightningView extends JFrame {
 
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 	}
