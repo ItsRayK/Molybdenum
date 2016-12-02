@@ -25,7 +25,7 @@ public class PuzzleBuilder extends JFrame {
 	private JLabel lblScoreThresholds, lblLevelTypePuzzle;
 	private JCheckBox checkBox[][] = new JCheckBox[6][6];
 	int i, j;
-	Puzzle puzzle = new Puzzle("test", new Board());
+	Puzzle puzzle = new Puzzle("default", new Board());
 
 	/**
 	 * Launch the application.
@@ -76,7 +76,7 @@ public class PuzzleBuilder extends JFrame {
 
 		for (i = 0; i <= 5; i++) {
 			for (j = 0; j <= 5; j++) {
-				checkBox[i][j] = new JCheckBox("");
+				checkBox[i][j] = new JCheckBox("", true);
 				checkBox[i][j].setBounds(534 + i * 66, 91 + j * 66, 20, 20);
 				contentPane.add(checkBox[i][j]);
 
@@ -131,7 +131,7 @@ public class PuzzleBuilder extends JFrame {
 		tfWordLimit.setColumns(10);
 
 		txtlevelName = new JTextField();
-		txtlevelName.setText("(Level Name)");
+		txtlevelName.setToolTipText("(LevelName)");
 		txtlevelName.setBounds(10, 126, 95, 20);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
@@ -164,16 +164,22 @@ public class PuzzleBuilder extends JFrame {
 		btnPreview.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+
 				for (i = 0; i <= 5; i++) {
 					for (j = 0; j <= 5; j++) {
 						if (checkBox[i][j].isSelected())
+							puzzle.getBoard().activateSquare(i, j);
+						else
 							puzzle.getBoard().deActivateSquare(i, j);
+
 					}
+
 				}
-				PuzzleView puzzleView = new PuzzleView();
+
+				PuzzleView puzzleView = new PuzzleView(txtlevelName.getText(), puzzle);
 				puzzleView.setLevel(puzzle);
 				puzzleView.setVisible(true);
-				dispose();
+
 			}
 		});
 

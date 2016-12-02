@@ -26,5 +26,8 @@ public class Board {
 	public void deActivateSquare(int col, int row) {
 		squares[col][row].setActivity(false);
 	}
+	public void activateSquare(int col, int row) {
+		squares[col][row].setActivity(true);
+	}
 
 }

@@ -15,12 +15,13 @@ public class PuzzleView extends JFrame {
 	private JButton boardSquares[][];
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
+	String name;
+	Puzzle level;
 
-	Puzzle level = new Puzzle("test", new Board());
-
-	public PuzzleView() {
+	public PuzzleView(String n, Puzzle p) {
+		name = n;
+		level = p;
 		initialize();
-
 	}
 
 	/**
@@ -32,7 +33,7 @@ public class PuzzleView extends JFrame {
 			public void run() {
 				try {
 
-					PuzzleView frame = new PuzzleView();
+					PuzzleView frame = new PuzzleView("default", level);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,6 +45,7 @@ public class PuzzleView extends JFrame {
 	public void setLevel(Puzzle p) {
 		level = p;
 	}
+	
 
 	public void initialize() {
 		initializeModel();
@@ -109,7 +111,7 @@ public class PuzzleView extends JFrame {
 		lblScore.setBounds(141, 411, 66, 31);
 		contentPane.add(lblScore);
 
-		JLabel lblPuzzle = new JLabel("Puzzle");
+		JLabel lblPuzzle = new JLabel("Puzzle: " + name);
 		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPuzzle.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
 		lblPuzzle.setBounds(392, 34, 400, 37);
@@ -170,13 +172,13 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
-		btnGiveUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PuzzleView temp = new PuzzleView();
-				temp.setVisible(true);
-				dispose();
-			}
-		});
+		// btnGiveUp.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// PuzzleView temp = new PuzzleView();
+		// temp.setVisible(true);
+		// dispose();
+		// }
+		// });
 	}
 
 }
