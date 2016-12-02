@@ -23,9 +23,9 @@ public class PuzzleBuilder extends JFrame {
 	private JTextField txtlevelName;
 	private JButton btnBack, btnPreview, btnDelete, btnSaveLevel;
 	private JLabel lblScoreThresholds, lblLevelTypePuzzle;
-	private JCheckBox checkBox[][];
-	int i,j;
-	Puzzle puzzle;
+	private JCheckBox checkBox[][] = new JCheckBox[6][6];
+	int i, j;
+	Puzzle puzzle = new Puzzle("test", new Board());
 
 	/**
 	 * Launch the application.
@@ -69,20 +69,13 @@ public class PuzzleBuilder extends JFrame {
 		txt1StarThresh = new JTextField();
 		txt2StarThresh = new JTextField();
 		txt3StarThresh = new JTextField();
-		
-
-		
 
 	}
 
 	private void initializeView() {
-		
+
 		for (i = 0; i <= 5; i++) {
 			for (j = 0; j <= 5; j++) {
-				Letter l = new Letter();
-				l.randomLetter();
-
-				checkBox = new JCheckBox[6][6];
 				checkBox[i][j] = new JCheckBox("");
 				checkBox[i][j].setBounds(534 + i * 66, 91 + j * 66, 20, 20);
 				contentPane.add(checkBox[i][j]);
@@ -113,7 +106,7 @@ public class PuzzleBuilder extends JFrame {
 		btnSaveLevel = new JButton("Save Level");
 		btnSaveLevel.setBounds(10, 95, 95, 23);
 		contentPane.add(btnSaveLevel);
-		
+
 		btnBack = new JButton("Main Menu");
 		btnBack.setBounds(10, 161, 95, 23);
 		contentPane.add(btnBack);
@@ -156,8 +149,7 @@ public class PuzzleBuilder extends JFrame {
 		bg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/BackgroundBlank.gif")));
 		bg.setBounds(0, 0, 994, 541);
 		contentPane.add(bg);
-		
-		
+
 	}
 
 	public void initializeController() {
@@ -168,24 +160,23 @@ public class PuzzleBuilder extends JFrame {
 				dispose();
 			}
 		});
-	
+
 		btnPreview.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-				 puzzle = new Puzzle("test", new Board()); 
-				
-//				for(i = 0; i<=5; i++){
-//					for(j = 0; j<=5; j++){
-//						if(checkBox[i][j].isSelected()){
-//							puzzle.getBoard().deActivateSquare(i, j);
-//						}
-//					}
-//				}
-				PuzzleView puzzleView = new PuzzleView(puzzle);
+				for (i = 0; i <= 5; i++) {
+					for (j = 0; j <= 5; j++) {
+						if (checkBox[i][j].isSelected())
+							puzzle.getBoard().deActivateSquare(i, j);
+					}
+				}
+				PuzzleView puzzleView = new PuzzleView();
+				puzzleView.setLevel(puzzle);
 				puzzleView.setVisible(true);
 				dispose();
 			}
 		});
-		
+
 	}
 
 }

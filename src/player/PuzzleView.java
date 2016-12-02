@@ -16,17 +16,17 @@ public class PuzzleView extends JFrame {
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 
-	Puzzle level;
-	//= new Puzzle("test", new Board());
+	Puzzle level = new Puzzle("test", new Board());
 
-	public PuzzleView(Puzzle puzzle) {
-		level = puzzle;
+	public PuzzleView() {
+		initialize();
+
 	}
 
 	/**
 	 * Launch the application.
 	 */
-	public static void Puzzle() {
+	public static void Puzzle(Puzzle level) {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,8 +41,8 @@ public class PuzzleView extends JFrame {
 		});
 	}
 
-	public PuzzleView() {
-		initialize();
+	public void setLevel(Puzzle p) {
+		level = p;
 	}
 
 	public void initialize() {
@@ -60,8 +60,8 @@ public class PuzzleView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		// column and row are 0 index
-//		 level.getBoard().deActivateSquare(3, 5);
-//		 level.getBoard().deActivateSquare(2, 1);
+		// level.getBoard().deActivateSquare(3, 5);
+		// level.getBoard().deActivateSquare(2, 1);
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 
