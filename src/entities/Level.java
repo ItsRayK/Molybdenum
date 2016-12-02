@@ -13,6 +13,10 @@ public abstract class Level {
 	Score threeStarScore;
 	ArrayList<Word> wordsFound = new ArrayList<Word>();
 
+	Level(String n, Board b){
+		name = n;
+		board = b;
+	}
 	//player functions
 	abstract boolean hasWon();
 	abstract void submitWord();

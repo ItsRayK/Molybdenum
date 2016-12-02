@@ -1,6 +1,11 @@
 package entities;
 
 public class Lightning extends Level{
+	Lightning(String n, Board b) {
+		super(n, b);
+		// TODO Auto-generated constructor stub
+	}
+
 	int time;
 	/*
 	 * Player Functions

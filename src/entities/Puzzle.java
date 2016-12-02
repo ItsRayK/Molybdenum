@@ -1,7 +1,11 @@
 package entities;
 
-public class Puzzle extends Level{
+public class Puzzle extends Level {
 	int numWords;
+
+	public Puzzle(String name, Board b) {
+		super(name, b);
+	}
 
 	/*
 	 * Player Functions

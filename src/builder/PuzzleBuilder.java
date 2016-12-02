@@ -5,7 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import entities.Board;
 import entities.Letter;
+import entities.Puzzle;
+import player.PuzzleView;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -20,6 +24,8 @@ public class PuzzleBuilder extends JFrame {
 	private JButton btnBack, btnPreview, btnDelete, btnSaveLevel;
 	private JLabel lblScoreThresholds, lblLevelTypePuzzle;
 	private JCheckBox checkBox[][];
+	int i,j;
+	Puzzle puzzle;
 
 	/**
 	 * Launch the application.
@@ -71,8 +77,8 @@ public class PuzzleBuilder extends JFrame {
 
 	private void initializeView() {
 		
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
+		for (i = 0; i <= 5; i++) {
+			for (j = 0; j <= 5; j++) {
 				Letter l = new Letter();
 				l.randomLetter();
 
@@ -159,6 +165,23 @@ public class PuzzleBuilder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Builder mainMenu = new Builder();
 				mainMenu.setVisible(true);
+				dispose();
+			}
+		});
+	
+		btnPreview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 puzzle = new Puzzle("test", new Board()); 
+				
+//				for(i = 0; i<=5; i++){
+//					for(j = 0; j<=5; j++){
+//						if(checkBox[i][j].isSelected()){
+//							puzzle.getBoard().deActivateSquare(i, j);
+//						}
+//					}
+//				}
+				PuzzleView puzzleView = new PuzzleView(puzzle);
+				puzzleView.setVisible(true);
 				dispose();
 			}
 		});

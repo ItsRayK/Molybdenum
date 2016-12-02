@@ -3,6 +3,11 @@ package entities;
 import java.util.ArrayList;
 
 public class Theme extends Level {
+	Theme(String n, Board b) {
+		super(n, b);
+		// TODO Auto-generated constructor stub
+	}
+
 	String themeName;
 	ArrayList<Word> keyWords = new ArrayList<Word>();
 
