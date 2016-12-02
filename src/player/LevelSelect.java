@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import entities.Board;
 import entities.Puzzle;
+import entities.Lightning;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -261,7 +262,7 @@ public class LevelSelect extends JFrame {
 
 		btnLevel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView();
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()));
 				temp.setVisible(true);
 				dispose();
 			}
