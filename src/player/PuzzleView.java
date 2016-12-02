@@ -18,7 +18,7 @@ public class PuzzleView extends JFrame {
 	String name;
 	Puzzle level;
 
-	public PuzzleView(String n, Puzzle p) {
+	public PuzzleView(String n, Puzzle p, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
 		name = n;
 		level = p;
 		initialize();
@@ -33,7 +33,7 @@ public class PuzzleView extends JFrame {
 			public void run() {
 				try {
 
-					PuzzleView frame = new PuzzleView("default", level);
+					PuzzleView frame = new PuzzleView("default", level, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,6 @@ public class PuzzleView extends JFrame {
 	public void setLevel(Puzzle p) {
 		level = p;
 	}
-	
 
 	public void initialize() {
 		initializeModel();
@@ -172,13 +171,13 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
-		// btnGiveUp.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// PuzzleView temp = new PuzzleView();
-		// temp.setVisible(true);
-		// dispose();
-		// }
-		// });
+		btnGiveUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PuzzleView temp = new PuzzleView(name, level, null, null, null);
+				temp.setVisible(true);
+				dispose();
+			}
+		});
 	}
 
 }

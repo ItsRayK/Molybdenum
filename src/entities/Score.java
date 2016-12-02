@@ -8,6 +8,10 @@ public class Score {
 
 	boolean star3Filled;
 
+	public Score(int val) {
+		value = val;
+	}
+
 	public Score setScore(int i) {
 		value = i;
 		return this;

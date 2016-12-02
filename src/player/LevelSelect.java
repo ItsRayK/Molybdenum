@@ -254,7 +254,7 @@ public class LevelSelect extends JFrame {
 
 		btnLevel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PuzzleView temp = new PuzzleView("default", new Puzzle("test", new Board()));
+				PuzzleView temp = new PuzzleView("default", new Puzzle("test", new Board()), null, null, null);
 				temp.setVisible(true);
 				dispose();
 			}

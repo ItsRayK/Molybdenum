@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.GetStateOfPuzzleBuilder;
 import entities.Board;
 import entities.Letter;
 import entities.Puzzle;
@@ -14,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PuzzleBuilder extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField tfWordLimit;
 	private JTextField txt1StarThresh;
@@ -66,7 +66,7 @@ public class PuzzleBuilder extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		txt1StarThresh = new JTextField();
+		setTxt1StarThresh(new JTextField());
 		txt2StarThresh = new JTextField();
 		txt3StarThresh = new JTextField();
 
@@ -76,18 +76,18 @@ public class PuzzleBuilder extends JFrame {
 
 		for (i = 0; i <= 5; i++) {
 			for (j = 0; j <= 5; j++) {
-				checkBox[i][j] = new JCheckBox("", true);
-				checkBox[i][j].setBounds(534 + i * 66, 91 + j * 66, 20, 20);
-				contentPane.add(checkBox[i][j]);
+				getCheckBox()[i][j] = new JCheckBox("", true);
+				getCheckBox()[i][j].setBounds(534 + i * 66, 91 + j * 66, 20, 20);
+				contentPane.add(getCheckBox()[i][j]);
 
 			}
 
 		}
 
-		txt1StarThresh.setText("(Score required for 1 star)");
-		txt1StarThresh.setBounds(182, 168, 171, 20);
-		contentPane.add(txt1StarThresh);
-		txt1StarThresh.setColumns(10);
+		getTxt1StarThresh().setText("(Score required for 1 star)");
+		getTxt1StarThresh().setBounds(182, 168, 171, 20);
+		contentPane.add(getTxt1StarThresh());
+		getTxt1StarThresh().setColumns(10);
 
 		txt2StarThresh.setText("(Score required for 2 stars)");
 		txt2StarThresh.setColumns(10);
@@ -153,6 +153,7 @@ public class PuzzleBuilder extends JFrame {
 	}
 
 	public void initializeController() {
+		PuzzleBuilder puzzleBuilder = this;
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Builder mainMenu = new Builder();
@@ -162,27 +163,41 @@ public class PuzzleBuilder extends JFrame {
 		});
 
 		btnPreview.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-
-				for (i = 0; i <= 5; i++) {
-					for (j = 0; j <= 5; j++) {
-						if (checkBox[i][j].isSelected())
-							puzzle.getBoard().activateSquare(i, j);
-						else
-							puzzle.getBoard().deActivateSquare(i, j);
-
-					}
-
-				}
-
-				PuzzleView puzzleView = new PuzzleView(txtlevelName.getText(), puzzle);
-				puzzleView.setLevel(puzzle);
-				puzzleView.setVisible(true);
-
+				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
+				getState.makePreview();
 			}
 		});
 
+	}
+
+	// Getters and Setters of variables
+	public String getNameText() {
+		return txtlevelName.getText();
+	}
+
+	public JCheckBox[][] getCheckBox() {
+		return checkBox;
+	}
+
+	public void setCheckBox(JCheckBox checkBox[][]) {
+		this.checkBox = checkBox;
+	}
+
+	public JTextField getTxt1StarThresh() {
+		return txt1StarThresh;
+	}
+
+	public void setTxt1StarThresh(JTextField txt1StarThresh) {
+		this.txt1StarThresh = txt1StarThresh;
+	}
+
+	public JTextField getTxt2StarThresh() {
+		return txt2StarThresh;
+	}
+
+	public JTextField getTxt3StarThresh() {
+		return txt3StarThresh;
 	}
 
 }
