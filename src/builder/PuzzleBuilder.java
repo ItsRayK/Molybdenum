@@ -12,6 +12,9 @@ import entities.Puzzle;
 import player.PuzzleView;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class PuzzleBuilder extends JFrame {
@@ -166,6 +169,13 @@ public class PuzzleBuilder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
 				getState.makePreview();
+			}
+		});
+		
+		btnSaveLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
+				getState.saveLevel();
 			}
 		});
 
