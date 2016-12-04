@@ -68,11 +68,22 @@ public class PuzzleBuilder extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
+		
 		setTxt1StarThresh(new JTextField());
 		txt2StarThresh = new JTextField();
+		txt2StarThresh.setBounds(182, 193, 171, 20);
 		txt3StarThresh = new JTextField();
+		txt3StarThresh.setBounds(182, 218, 171, 20);
+		
+		lblScoreThresholds = new JLabel("<html> <b> * </b> Score Thresholds:</html>");
+		btnSaveLevel = new JButton("Save Level");
+		btnBack = new JButton("Main Menu");
+		btnPreview = new JButton("Preview");
+		btnDelete = new JButton("Delete");
+		lblLevelTypePuzzle = new JLabel("Level Type: Puzzle");
+		tfWordLimit = new JTextField();
+		txtlevelName = new JTextField("");
+
 
 	}
 
@@ -87,60 +98,54 @@ public class PuzzleBuilder extends JFrame {
 			}
 
 		}
+		contentPane.setLayout(null);
 		getTxt1StarThresh().setText("");
 		TextPrompt star1prompt = new TextPrompt("Score required for 1 star", txt1StarThresh);
-		getTxt1StarThresh().setBounds(182, 168, 171, 20);
 		contentPane.add(getTxt1StarThresh());
 		getTxt1StarThresh().setColumns(10);
 
 		txt2StarThresh.setText("");
 		TextPrompt star2prompt = new TextPrompt("Score required for 2 stars", txt2StarThresh);
 		txt2StarThresh.setColumns(10);
-		txt2StarThresh.setBounds(182, 193, 171, 20);
 		contentPane.add(txt2StarThresh);
 
 		txt3StarThresh.setText("");
 		TextPrompt star3prompt = new TextPrompt("Score required for 3 stars", txt3StarThresh);
 		txt3StarThresh.setColumns(10);
-		txt3StarThresh.setBounds(182, 218, 171, 20);
 		contentPane.add(txt3StarThresh);
 
-		lblScoreThresholds = new JLabel("<html> <b> * </b> Score Thresholds:</html>");
 		lblScoreThresholds.setBounds(182, 152, 120, 14);
 		contentPane.add(lblScoreThresholds);
 
-		btnSaveLevel = new JButton("Save Level");
 		btnSaveLevel.setBounds(10, 95, 95, 23);
 		contentPane.add(btnSaveLevel);
 
-		btnBack = new JButton("Main Menu");
-		btnBack.setBounds(10, 161, 95, 23);
+		btnBack.setBounds(10, 171, 95, 23);
 		contentPane.add(btnBack);
 
-		btnPreview = new JButton("Preview");
-		btnPreview.setBounds(10, 190, 95, 23);
+		btnPreview.setBounds(10, 200, 95, 23);
 		contentPane.add(btnPreview);
 
-		btnDelete = new JButton("Delete");
-		btnDelete.setBounds(10, 219, 95, 23);
+		btnDelete.setBounds(10, 230, 95, 23);
 		contentPane.add(btnDelete);
 
-		lblLevelTypePuzzle = new JLabel("Level Type: Puzzle");
+		lblLevelTypePuzzle.setBounds(10, 86, 510, 32);
 		lblLevelTypePuzzle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelTypePuzzle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblLevelTypePuzzle.setBounds(10, 86, 510, 32);
 		contentPane.add(lblLevelTypePuzzle);
 
-		tfWordLimit = new JTextField();
 		tfWordLimit.setBounds(251, 126, 102, 20);
 		contentPane.add(tfWordLimit);
 		tfWordLimit.setColumns(10);
 
-		txtlevelName = new JTextField("");
-		TextPrompt levelNameprompt = new TextPrompt("<html><text color = black>*</text>Level Name</html>", txtlevelName);
-		txtlevelName.setBounds(10, 126, 95, 20);
+		txtlevelName.setBounds(10, 146, 95, 20);
+		TextPrompt levelNameprompt = new TextPrompt("<html><text color = black></text>Level Name</html>", txtlevelName);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
+		
+		JLabel lblLevelName = new JLabel("*Level Name");
+		lblLevelName.setBounds(10, 126, 95, 20);
+		contentPane.add(lblLevelName);
 
 		JLabel lblWordLimit = new JLabel("Word Limit:");
 		lblWordLimit.setBounds(182, 129, 70, 14);
@@ -151,13 +156,13 @@ public class PuzzleBuilder extends JFrame {
 		contentPane.add(lblRequiredNote);
 
 		JLabel gridImg = new JLabel("");
-		gridImg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/Grid.gif")));
 		gridImg.setBounds(530, 86, 400, 400);
+		gridImg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/Grid.gif")));
 		contentPane.add(gridImg);
 
 		JLabel bg = new JLabel("");
-		bg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/BackgroundBlank.gif")));
 		bg.setBounds(0, 0, 994, 541);
+		bg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/BackgroundBlank.gif")));
 		contentPane.add(bg);
 
 	}
@@ -213,6 +218,7 @@ public class PuzzleBuilder extends JFrame {
 
 	public void setTxt1StarThresh(JTextField txt1StarThresh) {
 		this.txt1StarThresh = txt1StarThresh;
+		txt1StarThresh.setBounds(182, 168, 171, 20);
 	}
 
 	public JTextField getTxt2StarThresh() {

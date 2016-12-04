@@ -141,14 +141,26 @@ public class LightningBuilder extends JFrame {
 		btnSaveLevel.setBounds(10, 95, 95, 23);
 		contentPane.add(btnSaveLevel);
 
-		btnBack.setBounds(10, 161, 95, 23);
+		btnBack = new JButton("Main Menu");
+		btnBack.setBounds(10, 171, 95, 23);
 		contentPane.add(btnBack);
 
-		btnPreview.setBounds(10, 190, 95, 23);
+		btnPreview = new JButton("Preview");
+		btnPreview.setBounds(10, 200, 95, 23);
 		contentPane.add(btnPreview);
 
-		btnDelete.setBounds(10, 219, 95, 23);
+		btnDelete = new JButton("Delete");
+		btnDelete.setBounds(10, 230, 95, 23);
 		contentPane.add(btnDelete);
+		
+		txtlevelName.setBounds(10, 146, 95, 20);
+		TextPrompt levelNameprompt = new TextPrompt("<html><text color = black></text>Level Name</html>", txtlevelName);
+		contentPane.add(txtlevelName);
+		txtlevelName.setColumns(10);
+		
+		JLabel lblLevelName = new JLabel("*Level Name");
+		lblLevelName.setBounds(10, 126, 95, 20);
+		contentPane.add(lblLevelName);
 
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(LightningBuilder.class.getResource("/images/BackgroundBlank.gif")));
