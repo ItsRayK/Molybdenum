@@ -1,11 +1,8 @@
 package controllers;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
-import builder.PuzzleBuilder;
-import entities.Board;
 import entities.Puzzle;
 import entities.Score;
 import player.PuzzleView;
@@ -37,7 +34,9 @@ public class LoadPuzzleLevel {
 		ThreeStarScore = new Score(Integer.parseInt(
 				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
 						.get(3)));
-		
+		System.out.println(Integer.parseInt(
+				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+						.get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				
