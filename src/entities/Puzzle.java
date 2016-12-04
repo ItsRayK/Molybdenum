@@ -48,4 +48,5 @@ public class Puzzle extends Level {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

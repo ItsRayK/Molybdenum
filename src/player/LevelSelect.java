@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.LoadPuzzleLevel;
 import entities.Board;
 import entities.Puzzle;
 import entities.Lightning;
@@ -20,6 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class LevelSelect extends JFrame {
 
@@ -254,8 +256,13 @@ public class LevelSelect extends JFrame {
 
 		btnLevel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PuzzleView temp = new PuzzleView("default", new Puzzle("test", new Board()), null, null, null);
-				temp.setVisible(true);
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 1", new Puzzle("Level 1", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				dispose();
 			}
 		});

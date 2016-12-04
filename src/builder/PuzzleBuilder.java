@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import controllers.GetStateOfPuzzleBuilder;
+import controllers.LoadPuzzleLevel;
 import entities.Board;
 import entities.Letter;
 import entities.Puzzle;
@@ -181,13 +182,6 @@ public class PuzzleBuilder extends JFrame {
 
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
-				try {
-					getState.loadPuzzle();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 	}

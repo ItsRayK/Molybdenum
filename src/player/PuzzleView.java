@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.LoadPuzzleLevel;
 import entities.*;
 
 public class PuzzleView extends JFrame {
@@ -18,13 +19,14 @@ public class PuzzleView extends JFrame {
 	private JButton boardSquares[][];
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
+	Score oneStarScore, twoStarScore, threeStarScore;
 	String name;
 	Puzzle level;
+	LoadPuzzleLevel lpl;
 
 	public PuzzleView(String n, Puzzle p, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
-		name = n;
-		level = p;
-		initialize();
+		this.name = n;
+		this.level = p;
 	}
 
 	/**
@@ -37,7 +39,8 @@ public class PuzzleView extends JFrame {
 				try {
 
 					PuzzleView frame = new PuzzleView("default", level, null, null, null);
-					frame.setVisible(true);
+//					frame.initialize();
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,7 +51,9 @@ public class PuzzleView extends JFrame {
 	public void setLevel(Puzzle p) {
 		level = p;
 	}
-
+	
+	
+	
 	public void initialize() {
 		initializeModel();
 		initializeView();
@@ -66,6 +71,7 @@ public class PuzzleView extends JFrame {
 		// column and row are 0 index
 		// level.getBoard().deActivateSquare(3, 5);
 		// level.getBoard().deActivateSquare(2, 1);
+				
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 
@@ -176,9 +182,14 @@ public class PuzzleView extends JFrame {
 		});
 
 		btnGiveUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PuzzleView temp = new PuzzleView(name, level, null, null, null);
-				temp.setVisible(true);
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 1", new Puzzle("Level 1", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				dispose();
 			}
 		});
