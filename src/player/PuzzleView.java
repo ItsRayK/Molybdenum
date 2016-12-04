@@ -39,8 +39,8 @@ public class PuzzleView extends JFrame {
 				try {
 
 					PuzzleView frame = new PuzzleView("default", level, null, null, null);
-//					frame.initialize();
-//					frame.setVisible(true);
+					// frame.initialize();
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,9 +51,7 @@ public class PuzzleView extends JFrame {
 	public void setLevel(Puzzle p) {
 		level = p;
 	}
-	
-	
-	
+
 	public void initialize() {
 		initializeModel();
 		initializeView();
@@ -71,7 +69,7 @@ public class PuzzleView extends JFrame {
 		// column and row are 0 index
 		// level.getBoard().deActivateSquare(3, 5);
 		// level.getBoard().deActivateSquare(2, 1);
-				
+
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 
@@ -177,7 +175,7 @@ public class PuzzleView extends JFrame {
 				LevelSelect levelSelect = new LevelSelect();
 				levelSelect.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
