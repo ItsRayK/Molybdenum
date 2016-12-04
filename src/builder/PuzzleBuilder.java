@@ -88,17 +88,17 @@ public class PuzzleBuilder extends JFrame {
 
 		}
 
-		getTxt1StarThresh().setText("(Score required for 1 star)");
+		getTxt1StarThresh().setText("*(Score required for 1 star)");
 		getTxt1StarThresh().setBounds(182, 168, 171, 20);
 		contentPane.add(getTxt1StarThresh());
 		getTxt1StarThresh().setColumns(10);
 
-		txt2StarThresh.setText("(Score required for 2 stars)");
+		txt2StarThresh.setText("*(Score required for 2 stars)");
 		txt2StarThresh.setColumns(10);
 		txt2StarThresh.setBounds(182, 193, 171, 20);
 		contentPane.add(txt2StarThresh);
 
-		txt3StarThresh.setText("(Score required for 3 stars)");
+		txt3StarThresh.setText("*(Score required for 3 stars)");
 		txt3StarThresh.setColumns(10);
 		txt3StarThresh.setBounds(182, 218, 171, 20);
 		contentPane.add(txt3StarThresh);
@@ -134,8 +134,7 @@ public class PuzzleBuilder extends JFrame {
 		contentPane.add(tfWordLimit);
 		tfWordLimit.setColumns(10);
 
-		txtlevelName = new JTextField();
-		txtlevelName.setToolTipText("(LevelName)");
+		txtlevelName = new JTextField("*(LevelName)");
 		txtlevelName.setBounds(10, 126, 95, 20);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
@@ -143,6 +142,10 @@ public class PuzzleBuilder extends JFrame {
 		JLabel lblWordLimit = new JLabel("Word Limit:");
 		lblWordLimit.setBounds(182, 129, 70, 14);
 		contentPane.add(lblWordLimit);
+		
+		JLabel lblRequiredNote = new JLabel("*Required Fields");
+		lblRequiredNote.setBounds(182, 248, 110, 14);
+		contentPane.add(lblRequiredNote);
 
 		JLabel gridImg = new JLabel("");
 		gridImg.setIcon(new ImageIcon(PuzzleBuilder.class.getResource("/images/Grid.gif")));
@@ -182,6 +185,8 @@ public class PuzzleBuilder extends JFrame {
 
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
+				getState.deletePuzzle();
 			}
 		});
 	}

@@ -1,4 +1,4 @@
-package player;
+package builder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 import controllers.LoadPuzzleLevel;
 import entities.*;
 
-public class PuzzleView extends JFrame {
+public class PreviewPuzzle extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton boardSquares[][];
@@ -24,7 +24,7 @@ public class PuzzleView extends JFrame {
 	Puzzle level;
 	LoadPuzzleLevel lpl;
 
-	public PuzzleView(String n, Puzzle p, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
+	public PreviewPuzzle(String n, Puzzle p, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
 		this.name = n;
 		this.level = p;
 	}
@@ -38,7 +38,7 @@ public class PuzzleView extends JFrame {
 			public void run() {
 				try {
 
-					PuzzleView frame = new PuzzleView("default", level, null, null, null);
+					PreviewPuzzle frame = new PreviewPuzzle("default", level, null, null, null);
 //					frame.initialize();
 //					frame.setVisible(true);
 				} catch (Exception e) {
@@ -99,7 +99,7 @@ public class PuzzleView extends JFrame {
 
 	public void initializeView() {
 
-		btnUndo.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/undo-4-xxl.gif")));
+		btnUndo.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/undo-4-xxl.gif")));
 		btnUndo.setBounds(913, 127, 40, 40);
 		contentPane.add(btnUndo);
 
@@ -129,17 +129,17 @@ public class PuzzleView extends JFrame {
 
 		JLabel starimg1 = new JLabel("");
 		starimg1.setBounds(797, 217, 90, 90);
-		starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg1.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/starlevel.png")));
 		contentPane.add(starimg1);
 
 		JLabel starimg2 = new JLabel("");
 		starimg2.setBounds(797, 302, 90, 90);
-		starimg2.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg2.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/starlevel.png")));
 		contentPane.add(starimg2);
 
 		JLabel starimg3 = new JLabel("");
 		starimg3.setBounds(797, 387, 90, 90);
-		starimg3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg3.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/starlevel.png")));
 		contentPane.add(starimg3);
 
 		///////////////////////////
@@ -155,12 +155,12 @@ public class PuzzleView extends JFrame {
 		contentPane.add(btnSubmitWord);
 
 		JLabel gridimg = new JLabel("");
-		gridimg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
+		gridimg.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/Grid.gif")));
 		gridimg.setBounds(392, 82, 400, 400);
 		contentPane.add(gridimg);
 
 		JLabel bg = new JLabel("");
-		bg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/BackgroundBlank.gif")));
+		bg.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/BackgroundBlank.gif")));
 		bg.setBounds(0, 0, 984, 531);
 		contentPane.add(bg);
 
@@ -174,8 +174,6 @@ public class PuzzleView extends JFrame {
 
 		btnExitLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LevelSelect levelSelect = new LevelSelect();
-				levelSelect.setVisible(true);
 				dispose();
 				
 			}
@@ -183,14 +181,6 @@ public class PuzzleView extends JFrame {
 
 		btnGiveUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 1", new Puzzle("Level 1", new Board()));
-					temp.loadPuzzle();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				dispose();
 			}
 		});
 	}

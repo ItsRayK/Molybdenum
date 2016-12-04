@@ -61,5 +61,7 @@ public class LoadPuzzleLevel {
 		frame.initialize();
 		frame.setVisible(true);
 	}
+	
+	
 
 }

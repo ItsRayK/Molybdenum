@@ -15,6 +15,7 @@ public class GetStateOfPuzzleBuilder {
 	Score TwoStarScore;
 	Score ThreeStarScore;
 	BufferedWriter bw = null;
+	File file;
 
 	public GetStateOfPuzzleBuilder(PuzzleBuilder pb, Puzzle p) {
 		puzzleBuilder = pb;
@@ -37,31 +38,37 @@ public class GetStateOfPuzzleBuilder {
 		// puzzleBuilder.getTxt2StarThresh().getText()
 		// puzzleBuilder.getTxt3StarThresh().getText()
 
-		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
-		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
-		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
+		
 	}
 
 	public void makePreview() {
-		PuzzleView puzzleView = new PuzzleView(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
+		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
+		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
+		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
+		
+		PreviewPuzzle puzzleView = new PreviewPuzzle(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
 		puzzleView.setLevel(puzzle);
 		puzzleView.initialize();
 		puzzleView.setVisible(true);
 	}
 
 	public void saveLevel() {
+		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
+		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
+		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
 		String userName = System.getProperty("user.name");
 		File dir = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\");
 		dir.mkdir();
-		File file = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt");
+		file = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt");
 
 		FileWriter writer = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(file, false));
-//			writer = new FileWriter(file);
-//			writer.write(levelName + "\r\n" + puzzleBuilder.getTxt1StarThresh().getText() + "\r\n"
-//					+ puzzleBuilder.getTxt2StarThresh().getText() + "\r\n"
-//					+ puzzleBuilder.getTxt3StarThresh().getText());
+			// writer = new FileWriter(file);
+			// writer.write(levelName + "\r\n" +
+			// puzzleBuilder.getTxt1StarThresh().getText() + "\r\n"
+			// + puzzleBuilder.getTxt2StarThresh().getText() + "\r\n"
+			// + puzzleBuilder.getTxt3StarThresh().getText());
 			bw.write(levelName);
 			bw.newLine();
 			bw.flush();
@@ -74,7 +81,6 @@ public class GetStateOfPuzzleBuilder {
 			bw.write(puzzleBuilder.getTxt3StarThresh().getText());
 			bw.newLine();
 			bw.flush();
-			
 
 			for (int i = 0; i <= 5; i++) {
 				for (int j = 0; j <= 5; j++) {
@@ -104,6 +110,17 @@ public class GetStateOfPuzzleBuilder {
 
 		System.out.printf("File is located at %s%n", file.getAbsolutePath());
 
+	}
+
+	public void deletePuzzle() {
+		String userName = System.getProperty("user.name");
+		file = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt");
+		if(file.delete()){
+			System.out.println("'" + levelName + "'" + " has been deleted");
+		}
+		else
+			System.out.println("'" + levelName + "'" + " already does not exist");;
+		
 	}
 
 }

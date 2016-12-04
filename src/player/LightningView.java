@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 public class LightningView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel, btnReset, btnSubmitWord;
-	private JButton boardSquares[][];
+	private JToggleButton boardSquares[][];
 	Square[][] squares = new Square[6][6];
 	JLabel starimg1, starimg2, starimg3;
 	String name;
@@ -86,8 +86,8 @@ public class LightningView extends JFrame {
 				Letter l = new Letter();
 				l.randomLetter();
 				if (level.getBoard().squares[i][j].isActive()) {
-					boardSquares = new JButton[6][6];
-					boardSquares[i][j] = new JButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
+					boardSquares = new JToggleButton[6][6];
+					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
 							+ l.getScore() + "</sub></font></html>");
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
