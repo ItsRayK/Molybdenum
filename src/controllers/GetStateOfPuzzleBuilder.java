@@ -5,6 +5,8 @@ import player.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import builder.*;
 import entities.*;
@@ -67,4 +69,18 @@ public class GetStateOfPuzzleBuilder {
 	    System.out.printf("File is located at %s%n", file.getAbsolutePath());
 		
 	}
+	
+	public void loadPuzzle() throws IOException{
+		String userName = System.getProperty("user.name");
+		levelName = Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt")).get(0);
+		String star1 = Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\goop.txt")).get(1);
+		
+		OneStarScore.setScore(Integer.parseInt(Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\goop.txt")).get(1)));
+		TwoStarScore.setScore(Integer.parseInt(Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\goop.txt")).get(2)));
+		ThreeStarScore.setScore(Integer.parseInt(Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\goop.txt")).get(3)));
+		//this is just a test
+		System.out.print(levelName + " " + star1);
+		
+		}
+	
 }
