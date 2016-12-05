@@ -10,12 +10,17 @@ public class SubmitWord {
 
 	public SubmitWord(PuzzleView pV, Puzzle p, Word currentWord) {
 		view = pV;
-		pV.setLevel(p);
+		level = p;
 		word = currentWord;
 	}
 
 	public void submit() {
+		String wordFound = word.getWordString();
 		level.submitWord();
+		view.addToWordsFound(wordFound);
+		view.setLevel(level);
+		level.getLettersSelected().clear();
+
 	}
 
 }
