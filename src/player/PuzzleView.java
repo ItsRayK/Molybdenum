@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.LetterClicked;
 import controllers.LoadPuzzleLevel;
+import controllers.SubmitWord;
 import entities.*;
 
 public class PuzzleView extends JFrame {
@@ -212,6 +213,14 @@ public class PuzzleView extends JFrame {
 					e.printStackTrace();
 				}
 				dispose();
+			}
+		});
+
+		btnSubmitWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
+				submitWord.submit();
+				System.out.println(p.getCurrentWord().getPoints());
 			}
 		});
 

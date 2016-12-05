@@ -11,19 +11,25 @@ public class Word {
 	public Word(ArrayList<Square> sqs) {
 		squares = sqs;
 		setWordString();
-		setPoints();
+		if (sqs.iterator().hasNext())
+			setPoints(sqs.iterator().next().getContentsPoints());
+		else
+			setPoints(0);
+	}
 
+	public ArrayList<Square> getSquares() {
+		return squares;
 	}
 
 	public Word makeWord(Square square) {
 		squares.add(squares.size(), square);
 		setWordString();
-		setPoints();
+		setPoints(squares.iterator().next().getContentsPoints());
 		return this;
 	}
-	
+
 	public Word unMakeWord() {
-		squares.remove(squares.size()-1);
+		squares.remove(squares.size() - 1);
 		setWordString();
 		return this;
 	}
@@ -50,9 +56,7 @@ public class Word {
 		return points;
 	}
 
-	public void setPoints() {
-		for (Square s : squares) {
-			points += s.getContentsPoints();
-		}
+	public void setPoints(int i) {
+		points += i;
 	}
 }

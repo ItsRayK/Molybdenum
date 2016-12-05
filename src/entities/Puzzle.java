@@ -17,8 +17,10 @@ public class Puzzle extends Level {
 	}
 
 	@Override
-	void submitWord() {
-		// TODO Auto-generated method stub
+	public void submitWord() {
+		currScore.addToScore(currentWord.getPoints());
+		wordsFound.add(currentWord);
+		currentWord.getSquares().iterator().next().removeSquare();
 
 	}
 
@@ -48,5 +50,5 @@ public class Puzzle extends Level {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }
