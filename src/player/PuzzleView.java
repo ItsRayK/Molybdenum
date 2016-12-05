@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.LetterClicked;
 import controllers.LoadPuzzleLevel;
 import entities.*;
 
@@ -76,6 +77,8 @@ public class PuzzleView extends JFrame {
 				Letter l = new Letter();
 				l.randomLetter();
 				if (level.getBoard().squares[i][j].isActive()) {
+					level.getBoard().squares[i][j].fillSquare(l);
+
 					boardSquares = new JToggleButton[6][6];
 					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
 							+ l.getScore() + "</sub></font></html>");
@@ -165,6 +168,8 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void initializeController() {
+		Puzzle p = this.level;
+
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -189,6 +194,13 @@ public class PuzzleView extends JFrame {
 					e.printStackTrace();
 				}
 				dispose();
+			}
+		});
+		boardSquares[5][5].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[5][5]);
+				letterClicked.constructWord();
+				System.out.println(p.getCurrentWord().getWordString());
 			}
 		});
 	}

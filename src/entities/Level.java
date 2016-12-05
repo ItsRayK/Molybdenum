@@ -12,6 +12,8 @@ public abstract class Level {
 	Score twoStarScore;
 	Score threeStarScore;
 	ArrayList<Word> wordsFound = new ArrayList<Word>();
+	ArrayList<Square> lettersSelected = new ArrayList<Square>();
+	Word currentWord = new Word(lettersSelected);
 
 	Level(String n, Board b) {
 		name = n;
@@ -41,5 +43,13 @@ public abstract class Level {
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public Word getCurrentWord() {
+		return currentWord;
+	}
+
+	public ArrayList<Square> getLettersSelected() {
+		return lettersSelected;
 	}
 }

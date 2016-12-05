@@ -3,31 +3,31 @@ package entities;
 import java.util.Random;
 
 public class Letter {
-	 String letterString;
-	 int value;
+	String letterString;
+	int value;
 
 	public Letter() {
-		
-	}
-	
-/*public static void main(String[] args) {
-	String test = "";
-	for (int i = 0; i <=36; i++){
-		test = randomLetter();
-		System.out.print(test);
-	}
-	
-}*/
 
-	public Letter setLetter(Letter l){
-		letterString = l.letterString;
-		value = l.value;
+	}
+
+	/*
+	 * public static void main(String[] args) { String test = ""; for (int i =
+	 * 0; i <=36; i++){ test = randomLetter(); System.out.print(test); }
+	 * 
+	 * }
+	 */
+
+	public Letter setLetter(String string, int val) {
+		letterString = string;
+		value = val;
 		return this;
 	}
+
 	/*
-	 * Using the letter distribution values, these numbers are the probability out of 1 that these letters 
-	 * will occur.  The random letter generated will be between 0.0 and 1.0 and given the random number the correct
-	 * letter and point value will be assigned 
+	 * Using the letter distribution values, these numbers are the probability
+	 * out of 1 that these letters will occur. The random letter generated will
+	 * be between 0.0 and 1.0 and given the random number the correct letter and
+	 * point value will be assigned
 	 */
 	public Letter randomLetter() {
 		Random r = new Random();
@@ -140,10 +140,12 @@ public class Letter {
 		return this;
 
 	}
-	public String getString(){
+
+	public String getString() {
 		return letterString;
 	}
-	public int getScore(){
+
+	public int getScore() {
 		return value;
 	}
 
