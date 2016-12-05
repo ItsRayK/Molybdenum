@@ -40,8 +40,8 @@ public class PuzzleView extends JFrame {
 				try {
 
 					PuzzleView frame = new PuzzleView("default", level, null, null, null);
-					// frame.initialize();
-					// frame.setVisible(true);
+					frame.initialize();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,7 +63,7 @@ public class PuzzleView extends JFrame {
 		Puzzle p = this.level;
 		PuzzleView pV = this;
 		setTitle("Letter Craze");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,15 +87,24 @@ public class PuzzleView extends JFrame {
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
 
 					final Square square = p.getBoard().squares[i][j];
+					boolean selected = boardSquares[i][j].isSelected();
 					boardSquares[i][j].addActionListener(new ActionListener() {
 
 						public void actionPerformed(ActionEvent arg0) {
-							LetterClicked letterClicked = new LetterClicked(p, square);
-							letterClicked.constructWord();
-							System.out.println(p.getCurrentWord().getWordString());
 
+							LetterClicked letterClicked = new LetterClicked(p, square);
+							if (!selected) {
+								letterClicked.constructWord();
+								
+							} else {
+								letterClicked.deConstructWord();
+							}
+							System.out.println(p.getCurrentWord().getWordString());
 						}
+
 					});
+					
+					
 
 					contentPane.add(boardSquares[i][j]);
 
