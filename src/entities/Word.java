@@ -16,7 +16,7 @@ public class Word {
 	}
 
 	public Word makeWord(Square square) {
-		squares.add(squares.size() - 1, square);
+		squares.add(squares.size(), square);
 		setWordString();
 		setPoints();
 		return this;
@@ -27,12 +27,13 @@ public class Word {
 		if (squares.size() == 1) {
 			wordString = squares.get(0).getContentsString();
 		} else {
-			for (int i = squares.size() - 1; i >= 0; i--) {
+			for (int i = 0; i <= squares.size() - 1; i++) {
 				joiner.add(squares.get(i).getContentsString());
 			}
 			wordString = joiner.toString();
 
 		}
+
 	}
 
 	public String getWordString() {

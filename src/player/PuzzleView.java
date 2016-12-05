@@ -24,6 +24,7 @@ public class PuzzleView extends JFrame {
 	String name;
 	Puzzle level;
 	LoadPuzzleLevel lpl;
+	int i, j;
 
 	public PuzzleView(String n, Puzzle p, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
 		this.name = n;
@@ -82,6 +83,7 @@ public class PuzzleView extends JFrame {
 					boardSquares = new JToggleButton[6][6];
 					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
 							+ l.getScore() + "</sub></font></html>");
+					
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
 					contentPane.add(boardSquares[i][j]);
@@ -167,8 +169,13 @@ public class PuzzleView extends JFrame {
 
 	}
 
+	public JToggleButton[][] getBoardSquares() {
+		return boardSquares;
+	}
+
 	public void initializeController() {
 		Puzzle p = this.level;
+		PuzzleView pV = this;
 
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -196,13 +203,18 @@ public class PuzzleView extends JFrame {
 				dispose();
 			}
 		});
-		boardSquares[5][5].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[5][5]);
-				letterClicked.constructWord();
-				System.out.println(p.getCurrentWord().getWordString());
+
+		for (i = 0; i <= 5; i++) {
+			for (j = 0; j <= 5; j++) {
+				pV.getBoardSquares()[i][j].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[i][j]);
+						letterClicked.constructWord();
+						System.out.println(p.getCurrentWord().getWordString());
+					}
+				});
 			}
-		});
+		}
 	}
 
 }

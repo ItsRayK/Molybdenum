@@ -47,8 +47,9 @@ public class EntitiesTestCases {
 		testList.add(s);
 
 		Word test = new Word(testList);
-		test.makeWord(s3);
+
 		test.makeWord(s2);
+		test.makeWord(s3);
 
 		System.out.println(test.getWordString());
 
