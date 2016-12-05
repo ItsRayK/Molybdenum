@@ -60,6 +60,8 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void initializeModel() {
+		Puzzle p = this.level;
+		PuzzleView pV = this;
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
@@ -83,6 +85,18 @@ public class PuzzleView extends JFrame {
 
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+
+					final Square square = p.getBoard().squares[i][j];
+					boardSquares[i][j].addActionListener(new ActionListener() {
+
+						public void actionPerformed(ActionEvent arg0) {
+							LetterClicked letterClicked = new LetterClicked(p, square);
+							letterClicked.constructWord();
+							System.out.println(p.getCurrentWord().getWordString());
+
+						}
+					});
+
 					contentPane.add(boardSquares[i][j]);
 
 				}
@@ -201,38 +215,5 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
-		// boardSquares[0][0].addActionListener(new ActionListener(){
-		// public void actionPerformed(ActionEvent arg0){
-		// LetterClicked letterClicked = new LetterClicked(p,
-		// p.getBoard().squares[0][0]);
-		// letterClicked.constructWord();
-		// System.out.println(p.getCurrentWord().getWordString());
-		// }
-		// });
-		//
-		// boardSquares[0][1].addActionListener(new ActionListener(){
-		// public void actionPerformed(ActionEvent arg0){
-		// LetterClicked letterClicked = new LetterClicked(p,
-		// p.getBoard().squares[0][1]);
-		// letterClicked.constructWord();
-		// System.out.println(p.getCurrentWord().getWordString());
-		// }
-		// });
-
-		for (i = 0; i <= 5; i++) {
-			for (j = 0; j <= 5; j++) {
-				if (level.getBoard().squares[i][j].isActive()) { // <- not all the squares active thus null
-					boardSquares[i][j].addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							// When clicked it uses last value of (i, j) which is (6, 0) thus OutOfBounds
-							LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[i][j]);
-							letterClicked.constructWord();
-							System.out.println(p.getCurrentWord().getWordString());
-						}
-					});
-				}
-			}
-		}
 	}
-
 }
