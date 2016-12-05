@@ -3,8 +3,7 @@ package player;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
 
 import javax.swing.*;
@@ -17,7 +16,7 @@ import entities.*;
 public class PuzzleView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
-	private JToggleButton boardSquares[][];
+	private JToggleButton[][] boardSquares;
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 	Score oneStarScore, twoStarScore, threeStarScore;
@@ -68,9 +67,8 @@ public class PuzzleView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		// column and row are 0 index
-		// level.getBoard().deActivateSquare(3, 5);
-		// level.getBoard().deActivateSquare(2, 1);
+
+		boardSquares = new JToggleButton[6][6];
 
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -80,10 +78,9 @@ public class PuzzleView extends JFrame {
 				if (level.getBoard().squares[i][j].isActive()) {
 					level.getBoard().squares[i][j].fillSquare(l);
 
-					boardSquares = new JToggleButton[6][6];
 					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
 							+ l.getScore() + "</sub></font></html>");
-					
+
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
 					contentPane.add(boardSquares[i][j]);
@@ -204,15 +201,36 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
+		// boardSquares[0][0].addActionListener(new ActionListener(){
+		// public void actionPerformed(ActionEvent arg0){
+		// LetterClicked letterClicked = new LetterClicked(p,
+		// p.getBoard().squares[0][0]);
+		// letterClicked.constructWord();
+		// System.out.println(p.getCurrentWord().getWordString());
+		// }
+		// });
+		//
+		// boardSquares[0][1].addActionListener(new ActionListener(){
+		// public void actionPerformed(ActionEvent arg0){
+		// LetterClicked letterClicked = new LetterClicked(p,
+		// p.getBoard().squares[0][1]);
+		// letterClicked.constructWord();
+		// System.out.println(p.getCurrentWord().getWordString());
+		// }
+		// });
+
 		for (i = 0; i <= 5; i++) {
 			for (j = 0; j <= 5; j++) {
-				pV.getBoardSquares()[i][j].addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[i][j]);
-						letterClicked.constructWord();
-						System.out.println(p.getCurrentWord().getWordString());
-					}
-				});
+				if (level.getBoard().squares[i][j].isActive()) { // <- not all the squares active thus null
+					boardSquares[i][j].addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							// When clicked it uses last value of (i, j) which is (6, 0) thus OutOfBounds
+							LetterClicked letterClicked = new LetterClicked(p, p.getBoard().squares[i][j]);
+							letterClicked.constructWord();
+							System.out.println(p.getCurrentWord().getWordString());
+						}
+					});
+				}
 			}
 		}
 	}
