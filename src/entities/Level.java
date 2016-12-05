@@ -49,6 +49,10 @@ public abstract class Level {
 		return currentWord;
 	}
 
+	public Score getCurrScore() {
+		return currScore;
+	}
+
 	public ArrayList<Square> getLettersSelected() {
 		return lettersSelected;
 	}

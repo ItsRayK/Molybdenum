@@ -6,14 +6,14 @@ public class Square {
 	int column;
 	public boolean active = false;
 
-	public Square(int row, int column, boolean active){
+	public Square(int row, int column, boolean active) {
 		this.row = row;
 		this.column = column;
 		this.active = active;
-		
+
 	}
-	
-	public void removeSquare(Square s) {
+
+	public void removeSquare() {
 		contents = null;
 	}
 

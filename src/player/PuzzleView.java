@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.LetterClicked;
 import controllers.LoadPuzzleLevel;
+import controllers.SubmitWord;
 import entities.*;
 
 public class PuzzleView extends JFrame {
@@ -19,6 +20,7 @@ public class PuzzleView extends JFrame {
 	private JToggleButton[][] boardSquares;
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
+	private TextArea wordsFound;
 	Score oneStarScore, twoStarScore, threeStarScore;
 	String name;
 	Puzzle level;
@@ -126,8 +128,12 @@ public class PuzzleView extends JFrame {
 		btnUndo.setBounds(913, 127, 40, 40);
 		contentPane.add(btnUndo);
 
-		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		wordsFound = new TextArea();
+		wordsFound.setEditable(false);
+		spWordsFoundList = new JScrollPane(wordsFound, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		// spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		spWordsFoundList.setBounds(141, 116, 226, 284);
 		contentPane.add(spWordsFoundList);
 
@@ -193,6 +199,11 @@ public class PuzzleView extends JFrame {
 		return boardSquares;
 	}
 
+	public TextArea addToWordsFound(String s) {
+		wordsFound.setText(wordsFound.getText() + "\n" + s);
+		return wordsFound;
+	}
+
 	public void initializeController() {
 		Puzzle p = this.level;
 		PuzzleView pV = this;
@@ -221,6 +232,14 @@ public class PuzzleView extends JFrame {
 					e.printStackTrace();
 				}
 				dispose();
+			}
+		});
+
+		btnSubmitWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
+				submitWord.submit();
+				System.out.println(p.getCurrentWord().getPoints());
 			}
 		});
 
