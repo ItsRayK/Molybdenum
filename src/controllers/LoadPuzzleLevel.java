@@ -20,29 +20,29 @@ public class LoadPuzzleLevel {
 	public LoadPuzzleLevel(String fileName, Puzzle p) throws IOException {
 		this.fileName = fileName;
 		puzzle = p;
-
+		String path = "savedLevels/" + fileName + ".txt";
 		levelName = Files
 				.readAllLines(
-						Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+						Paths.get(path))
 				.get(0);
 		OneStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+				Files.readAllLines(Paths.get(path))
 						.get(1)));
 		TwoStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+				Files.readAllLines(Paths.get(path))
 						.get(2)));
 		ThreeStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+				Files.readAllLines(Paths.get(path))
 						.get(3)));
 		System.out.println(Integer.parseInt(
-				Files.readAllLines(Paths.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + fileName + ".txt"))
+				Files.readAllLines(Paths.get(path))
 						.get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				
 				String readCheck = Files
 						.readAllLines(Paths
-								.get("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt"))
+								.get(path))
 						.get(k);
 				if (readCheck.equals("true")) {
 					puzzle.getBoard().activateSquare(i, j);

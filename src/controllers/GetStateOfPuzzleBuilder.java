@@ -1,7 +1,5 @@
 package controllers;
 
-import player.*;
-
 import java.io.*;
 
 import builder.*;
@@ -56,10 +54,8 @@ public class GetStateOfPuzzleBuilder {
 		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
-		String userName = System.getProperty("user.name");
-		File dir = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\");
-		dir.mkdir();
-		file = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt");
+		
+		file = new File("savedLevels/" + levelName + ".txt");
 
 		FileWriter writer = null;
 		try {
@@ -113,8 +109,8 @@ public class GetStateOfPuzzleBuilder {
 	}
 
 	public void deletePuzzle() {
-		String userName = System.getProperty("user.name");
-		file = new File("C:\\Users\\" + userName + "\\Desktop\\LetterCrazeLevels\\" + levelName + ".txt");
+		String path = "savedLevels/" + levelName + ".txt";
+		file = new File(path);
 		if(file.delete()){
 			System.out.println("'" + levelName + "'" + " has been deleted");
 		}
