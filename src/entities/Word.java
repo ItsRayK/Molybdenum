@@ -21,6 +21,12 @@ public class Word {
 		setPoints();
 		return this;
 	}
+	
+	public Word unMakeWord() {
+		squares.remove(squares.size()-1);
+		setWordString();
+		return this;
+	}
 
 	public void setWordString() {
 		StringJoiner joiner = new StringJoiner("");

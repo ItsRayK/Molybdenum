@@ -16,4 +16,8 @@ public class LetterClicked {
 	public void constructWord() {
 		puzzle.getCurrentWord().makeWord(square);
 	}
+	
+	public void deConstructWord() {
+		puzzle.getCurrentWord().unMakeWord();
+	}
 }
