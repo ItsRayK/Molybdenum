@@ -53,12 +53,11 @@ import java.awt.event.ActionEvent;
  * <p>
  * Each model element can be represented by exactly one View Widget. Each View 
  * Widget is placed at a specific (x,y) location within the coordinates of the
- * pane, and has a calculated width, and height. Some Widgets have additional 
- * attributes that may be set by the user. 
+ * JPanel, and has a calculated width, and height.
  * <p>
  * <b>Initialize the Controllers </b>
  * <p>
- * The real power is in the wat controller objects are constructed and attached 
+ * The real power is in the way controller objects are constructed and attached 
  * to View Widgets. These controllers react to the buttons being pressed. 
  * The controllers manage the user's interaction with the Builder.
  * <p>
@@ -70,8 +69,13 @@ import java.awt.event.ActionEvent;
  */
 
 public class Builder extends JFrame {
+	/** The JPanel to manage the Builder. */
 	private JPanel contentPane;
+	
+	/** The JButtons that will be added to the JPanel for the user to press. */
 	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn, editExistingBtn;
+	
+	/** The JLabel that will be added to the JPanel for the user to read. */
 	private JLabel lblBuilder;
 
 	/**
@@ -109,12 +113,18 @@ public class Builder extends JFrame {
 		initialize();
 	}
 	
+	/**
+	 * Initialize the Builder.
+	 */
 	private void initialize(){
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
 	
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel(){
 		contentPane = new JPanel();
 		
@@ -127,6 +137,10 @@ public class Builder extends JFrame {
 		lblBuilder = new JLabel("Level Builder");
 		
 	}
+	
+	/**
+	 * Initialize where all the models will be placed on the JPanel.
+	 */
 	private void initializeView(){
 		setResizable(false);
 		setTitle("Letter Craze");
@@ -166,6 +180,10 @@ public class Builder extends JFrame {
 		
 		
 	}
+	
+	/**
+	 * Initialize what happens when the buttons on the JPanel are pressed. 
+	 */
 	private void initializeController(){
 		createPuzzleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
