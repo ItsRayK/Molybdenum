@@ -94,14 +94,17 @@ public class PuzzleView extends JFrame {
 						public void actionPerformed(ActionEvent arg0) {
 							LetterClicked letterClicked = new LetterClicked(p, square);
 							boolean selected = buttonSquares.isSelected();
-							if (!selected) {
+							if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
 								letterClicked.deConstructWord();
 							} else {
 								if (level.getCurrentWord().getSquares().size() == 0) {
 									letterClicked.constructWord();
-								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))) {
+								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
+										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
 									letterClicked.constructWord();
-								} else
+								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+									buttonSquares.setSelected(true);
+								else
 									buttonSquares.setSelected(false);
 							}
 

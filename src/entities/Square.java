@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Square {
 	Letter contents;
 	int row;
@@ -23,7 +25,9 @@ public class Square {
 	}
 
 	public String getContentsString() {
-		if (contents == null) { return null; } // AWKWARD
+		if (contents == null) {
+			return null;
+		} // AWKWARD
 		return contents.letterString;
 	}
 
@@ -38,54 +42,53 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
-	
-	public boolean isAdjacentTo(Square s){
-		if(this.column == s.column){
-			if(this.row == (s.row + 1)){
+
+	public boolean isAdjacentTo(Square s) {
+		if (this.column == s.column) {
+			if (this.row == (s.row + 1)) {
 				return true;
-			}
-			else if(this.row == (s.row - 1)){
+			} else if (this.row == (s.row - 1)) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}
-		else if(this.row == s.row){
-			if(this.column == (s.column + 1)){
+		} else if (this.row == s.row) {
+			if (this.column == (s.column + 1)) {
 				return true;
-			}
-			else if(this.column == (s.column - 1)){
+			} else if (this.column == (s.column - 1)) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}
-		else if(this.column == (s.column -1)){
-			if(this.row == (s.row + 1)){
+		} else if (this.column == (s.column - 1)) {
+			if (this.row == (s.row + 1)) {
 				return true;
-			}
-			else if(this.row == (s.row - 1)){
+			} else if (this.row == (s.row - 1)) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}
-		else if(this.column == (s.column + 1)){
-			if(this.row == (s.row + 1)){
+		} else if (this.column == (s.column + 1)) {
+			if (this.row == (s.row + 1)) {
 				return true;
-			}
-			else if(this.row == (s.row - 1)){
+			} else if (this.row == (s.row - 1)) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}
-		else{
+		} else {
 			return false;
 		}
+	}
+
+	public boolean isSameSquare(Square s) {
+		if (this.column == s.column && this.row == s.row)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isAlreadyInList(ArrayList<Square> squares) {
+		return squares.iterator().next().isSameSquare(this);
 	}
 }
