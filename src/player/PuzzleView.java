@@ -94,10 +94,18 @@ public class PuzzleView extends JFrame {
 						public void actionPerformed(ActionEvent arg0) {
 							LetterClicked letterClicked = new LetterClicked(p, square);
 							boolean selected = buttonSquares.isSelected();
-							if (!selected) {
+							if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
 								letterClicked.deConstructWord();
 							} else {
-								letterClicked.constructWord();
+								if (level.getCurrentWord().getSquares().size() == 0) {
+									letterClicked.constructWord();
+								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
+										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
+									letterClicked.constructWord();
+								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+									buttonSquares.setSelected(true);
+								else
+									buttonSquares.setSelected(false);
 							}
 
 							System.out.println(p.getCurrentWord().getWordString());
@@ -235,17 +243,15 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
-				
-					try {
-						submitWord.submit();
-						System.out.println(p.getCurrentWord().getPoints());
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				
-				
+
+				try {
+					submitWord.submit();
+					System.out.println(p.getCurrentWord().getPoints());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		});
 
