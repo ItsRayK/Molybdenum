@@ -45,7 +45,7 @@ public abstract class Level {
 	/**
 	 * For all empty squares (i.e, active squares whose contents are empty) go through
 	 * board and move up letters to fill these squares. This process may make other squares
-	 * empty, so the process repeates until all letters have floated up to fill the empty
+	 * empty, so the process repeats until all letters have floated up to fill the empty
 	 * squares in the board.
 	 * 
 	 * Note: when done, the only empty squares that remain are "from the bottom up" and will
