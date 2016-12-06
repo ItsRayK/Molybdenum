@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Iterator;
+
 public class Puzzle extends Level {
 	int numWords;
 
@@ -20,7 +22,12 @@ public class Puzzle extends Level {
 	public void submitWord() {
 		currScore.addToScore(currentWord.getPoints());
 		wordsFound.add(currentWord);
-		currentWord.getSquares().iterator().next().removeSquare();
+		
+		// Be sure to remove content for all squares in the word.
+		Iterator<Square> it = currentWord.getSquares().iterator();
+		while (it.hasNext()) {
+			it.next().removeContents();
+		}
 
 	}
 

@@ -8,7 +8,7 @@ public class BuilderTestCases {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		
 	}
 
 }

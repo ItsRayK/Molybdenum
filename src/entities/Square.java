@@ -13,7 +13,7 @@ public class Square {
 
 	}
 
-	public void removeSquare() {
+	public void removeContents() {
 		contents = null;
 	}
 
@@ -23,6 +23,7 @@ public class Square {
 	}
 
 	public String getContentsString() {
+		if (contents == null) { return null; } // AWKWARD
 		return contents.letterString;
 	}
 
