@@ -33,6 +33,7 @@ public class SubmitWord {
 			if(wordFound.length() < 3){
 				System.out.println("Word is too short!");
 				level.getLettersSelected().clear();
+				view.unselectBoardSquares();
 				break;
 			}
 			else if (line.equalsIgnoreCase(wordFound)) {
