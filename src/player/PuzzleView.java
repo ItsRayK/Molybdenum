@@ -96,8 +96,10 @@ public class PuzzleView extends JFrame {
 							boolean selected = buttonSquares.isSelected();
 							if (!selected) {
 								letterClicked.deConstructWord();
-							} else {
-								letterClicked.constructWord();
+							} else{
+								if((level.getCurrentWord().getLastSquare().isAdjacentTo(square))){
+									letterClicked.constructWord();
+								}
 							}
 
 							System.out.println(p.getCurrentWord().getWordString());
