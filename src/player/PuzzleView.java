@@ -14,6 +14,7 @@ import controllers.SubmitWord;
 import entities.*;
 
 public class PuzzleView extends JFrame {
+	private JLabel lblScore;
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
@@ -109,7 +110,7 @@ public class PuzzleView extends JFrame {
 							}
 
 							System.out.println(p.getCurrentWord().getWordString());
-							System.out.println("Real score: " + p.getCurrentWord().getPoints());
+							System.out.println("Running score: " + p.getCurrentWord().getPoints());
 						}
 
 					});
@@ -125,6 +126,8 @@ public class PuzzleView extends JFrame {
 		btnExitLevel = new JButton("Exit Level");
 		btnGiveUp = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
+		lblScore = new JLabel("Score: " + this.level.getCurrentWord().getPoints());
+
 
 	}
 
@@ -149,9 +152,8 @@ public class PuzzleView extends JFrame {
 		lblWordsFound.setBounds(141, 82, 226, 31);
 		contentPane.add(lblWordsFound);
 
-		JLabel lblScore = new JLabel("Score:");
-		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
-		lblScore.setBounds(141, 411, 66, 31);
+		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 20));
+		lblScore.setBounds(141, 411, 200, 41);
 		contentPane.add(lblScore);
 
 		JLabel lblPuzzle = new JLabel("Puzzle: " + name);
@@ -271,7 +273,8 @@ public class PuzzleView extends JFrame {
 
 				try {
 					submitWord.submit();
-					System.out.println(p.getCurrentWord().getPoints());
+					System.out.println("Actual Score: " + p.getCurrentWord().getPoints());
+					lblScore.setText("Score: " + p.getCurrentWord().getPoints());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

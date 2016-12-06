@@ -7,6 +7,7 @@ public class Word {
 	private ArrayList<Square> squares = new ArrayList<Square>();
 	private int points;
 	private String wordString;
+	private int wordPoints;
 
 
 	public Word(ArrayList<Square> sqs) {
@@ -64,8 +65,18 @@ public class Word {
 	public int getPoints() {
 		return points;
 	}
+	
+	public void resetWordPoints(){
+		wordPoints = 0;
+	}
+	public int getWordPoints(){
+		int curr = wordPoints;
+		return curr;
+		
+	}
 
 	public boolean setPoints(int i) {
+		wordPoints += i;
 		points += i;
 		return true;
 	}

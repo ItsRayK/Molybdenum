@@ -32,6 +32,7 @@ public class SubmitWord {
 			lineNum++;
 			if(wordFound.length() < 3){
 				System.out.println("Word is too short!");
+				word.removePoints(word.getWordPoints());
 				level.getLettersSelected().clear();
 				view.unselectBoardSquares();
 				break;
@@ -52,9 +53,11 @@ public class SubmitWord {
 		if (line.equals("endofdocument")) {
 			System.out.println("Word does not exists");
 			view.unselectBoardSquares();
+			word.removePoints(word.getWordPoints());
 			level.getLettersSelected().clear();
 		}
-		
+		word.resetWordPoints();
+		br.close();
 	}
 
 }
