@@ -30,7 +30,7 @@ public class Word {
 	public Word makeWord(Square square) {
 		squares.add(squares.size(), square);
 		setWordString();
-		setPoints(squares.iterator().next().getContentsPoints());
+		setPoints(this.getLastSquare().getContentsPoints());
 		return this;
 	}
 
