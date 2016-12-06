@@ -222,7 +222,7 @@ public class PuzzleView extends JFrame {
 		btnGiveUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 1", new Puzzle("Level 1", new Board()));
+					LoadPuzzleLevel temp = new LoadPuzzleLevel(name, new Puzzle(name, new Board()));
 					temp.loadPuzzle();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

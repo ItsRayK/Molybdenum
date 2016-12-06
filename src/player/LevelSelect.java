@@ -69,18 +69,18 @@ public class LevelSelect extends JFrame {
 		btnLevel1 = new JButton("Level 1");
 		btnLevel2 = new JButton("Level 2");
 		btnLevel3 = new JButton("Level 3");
-		btnLevel4 = new JButton("Locked");
-		btnLevel5 = new JButton("Locked");
-		btnLevel6 = new JButton("Locked");
-		btnLevel7 = new JButton("Locked");
-		btnLevel8 = new JButton("Locked");
-		btnLevel9 = new JButton("Locked");
-		btnLevel10 = new JButton("Locked");
-		btnLevel11 = new JButton("Locked");
-		btnLevel12 = new JButton("Locked");
-		btnLevel13 = new JButton("Locked");
-		btnLevel14 = new JButton("Locked");
-		btnLevel15 = new JButton("Locked");
+		btnLevel4 = new JButton("Level 4");
+		btnLevel5 = new JButton("Level 5");
+		btnLevel6 = new JButton("Level 6");
+		btnLevel7 = new JButton("Level 7");
+		btnLevel8 = new JButton("Level 8");
+		btnLevel9 = new JButton("Level 9");
+		btnLevel10 = new JButton("Level 10");
+		btnLevel11 = new JButton("Level 11");
+		btnLevel12 = new JButton("Level 12");
+		btnLevel13 = new JButton("Level 13");
+		btnLevel14 = new JButton("Level 14");
+		btnLevel15 = new JButton("Level 15");
 
 		lvl1Stars = new JLabel("");
 		lvl2Stars = new JLabel("");
@@ -282,6 +282,121 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
+		
+		btnLevel4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 4", new Puzzle("Level 4", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				dispose();
+			}
+		});
 
+		btnLevel5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
+						0);
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		btnLevel6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ThemeView temp = new ThemeView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnLevel7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 7", new Puzzle("Level 7", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				dispose();
+			}
+		});
+
+		btnLevel8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
+						0);
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		btnLevel9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ThemeView temp = new ThemeView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnLevel10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 10", new Puzzle("Level 10", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				dispose();
+			}
+		});
+
+		btnLevel11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
+						0);
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		btnLevel12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ThemeView temp = new ThemeView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnLevel13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadPuzzleLevel temp = new LoadPuzzleLevel("Level 13", new Puzzle("Level 13", new Board()));
+					temp.loadPuzzle();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				dispose();
+			}
+		});
+
+		btnLevel14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
+						0);
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		btnLevel15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ThemeView temp = new ThemeView();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
 	}
 }
