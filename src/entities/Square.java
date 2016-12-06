@@ -39,6 +39,14 @@ public class Square {
 		active = tf;
 	}
 	
+	public boolean isSameSquare(Square s){
+		if((this.column == s.column) && (this.row == s.row)){
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	public boolean isAdjacentTo(Square s){
 		if(this.column == s.column){
 			if(this.row == (s.row + 1)){
