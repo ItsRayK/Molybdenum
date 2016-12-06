@@ -96,13 +96,13 @@ public class PuzzleView extends JFrame {
 							boolean selected = buttonSquares.isSelected();
 							if (!selected) {
 								letterClicked.deConstructWord();
-							} else{
-								if(level.getCurrentWord().getSquares().size() == 0){
+							} else {
+								if (level.getCurrentWord().getSquares().size() == 0) {
 									letterClicked.constructWord();
-								}
-								else if((level.getCurrentWord().getLastSquare().isAdjacentTo(square))){
+								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))) {
 									letterClicked.constructWord();
-								}
+								} else
+									buttonSquares.setSelected(false);
 							}
 
 							System.out.println(p.getCurrentWord().getWordString());
@@ -240,17 +240,15 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
-				
-					try {
-						submitWord.submit();
-						System.out.println(p.getCurrentWord().getPoints());
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				
-				
+
+				try {
+					submitWord.submit();
+					System.out.println(p.getCurrentWord().getPoints());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		});
 
