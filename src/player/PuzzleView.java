@@ -109,6 +109,7 @@ public class PuzzleView extends JFrame {
 							}
 
 							System.out.println(p.getCurrentWord().getWordString());
+							System.out.println("Real score: " + p.getCurrentWord().getPoints());
 						}
 
 					});
