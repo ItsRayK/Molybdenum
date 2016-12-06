@@ -16,6 +16,10 @@ public class Word {
 		else
 			setPoints(0);
 	}
+	
+	public Square getLastSquare(){
+		return squares.get(squares.size()-1);
+	}
 
 	public ArrayList<Square> getSquares() {
 		return squares;
