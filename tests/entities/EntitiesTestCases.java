@@ -27,7 +27,7 @@ public class EntitiesTestCases {
 	}
 
 	@Test
-	public void testMakeWord() {
+	public void testMakeAndUnmakeWord() {
 		Square s = new Square(0, 0, true);
 		Letter l = new Letter();
 		l.randomLetter();
@@ -52,8 +52,38 @@ public class EntitiesTestCases {
 		test.makeWord(s3);
 
 		System.out.println(test.getWordString());
-
+		
 		assertEquals(l.getString().concat(l2.getString()).concat(l3.getString()), test.getWordString());
+		
+		test.unMakeWord();
+		
+		assertEquals(l.getString().concat(l2.getString()), test.getWordString());
+
+		
+	}
+	public void TestSquareActivation(){
+		Board testBoard = new Board();
+		for(int i=0; i<5; i++){
+			for(int j= 0; j<5; j++){
+				testBoard.activateSquare(i, j);
+			}
+		}
+		for(int i=0; i<5; i++){
+			for(int j= 0; j<5; j++){
+				assertEquals(testBoard.squares[i][j].isActive(),true);
+			}
+		}
+		for(int i=0; i<5; i++){
+			for(int j= 0; j<5; j++){
+				testBoard.deActivateSquare(i, j);
+			}
+		}
+		for(int i=0; i<5; i++){
+			for(int j= 0; j<5; j++){
+				assertEquals(testBoard.squares[i][j].isActive(),false);
+			}
+		}
+		testBoard.deActivateSquare(2, -3);
 	}
 
 }

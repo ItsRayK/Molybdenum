@@ -9,9 +9,73 @@ import player.Player;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * The over-arching class for the Builder for LetterCraze.
+ * <p>
+ * This allows the user to build levels to play in <code>Player.java</code>. 
+ * The most important method for developers is <code>initialize</code> which 
+ * is invoked when the Builder is started.
+ * <p>
+ * <code>initialize</code> must satisfy three responsibilities:
+ * <ol>
+ * <li>Initialize the model</li>
+ * <li>Initialize the view</li>
+ * <li>Initialize the controllers</li>
+ * </ol>
+ * <p>
+ * Most <code>initialize</code> methods will follow this suggested format:
+ * <br>
+ * 
+ * <pre>
+ * &lt;blockquote&gt;
+ *  public void initialize() {
+ *    initializeModel();
+ *    initializeView();
+ *    initializeController();
+ *  
+ *    // Prepare initial builder setup.
+ *    ...
+ *  }
+ *  &lt;/blockquote&gt;
+ * </pre>
+ * 
+ * where <code>initializeModel</code>,<code>initializeView</code>, and
+ * <code>initializeControllers</code> are protected methods of the plugin.
+ * <p>
+ * <b>Initialize the Model </b>
+ * <p>
+ * This constructs a model of basic elements found in the Builder for LetterCraze -- 
+ * a button to create a puzzle level, lightning level, and theme level, and anything
+ * required for the GUI (e.g. labels and panes). Each model element has a name 
+ * unique to the model. 
+ * <p>
+ * <b>Initialize the View </b>
+ * <p>
+ * Each model element can be represented by exactly one View Widget. Each View 
+ * Widget is placed at a specific (x,y) location within the coordinates of the
+ * JPanel, and has a calculated width, and height.
+ * <p>
+ * <b>Initialize the Controllers </b>
+ * <p>
+ * The real power is in the way controller objects are constructed and attached 
+ * to View Widgets. These controllers react to the buttons being pressed. 
+ * The controllers manage the user's interaction with the Builder.
+ * <p>
+ * <p>
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren Pontbriant (Molybdenum)
+ *
+ */
+
 public class Builder extends JFrame {
+	/** The JPanel to manage the Builder. */
 	private JPanel contentPane;
+	
+	/** The JButtons that will be added to the JPanel for the user to press. */
 	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn, editExistingBtn;
+	
+	/** The JLabel that will be added to the JPanel for the user to read. */
 	private JLabel lblBuilder;
 
 	/**
@@ -49,12 +113,18 @@ public class Builder extends JFrame {
 		initialize();
 	}
 	
+	/**
+	 * Initialize the Builder.
+	 */
 	private void initialize(){
 		initializeModel();
-		initializeController();
 		initializeView();
+		initializeController();
 	}
 	
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel(){
 		contentPane = new JPanel();
 		
@@ -67,6 +137,10 @@ public class Builder extends JFrame {
 		lblBuilder = new JLabel("Level Builder");
 		
 	}
+	
+	/**
+	 * Initialize where all the models will be placed on the JPanel.
+	 */
 	private void initializeView(){
 		setResizable(false);
 		setTitle("Letter Craze");
@@ -106,6 +180,10 @@ public class Builder extends JFrame {
 		
 		
 	}
+	
+	/**
+	 * Initialize what happens when the buttons on the JPanel are pressed. 
+	 */
 	private void initializeController(){
 		createPuzzleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
