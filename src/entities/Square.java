@@ -38,4 +38,54 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
+	
+	public boolean isAdjacentTo(Square s){
+		if(this.column == s.column){
+			if(this.row == (s.row + 1)){
+				return true;
+			}
+			else if(this.row == (s.row - 1)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if(this.row == s.row){
+			if(this.column == (s.column + 1)){
+				return true;
+			}
+			else if(this.column == (s.column - 1)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if(this.column == (s.column -1)){
+			if(this.row == (s.row + 1)){
+				return true;
+			}
+			else if(this.row == (s.row - 1)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if(this.column == (s.column + 1)){
+			if(this.row == (s.row + 1)){
+				return true;
+			}
+			else if(this.row == (s.row - 1)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}
+	}
 }
