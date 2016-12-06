@@ -36,6 +36,7 @@ public class Word {
 
 		/** Returns the word without the last square added**/
 	public Word unMakeWord() {
+		removePoints(this.getLastSquare().getContentsPoints());
 		wordString = squares.remove(squares.size() - 1).getContentsString();
 		setWordString();
 		return this;
@@ -64,7 +65,13 @@ public class Word {
 		return points;
 	}
 
-	public void setPoints(int i) {
+	public boolean setPoints(int i) {
 		points += i;
+		return true;
+	}
+	
+	public boolean removePoints(int i){
+		points -= i;
+		return true;
 	}
 }
