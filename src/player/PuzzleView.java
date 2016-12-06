@@ -97,7 +97,10 @@ public class PuzzleView extends JFrame {
 							if (!selected) {
 								letterClicked.deConstructWord();
 							} else{
-								if((level.getCurrentWord().getLastSquare().isAdjacentTo(square))){
+								if(level.getCurrentWord().getSquares().size() == 0){
+									letterClicked.constructWord();
+								}
+								else if((level.getCurrentWord().getLastSquare().isAdjacentTo(square))){
 									letterClicked.constructWord();
 								}
 							}
