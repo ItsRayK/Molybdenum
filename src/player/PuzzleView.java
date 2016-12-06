@@ -205,6 +205,30 @@ public class PuzzleView extends JFrame {
 		return boardSquares;
 	}
 
+	public void unselectBoardSquares() {
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				JToggleButton buttonSquares = boardSquares[i][j];
+				if (level.getBoard().squares[i][j].isActive()) {
+					buttonSquares.setSelected(false);
+
+				}
+			}
+		}
+	}
+	
+	public void replaceBoardLetters(){
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				JToggleButton buttonSquares = boardSquares[i][j];
+				if (level.getBoard().squares[i][j].isActive()) {
+					buttonSquares.setSelected(false);
+
+				}
+			}
+		}
+	}
+
 	public TextArea addToWordsFound(String s) {
 		wordsFound.setText(wordsFound.getText() + s + "\n");
 		return wordsFound;
