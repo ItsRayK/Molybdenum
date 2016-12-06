@@ -1,7 +1,7 @@
 package entities;
 
 /**
- * Open question: are board squares indexed externally by zero or one
+ * Open question: Are board squares indexed externally by zero or one?
  * @author Orion
  *
  */
@@ -28,6 +28,7 @@ public class Board {
 		return squares[i][j];
 	}
 	
+
 	public Square[][] activeSquares() {
 		Square[][] activeOnes = new Square[6][6];
 		for (int i = 0; i < 6; i++) {

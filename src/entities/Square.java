@@ -22,6 +22,7 @@ public class Square {
 		return this;
 	}
 
+	/**Returns the contents of a square as a string if filled or as null if empty**/
 	public String getContentsString() {
 		if (contents == null) { return null; } // AWKWARD
 		return contents.letterString;

@@ -8,6 +8,7 @@ public class Word {
 	private int points;
 	private String wordString;
 
+
 	public Word(ArrayList<Square> sqs) {
 		squares = sqs;
 		setWordString();
@@ -20,7 +21,8 @@ public class Word {
 	public ArrayList<Square> getSquares() {
 		return squares;
 	}
-
+    
+	/** Adds a square to the current word**/
 	public Word makeWord(Square square) {
 		squares.add(squares.size(), square);
 		setWordString();
@@ -28,6 +30,7 @@ public class Word {
 		return this;
 	}
 
+		/** Returns the word without the last square added**/
 	public Word unMakeWord() {
 		wordString = squares.remove(squares.size() - 1).getContentsString();
 		setWordString();
