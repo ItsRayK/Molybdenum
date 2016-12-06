@@ -1,5 +1,7 @@
 package controllers;
 
+import java.awt.event.ActionEvent;
+
 import entities.*;
 import player.*;
 
@@ -20,4 +22,6 @@ public class LetterClicked {
 	public void deConstructWord() {
 		puzzle.getCurrentWord().unMakeWord();
 	}
+	
+	
 }

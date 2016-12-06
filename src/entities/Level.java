@@ -49,6 +49,7 @@ public abstract class Level {
 		return currentWord;
 	}
 
+
 	public Score getCurrScore() {
 		return currScore;
 	}

@@ -1,8 +1,7 @@
 package player;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import java.io.IOException;
 
@@ -89,24 +88,22 @@ public class PuzzleView extends JFrame {
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
 
 					final Square square = p.getBoard().squares[i][j];
-					boolean selected = boardSquares[i][j].isSelected();
+					JToggleButton buttonSquares = boardSquares[i][j];
 					boardSquares[i][j].addActionListener(new ActionListener() {
 
 						public void actionPerformed(ActionEvent arg0) {
-
 							LetterClicked letterClicked = new LetterClicked(p, square);
+							boolean selected = buttonSquares.isSelected();
 							if (!selected) {
-								letterClicked.constructWord();
-								
-							} else {
 								letterClicked.deConstructWord();
+							} else {
+								letterClicked.constructWord();
 							}
+
 							System.out.println(p.getCurrentWord().getWordString());
 						}
 
 					});
-					
-					
 
 					contentPane.add(boardSquares[i][j]);
 
@@ -200,7 +197,7 @@ public class PuzzleView extends JFrame {
 	}
 
 	public TextArea addToWordsFound(String s) {
-		wordsFound.setText(wordsFound.getText() + "\n" + s);
+		wordsFound.setText(wordsFound.getText() + s + "\n");
 		return wordsFound;
 	}
 
@@ -238,8 +235,17 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
-				submitWord.submit();
-				System.out.println(p.getCurrentWord().getPoints());
+				
+					try {
+						submitWord.submit();
+						System.out.println(p.getCurrentWord().getPoints());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				
+				
 			}
 		});
 

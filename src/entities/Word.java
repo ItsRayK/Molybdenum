@@ -29,7 +29,7 @@ public class Word {
 	}
 
 	public Word unMakeWord() {
-		squares.remove(squares.size() - 1);
+		wordString = squares.remove(squares.size() - 1).getContentsString();
 		setWordString();
 		return this;
 	}
@@ -47,6 +47,7 @@ public class Word {
 		}
 
 	}
+	
 
 	public String getWordString() {
 		return wordString;
