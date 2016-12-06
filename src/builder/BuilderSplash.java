@@ -4,8 +4,22 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * The class for the Builder Splash Screen.
+ * <p>
+ * This creates a Splash Screen that appears before the Builder application. 
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren Pontbriant (Molybdenum)
+ * 
+ */
+
 
 public class BuilderSplash extends JFrame {
+	/**
+	 * The JPanel to manage the Builder Splash Screen.
+	 */
 	private JPanel contentPane;
 
 	/**
@@ -35,12 +49,17 @@ public class BuilderSplash extends JFrame {
 
 	}
 
-
+	/**
+	 * Initialize the Splash Screen.
+	 */
 	private void splash(){
 		initializeModel();
 		initializeView();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		contentPane = new JPanel();
 		
@@ -48,6 +67,9 @@ public class BuilderSplash extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed on the JPanel.
+	 */
 	private void initializeView() {
 		
 		

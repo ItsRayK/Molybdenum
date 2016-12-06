@@ -15,18 +15,79 @@ import entities.Lightning;
 import player.LightningView;
 import player.PuzzleView;
 
-public class LightningBuilder extends JFrame {
+/**
+ * The Builder class for Lightning Levels.
+ * <p>
+ * This allows the user to create a level of type Lightning to
+ * be played by the <code>Player.java</code>.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren Pontbriant (Molybdenum)
+ * 
+ */
 
+public class LightningBuilder extends JFrame {
+	
+	/**
+	 * The JPanel to manage the Lightning Level Builder. 
+	 */
 	private JPanel contentPane;
+	
+	/**
+	 * The JTextField to contain the time allowed in the level.
+	 */
 	private JTextField txtSetTime;
+	
+	/**
+	 * The JTextField to contain the minimum amount of points to reach 
+	 * one star.
+	 */
 	private JTextField txt1StarThresh;
+	
+	/**
+	 * The JTextField to contain the minimum amount of points to reach
+	 * two stars. 
+	 */
 	private JTextField txt2StarThresh;
+	
+	/**
+	 * The JTextField to contain the minimum amount of points to reach 
+	 * three stars. 
+	 */
 	private JTextField txt3StarThresh;
+	
+	/**
+	 * The JTextField to contain the name of the level.
+	 */
 	private JTextField txtlevelName;
+	
+	/**
+	 * The JButtons to allow the user to go back, preview the level they
+	 * are creating, delete the level they are creating, or save the 
+	 * level they are creating. 
+	 */
 	private JButton btnBack, btnPreview, btnDelete, btnSaveLevel;
+	
+	/**
+	 * The JLabels to tell the user what to enter where.
+	 */
 	private JLabel lblScoreThresholds, lblLevelTypeLightning;
+	
+	/**
+	 * The JCheckboxes to allow the user to decide how they want the 
+	 * level board to look like.
+	 */
 	private JCheckBox checkBox[][] = new JCheckBox[6][6];
+	
+	/**
+	 * Variables to help loop through the double array of check boxes.
+	 */
 	int i, j;
+	
+	/**
+	 * Creating a new Lightning Level.
+	 */
 	Lightning lightning = new Lightning("default", new Board());
 
 	/**
@@ -52,12 +113,18 @@ public class LightningBuilder extends JFrame {
 		initialize();
 	}
 
+	/**
+	 * Initialize the Lightning Level Builder.
+	 */
 	private void initialize() {
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		setResizable(false);
 		setTitle("Letter Craze Builder");
@@ -84,6 +151,9 @@ public class LightningBuilder extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -167,7 +237,10 @@ public class LightningBuilder extends JFrame {
 		bg.setBounds(0, 0, 994, 541);
 		contentPane.add(bg);
 	}
-
+	
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		LightningBuilder lightningBuilder = this;
 		btnBack.addActionListener(new ActionListener() {
@@ -187,35 +260,69 @@ public class LightningBuilder extends JFrame {
 		});
 	}
 
-	// Getters and Setters of variables
+	/**
+	 * Getter for the name of the level.
+	 * @return String name of the level.
+	 */
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
 
+	/**
+	 * Getter for the timer.
+	 * @return String time that the user has to complete the level.
+	 */
 	public String getTimerText() {
 		return txtSetTime.getText();
 	}
 
+	/**
+	 * Getter for the check boxes.
+	 * @return JCheckBox[][] check boxes representing which squares on the board
+	 * are active versus inactive.
+	 */
 	public JCheckBox[][] getCheckBox() {
 		return checkBox;
 	}
 
+	/**
+	 * Setter for the check boxes.
+	 * @param checkBox A double array of JCheckBox representing which squares on 
+	 * the board are active versus inactive.
+	 */
 	public void setCheckBox(JCheckBox checkBox[][]) {
 		this.checkBox = checkBox;
 	}
 
+	/**
+	 * Getter for the threshold for one star.
+	 * @return JTextField the amount of points the user must get to reach one star.
+	 */
 	public JTextField getTxt1StarThresh() {
 		return txt1StarThresh;
 	}
 
+	/**
+	 * Setter for the threshold for one star.
+	 * @param txt1StarThresh A JTextField representing how many points the user 
+	 * must get to reach one star.
+	 */
 	public void setTxt1StarThresh(JTextField txt1StarThresh) {
 		this.txt1StarThresh = txt1StarThresh;
 	}
 
+	/**
+	 * Getter for the threshold for two stars.
+	 * @return JTextField the amount of points the user must get to reach two stars.
+	 */
 	public JTextField getTxt2StarThresh() {
 		return txt2StarThresh;
 	}
 
+	/**
+	 * Getter for the threshold for three stars.
+	 * @return JTextField the amount of points the user must get to reach three stars.
+	 */
 	public JTextField getTxt3StarThresh() {
 		return txt3StarThresh;
 	}
