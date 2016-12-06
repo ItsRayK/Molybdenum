@@ -43,10 +43,10 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
-
+	
 	public boolean isAdjacentTo(Square s) {
-		if (this.column == s.column) {
-			if (this.row == (s.row + 1)) {
+		if(this.column == s.column) {
+			if(this.row == (s.row + 1)) {
 				return true;
 			} else if (this.row == (s.row - 1)) {
 				return true;
