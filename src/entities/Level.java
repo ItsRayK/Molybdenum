@@ -64,6 +64,16 @@ public abstract class Level {
 		// TODO:
 	}
 	
+	public boolean addToLevelScore(int i){
+		currScore.addToScore(i);
+		return true;
+	}
+	
+	public boolean subtractFromLevelScore(int i){
+		currScore.subtractFromScore(i);
+		return true;
+	}
+	
 	public Board getBoard() {
 		return board;
 	}
