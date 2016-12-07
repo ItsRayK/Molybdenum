@@ -40,7 +40,6 @@ public abstract class Level {
 	abstract boolean saveLevel();
 
 
-
 	/**
 	 * Every empty and active square in the board is filled with a random letter
 	 * according to the distribution of letters as stored in the Letter class.
