@@ -56,9 +56,10 @@ public class Board {
 	 * for Theme
 	 */
 	public void floatUp() {
-		boolean filled = false;
+		boolean filled;
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
+				filled = false;
 				if (squares[i][j].isEmptyAndActive()) {
 					/*Letter contentsUp = nextBelowActiveSquare(squares[i][j]).getContents();
 					nextBelowActiveSquare(squares[i][j]).removeContents();
