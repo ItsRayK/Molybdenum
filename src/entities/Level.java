@@ -82,6 +82,10 @@ public abstract class Level {
 	public Score getCurrScore() {
 		return currScore;
 	}
+	
+	public void setCurrScore(Score s){
+		this.currScore = s;
+	}
 
 	public ArrayList<Square> getLettersSelected() {
 		return lettersSelected;

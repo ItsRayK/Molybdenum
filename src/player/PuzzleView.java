@@ -271,10 +271,15 @@ public class PuzzleView extends JFrame {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
 
 				try {
-					submitWord.submit();
+					if (submitWord.submit() == false){
+						//p.setCurrScore(new Score(p.getCurrScore().getScore() - p.getCurrentWord().getPoints()));
+						System.out.println("submit() returned false");
+					}
 
-					System.out.println("Actual Score: " + p.getCurrentWord().getPoints());
-					lblScore.setText("Score: " + p.getCurrentWord().getPoints());
+					//System.out.println("Actual Score: " + p.getCurrentWord().getPoints());
+					//lblScore.setText("Score: " + p.getCurrentWord().getPoints());
+					System.out.println("Actual Score: " + p.getCurrScore().getScore());
+					lblScore.setText("Score: " + p.getCurrScore().getScore());
 
 					// Works but probably not in the correct place
 					//
@@ -295,7 +300,8 @@ public class PuzzleView extends JFrame {
 					// }
 					//////////////////////////////////////////////
 
-					System.out.println(p.getCurrentWord().getPoints());
+					//System.out.println(p.getCurrentWord().getPoints());
+					System.out.println(p.getCurrScore().getScore());
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
