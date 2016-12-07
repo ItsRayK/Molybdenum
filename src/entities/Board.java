@@ -55,11 +55,10 @@ public class Board {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				if (j == 0 && squares[i][j].isEmptyAndActive()) {
-					Letter contentsUp = nextBelowEmptySquare(squares[i][j]).contents;
+					Letter contentsUp = nextBelowEmptySquare(squares[i][j]).getContents();
 					squares[i][j].setContents(contentsUp);
 				} else if (isNextAboveSquareEmpty(squares[i][j])) {
-					Letter contentsUp = squares[i][j].contents;
-					squares[i][j].removeContents();
+					Letter contentsUp = squares[i][j].getContents();
 					nextAboveEmptySquare(squares[i][j]).setContents(contentsUp);
 
 				} else if (j == 5 && squares[i][j].isEmptyAndActive()) {
