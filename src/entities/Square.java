@@ -128,5 +128,6 @@ public class Square {
 
 	public void setContents(Letter contents) {
 		this.contents = contents;
+		empty = false;
 	}
 }
