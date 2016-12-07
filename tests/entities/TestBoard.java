@@ -43,8 +43,12 @@ public class TestBoard extends TestCase {
 		
 		// separate submitWord from "float up" concept
 		// now get the FLOAT to work.
-		p.moveLettersUp();
+		b.floatUp();
 		
-		p.fillEmptyWithRandomLetters();
+		assertEquals ("C", b.getSquare(0, 0).getContentsString());
+		assertTrue(b.getSquare(0, 5).getContentsString() == null);
+		//b.fillEmptyWithRandomLetters();
+		
+		assertTrue(b.getSquare(0, 5).getContentsString() != null);
 	}
 }
