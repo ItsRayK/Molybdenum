@@ -8,7 +8,7 @@ public class Letter {
 
 	public Letter() {
 		// NOTE: Consider making this a random letter not null letter
-		
+
 	}
 
 	public Letter(char init, int val) {
@@ -137,7 +137,7 @@ public class Letter {
 		}
 		if (randomValue >= 0.9983 && randomValue < 0.99925) {
 			letterString = "QU";
-			value = 8;
+			value = 11;
 		}
 		if (randomValue >= 0.99925 && randomValue < 1.0) {
 			letterString = "Z";

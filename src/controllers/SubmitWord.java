@@ -42,6 +42,7 @@ public class SubmitWord {
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
 				level.getBoard().floatUp();
+				level.fillEmptyWithRandomLetters();
 				for (int i = 0; i <= 5; i++) {
 					for (int j = 0; j <= 5; j++) {
 						if (level.getBoard().squares[i][j].isActive()) {
