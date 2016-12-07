@@ -58,7 +58,7 @@ public abstract class Level {
 	 * according to the distribution of letters are stored by the Letter class.
 	 */
 	public void fillEmptyWithRandomLetters() {
-		// TODO:
+		board.fillEmptyActiveSquares();
 	}
 
 	public boolean addToLevelScore(int i) {
