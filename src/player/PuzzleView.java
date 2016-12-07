@@ -235,6 +235,41 @@ public class PuzzleView extends JFrame {
 		return wordsFound;
 	}
 
+	public void updateStars() {
+		JLabel starimg1 = new JLabel("");
+		starimg1.setBounds(797, 217, 90, 90);
+
+		JLabel starimg2 = new JLabel("");
+		starimg2.setBounds(797, 302, 90, 90);
+
+		JLabel starimg3 = new JLabel("");
+		starimg3.setBounds(797, 387, 90, 90);
+
+		if (level.getCurrScore().getScore() > level.getOneStarScore().getScore()) {
+			starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png")));
+			contentPane.add(starimg1);
+		} else {
+			starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+			contentPane.add(starimg1);
+		}
+		if (level.getCurrScore().getScore() > level.getTwoStarScore().getScore()) {
+			starimg2.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png")));
+			contentPane.add(starimg2);
+		} else {
+			starimg2.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+			contentPane.add(starimg2);
+		}
+
+		if (level.getCurrScore().getScore() > level.getThreeStarScore().getScore()) {
+			starimg3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png")));
+			contentPane.add(starimg3);
+		} else {
+			starimg3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+			contentPane.add(starimg3);
+
+		}
+	}
+
 	public void initializeController() {
 		Puzzle p = this.level;
 		PuzzleView pV = this;
@@ -271,13 +306,16 @@ public class PuzzleView extends JFrame {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
 
 				try {
-					if (submitWord.submit() == false){
-						p.setCurrScore(new Score(p.getCurrentWord().getPoints() - (p.getCurrentWord().getPoints() - p.getCurrScore().getScore())));
+					if (submitWord.submit() == false) {
+						p.setCurrScore(new Score(p.getCurrentWord().getPoints()
+								- (p.getCurrentWord().getPoints() - p.getCurrScore().getScore())));
 						System.out.println("submit() returned false");
 					}
 
-					//System.out.println("Actual Score: " + p.getCurrentWord().getPoints());
-					//lblScore.setText("Score: " + p.getCurrentWord().getPoints());
+					// System.out.println("Actual Score: " +
+					// p.getCurrentWord().getPoints());
+					// lblScore.setText("Score: " +
+					// p.getCurrentWord().getPoints());
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
@@ -302,7 +340,7 @@ public class PuzzleView extends JFrame {
 					// }
 					//////////////////////////////////////////////
 
-					//System.out.println(p.getCurrentWord().getPoints());
+					// System.out.println(p.getCurrentWord().getPoints());
 					System.out.println(p.getCurrScore().getScore());
 
 				} catch (Exception e) {
