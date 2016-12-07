@@ -88,4 +88,22 @@ public abstract class Level {
 	public Score getThreeStarScore() {
 		return threeStarScore;
 	}
+
+	public void compareToGoalScores() {
+		if (currScore.getScore() > oneStarScore.getScore())
+			currScore.star1Filled = true;
+		else
+			currScore.star1Filled = false;
+
+		if (currScore.getScore() > twoStarScore.getScore())
+			currScore.star2Filled = true;
+		else
+			currScore.star1Filled = false;
+		
+		if (currScore.getScore() > threeStarScore.getScore())
+			currScore.star3Filled = true;
+		else
+			currScore.star3Filled = false;
+	}
+
 }
