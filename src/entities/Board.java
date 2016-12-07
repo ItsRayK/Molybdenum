@@ -69,7 +69,7 @@ public class Board {
 						//filled = true;
 					//}
 					//else{
-						for(int k = j + 1; k < 5; k++){
+						for(int k = j + 1; k < 6; k++){
 							if(squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)){
 								squares[i][j].setContents(squares[i][k].getContents());
 								squares[i][k].removeContents();
