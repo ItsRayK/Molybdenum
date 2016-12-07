@@ -24,7 +24,10 @@ public class Square {
 		return this;
 	}
 
-	/**Returns the contents of a square as a string if filled or as null if empty**/
+	/**
+	 * Returns the contents of a square as a string if filled or as null if
+	 * empty
+	 **/
 	public String getContentsString() {
 		if (contents == null) {
 			return null;
@@ -43,10 +46,10 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
-	
+
 	public boolean isAdjacentTo(Square s) {
-		if(this.column == s.column) {
-			if(this.row == (s.row + 1)) {
+		if (this.column == s.column) {
+			if (this.row == (s.row + 1)) {
 				return true;
 			} else if (this.row == (s.row - 1)) {
 				return true;
@@ -91,5 +94,20 @@ public class Square {
 
 	public boolean isAlreadyInList(ArrayList<Square> squares) {
 		return squares.iterator().next().isSameSquare(this);
+	}
+
+	public boolean isEmptyAndActive() {
+		if (contents == null && isActive())
+			return true;
+		else
+			return false;
+	}
+
+	public Letter getContents() {
+		return contents;
+	}
+
+	public void setContents(Letter contents) {
+		this.contents = contents;
 	}
 }

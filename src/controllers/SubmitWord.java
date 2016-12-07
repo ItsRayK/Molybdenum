@@ -30,22 +30,21 @@ public class SubmitWord {
 		while (!(line = br.readLine().replaceAll("\\s+", "")).equals("endofdocument")) {
 
 			lineNum++;
-			if(wordFound.length() < 3){
+			if (wordFound.length() < 3) {
 				System.out.println("Word is too short!");
 				level.getLettersSelected().clear();
 				view.unselectBoardSquares();
 				break;
-			}
-			else if (line.equalsIgnoreCase(wordFound)) {
+			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
 				level.submitWord();
 				view.addToWordsFound(wordFound);
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
-
+				
 				break;
 			} else {
-				
+
 			}
 
 		}
@@ -54,7 +53,7 @@ public class SubmitWord {
 			view.unselectBoardSquares();
 			level.getLettersSelected().clear();
 		}
-		
+
 	}
 
 }

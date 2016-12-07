@@ -8,12 +8,13 @@ public class Letter {
 
 	public Letter() {
 		// NOTE: Consider making this a random letter not null letter
+		
 	}
 
 	public Letter(char init, int val) {
 		setLetter("" + init, val);
 	}
-	
+
 	/*
 	 * public static void main(String[] args) { String test = ""; for (int i =
 	 * 0; i <=36; i++){ test = randomLetter(); System.out.print(test); }
