@@ -56,12 +56,25 @@ public class Board {
 	 * for Theme
 	 */
 	public void floatUp() {
+		boolean filled = false;
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				if (squares[i][j].isEmptyAndActive()) {
-					Letter contentsUp = nextBelowActiveSquare(squares[i][j]).getContents();
+					/*Letter contentsUp = nextBelowActiveSquare(squares[i][j]).getContents();
 					nextBelowActiveSquare(squares[i][j]).removeContents();
-					squares[i][j].setContents(contentsUp);
+					squares[i][j].setContents(contentsUp);*/
+					if(j == 5){
+						squares[i][j].fillSquareWithRandom();
+					}
+					else{
+						for(int k = j - 1; k <= 5; k++){
+							if((!(squares[i][k].getEmpty())) && !filled){
+								squares[i][j].setContents(squares[i][k].getContents());
+								squares[i][k].removeContents();
+								filled = true;
+							}
+						}
+					}
 				}
 			}
 		}

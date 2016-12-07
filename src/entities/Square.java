@@ -54,6 +54,10 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
+	
+	public boolean getEmpty(){
+		return empty;
+	}
 
 	public boolean isAdjacentTo(Square s) {
 		if (this.column == s.column) {
