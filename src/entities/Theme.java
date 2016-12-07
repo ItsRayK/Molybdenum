@@ -44,13 +44,9 @@ public class Theme extends Level {
 	@Override
 	boolean saveLevel() {
 		// save name of theme and words to be found
-		// needs to be saved to a disk (look at online form discussion for more about where)
+		// needs to be saved to a disk (look at online form discussion for more
+		// about where)
 		return false;
 	}
 
-	@Override
-	Board fillBoard() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

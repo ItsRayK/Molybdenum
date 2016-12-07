@@ -28,7 +28,6 @@ public class Puzzle extends Level {
 		while (it.hasNext()) {
 			it.next().removeContents();
 		}
-		board.floatUp();
 
 	}
 
@@ -53,10 +52,5 @@ public class Puzzle extends Level {
 		return false;
 	}
 
-	@Override
-	Board fillBoard() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

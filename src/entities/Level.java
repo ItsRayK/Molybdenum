@@ -31,16 +31,13 @@ public abstract class Level {
 	abstract void undoWord();
 
 	// builder functions
-	abstract boolean saveLevel(
+
 	/*
 	 * This over-arching version of the method should assign the level name, the
 	 * check box values creating the customized board, and the score values for
 	 * each star level
 	 */
-	);
-
-	// ?? What does this method do?
-	abstract Board fillBoard();
+	abstract boolean saveLevel();
 
 	/**
 	 * For all empty squares (i.e, active squares whose contents are empty) go

@@ -53,9 +53,5 @@ public class Lightning extends Level {
 		return false;
 	}
 
-	@Override
-	Board fillBoard() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

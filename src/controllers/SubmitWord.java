@@ -41,14 +41,26 @@ public class SubmitWord {
 				view.addToWordsFound(wordFound);
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
-				
+				level.getBoard().floatUp();
+				for (int i = 0; i <= 5; i++) {
+					for (int j = 0; j <= 5; j++) {
+						if (level.getBoard().squares[i][j].isActive()) {
+							view.getBoardSquares()[i][j].setText("<html><b>"
+									+ level.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
+									+ level.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+						}
+					}
+				}
+
 				break;
 			} else {
 
 			}
 
 		}
-		if (line.equals("endofdocument")) {
+		if (line.equals("endofdocument"))
+
+		{
 			System.out.println("Word does not exists");
 			view.unselectBoardSquares();
 			level.getLettersSelected().clear();
