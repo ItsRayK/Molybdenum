@@ -126,6 +126,7 @@ public class PuzzleView extends JFrame {
 		btnExitLevel = new JButton("Exit Level");
 		btnGiveUp = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
+		lblScore = new JLabel("Score: " + p.getCurrentWord().getPoints());
 
 	}
 
@@ -150,9 +151,8 @@ public class PuzzleView extends JFrame {
 		lblWordsFound.setBounds(141, 82, 226, 31);
 		contentPane.add(lblWordsFound);
 
-		lblScore = new JLabel("Score:");
-		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
-		lblScore.setBounds(141, 411, 66, 31);
+		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 20));
+		lblScore.setBounds(141, 411, 150, 31);
 		contentPane.add(lblScore);
 
 		JLabel lblPuzzle = new JLabel("Puzzle: " + name);
