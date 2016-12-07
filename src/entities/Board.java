@@ -51,20 +51,36 @@ public class Board {
 		squares[col][row].setActivity(true);
 	}
 
+	/**
+	 * For all empty squares (i.e, active squares whose contents are empty) go
+	 * through board and move up letters to fill these squares. This process may
+	 * make other squares empty, so the process repeats until all letters have
+	 * floated up to fill the empty squares in the board.
+	 * 
+	 * Note: when done, the only empty squares that remain are "from the bottom
+	 * up" and will need to be filled with random letters in all levels except
+	 * for Theme
+	 */
 	public void floatUp() {
+		boolean filled = false;
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
-				if (j == 0 && squares[i][j].isEmptyAndActive()) {
-					Letter contentsUp = nextBelowEmptySquare(squares[i][j]).getContents();
-					squares[i][j].setContents(contentsUp);
-				} else if (isNextAboveSquareEmpty(squares[i][j])) {
-					Letter contentsUp = squares[i][j].getContents();
-					nextAboveEmptySquare(squares[i][j]).setContents(contentsUp);
-
-				} else if (j == 5 && squares[i][j].isEmptyAndActive()) {
-					Letter l = new Letter();
-					l.randomLetter();
-					squares[i][j].fillSquare(l);
+				if (squares[i][j].isEmptyAndActive()) {
+					/*Letter contentsUp = nextBelowActiveSquare(squares[i][j]).getContents();
+					nextBelowActiveSquare(squares[i][j]).removeContents();
+					squares[i][j].setContents(contentsUp);*/
+					if(j == 5){
+						squares[i][j].fillSquareWithRandom();
+					}
+					else{
+						for(int k = j - 1; k <= 5; k++){
+							if((!(squares[i][k].getEmpty())) && !filled){
+								squares[i][j].setContents(squares[i][k].getContents());
+								squares[i][k].removeContents();
+								filled = true;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -95,14 +111,24 @@ public class Board {
 		return square;
 	}
 
-	public Square nextBelowEmptySquare(Square s) {
+	public Square nextBelowActiveSquare(Square s) {
 		Square square = null;
 		int k = 0;
 		while (s.row + k <= 5) {
-			if (squares[s.column][k].isEmptyAndActive())
+			if (squares[s.column][k].notEmptyActive())
 				square = squares[s.column][k];
 			k++;
 		}
 		return square;
+	}
+
+	public void fillEmptyActiveSquares() {
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				if (squares[i][j].isEmptyAndActive()) {
+					squares[i][j].fillSquareWithRandom();
+				}
+			}
+		}
 	}
 }

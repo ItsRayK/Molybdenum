@@ -7,6 +7,7 @@ public class Square {
 	int row;
 	int column;
 	public boolean active = false;
+	public boolean empty = false;
 
 	public Square(int row, int column, boolean active) {
 		this.row = row;
@@ -16,12 +17,19 @@ public class Square {
 	}
 
 	public void removeContents() {
-		contents = null;
+		// contents = null;
+		empty = true;
 	}
 
 	public Square fillSquare(Letter l) {
 		contents = l;
 		return this;
+	}
+
+	public void fillSquareWithRandom() {
+		Letter l = new Letter();
+		l.randomLetter();
+		setContents(l);
 	}
 
 	/**
@@ -45,6 +53,10 @@ public class Square {
 
 	public void setActivity(boolean tf) {
 		active = tf;
+	}
+	
+	public boolean getEmpty(){
+		return empty;
 	}
 
 	public boolean isAdjacentTo(Square s) {
@@ -97,7 +109,14 @@ public class Square {
 	}
 
 	public boolean isEmptyAndActive() {
-		if (contents == null && isActive())
+		if (empty && isActive())
+			return true;
+		else
+			return false;
+	}
+
+	public boolean notEmptyActive() {
+		if (contents != null && isActive())
 			return true;
 		else
 			return false;
