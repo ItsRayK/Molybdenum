@@ -14,6 +14,7 @@ import controllers.SubmitWord;
 import entities.*;
 
 public class PuzzleView extends JFrame {
+	private JLabel lblScore;
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
@@ -149,7 +150,7 @@ public class PuzzleView extends JFrame {
 		lblWordsFound.setBounds(141, 82, 226, 31);
 		contentPane.add(lblWordsFound);
 
-		JLabel lblScore = new JLabel("Score:");
+		lblScore = new JLabel("Score:");
 		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		lblScore.setBounds(141, 411, 66, 31);
 		contentPane.add(lblScore);
@@ -271,7 +272,29 @@ public class PuzzleView extends JFrame {
 
 				try {
 					submitWord.submit();
+					
+					System.out.println("Actual Score: " + p.getCurrentWord().getPoints());
+					lblScore.setText("Score: " + p.getCurrentWord().getPoints());
+					
+					//Works but probably not in the correct place
+					
+					for (int i = 0; i <= 5; i++) {
+						for (int j = 0; j <= 5; j++) {
+							Letter l = new Letter();
+							l.randomLetter();
+							if (level.getBoard().squares[i][j].isActive()){
+								if(level.getBoard().squares[i][j].getContentsString() == null){
+									level.getBoard().squares[i][j].fillSquare(l);
+									boardSquares[i][j].setText("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
+											+ l.getScore() + "</sub></font></html>");
+								}
+							}
+						}
+					}
+					//////////////////////////////////////////////
+					
 					System.out.println(p.getCurrentWord().getPoints());
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -52,7 +52,7 @@ public abstract class Level {
 	 * need to be filled with random letters in all levels except for Theme
 	 */
 	public void moveLettersUp () {
-		// TODO
+		
 	}
 	
 	
