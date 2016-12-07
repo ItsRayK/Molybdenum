@@ -70,7 +70,7 @@ public class Board {
 					}
 					else{
 						for(int k = j + 1; k < 5; k++){
-							if((!(squares[i][k].getEmpty())) && !filled){
+							if(squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)){
 								squares[i][j].setContents(squares[i][k].getContents());
 								squares[i][k].removeContents();
 								filled = true;
