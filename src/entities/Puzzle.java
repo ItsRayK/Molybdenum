@@ -52,5 +52,4 @@ public class Puzzle extends Level {
 		return false;
 	}
 
-
 }
