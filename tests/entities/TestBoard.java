@@ -24,13 +24,14 @@ public class TestBoard extends TestCase {
 		// form WORD
 		ArrayList<Square> squares = new ArrayList<Square>();
 		squares.add(active[0][0]);
-		squares.add(active[0][1]);
-		squares.add(active[0][2]);
+		squares.add(active[1][0]);
+		squares.add(active[2][0]);
 		
 		Word w = new Word(squares);
 		
 		// validate letters are in place
 		assertEquals ("A", b.getSquare(0, 0).getContentsString());
+		assertEquals ("E", b.getSquare(2, 0).getContentsString());
 		
 		// remove from board
 		Puzzle p = new Puzzle ("test", b);

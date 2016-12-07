@@ -51,6 +51,16 @@ public class Board {
 		squares[col][row].setActivity(true);
 	}
 
+	/**
+	 * For all empty squares (i.e, active squares whose contents are empty) go
+	 * through board and move up letters to fill these squares. This process may
+	 * make other squares empty, so the process repeats until all letters have
+	 * floated up to fill the empty squares in the board.
+	 * 
+	 * Note: when done, the only empty squares that remain are "from the bottom
+	 * up" and will need to be filled with random letters in all levels except
+	 * for Theme
+	 */
 	public void floatUp() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
