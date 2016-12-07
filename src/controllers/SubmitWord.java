@@ -17,7 +17,7 @@ public class SubmitWord {
 		word = currentWord;
 	}
 
-	public void submit() throws Exception {
+	public boolean submit() throws Exception {
 		String wordFound = word.getWordString();
 		File file = new File("src/WordTable.sort");
 		InputStream fis = new FileInputStream(file);
@@ -34,7 +34,7 @@ public class SubmitWord {
 				System.out.println("Word is too short!");
 				level.getLettersSelected().clear();
 				view.unselectBoardSquares();
-				break;
+				return false;
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
 				level.submitWord();
@@ -53,19 +53,19 @@ public class SubmitWord {
 					}
 				}
 
-				break;
-			} else {
+				return true;
+			} //else {
 
-			}
+			//}
 
 		}
-		if (line.equals("endofdocument"))
-
-		{
+		if (line.equals("endofdocument")) {
 			System.out.println("Word does not exists");
 			view.unselectBoardSquares();
 			level.getLettersSelected().clear();
+			return false;
 		}
+		return false;
 
 	}
 
