@@ -228,5 +228,9 @@ public class PuzzleBuilder extends JFrame {
 	public JTextField getTxt3StarThresh() {
 		return txt3StarThresh;
 	}
+	
+	public JTextField getMaxWords(){
+		return tfWordLimit;
+	}
 
 }

@@ -135,7 +135,7 @@ public class LightningBuilder extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblScoreThresholds = new JLabel("Score Thresholds:");
+		lblScoreThresholds = new JLabel("*Score Thresholds:");
 		txt1StarThresh = new JTextField();
 		txt2StarThresh = new JTextField();
 		txt3StarThresh = new JTextField();
@@ -169,22 +169,26 @@ public class LightningBuilder extends JFrame {
 		lblScoreThresholds.setBounds(172, 154, 120, 14);
 		contentPane.add(lblScoreThresholds);
 
-		txt1StarThresh.setText("(Score required for 1 star)");
+		txt1StarThresh.setText("");
+		TextPrompt star1prompt = new TextPrompt("Score required for 1 star", txt1StarThresh);
 		txt1StarThresh.setColumns(10);
 		txt1StarThresh.setBounds(172, 170, 171, 20);
 		contentPane.add(txt1StarThresh);
 
-		txt2StarThresh.setText("(Score required for 2 stars)");
+		txt2StarThresh.setText("");
+		TextPrompt star2prompt = new TextPrompt("Score required for 2 star", txt2StarThresh);
 		txt2StarThresh.setColumns(10);
 		txt2StarThresh.setBounds(172, 195, 171, 20);
 		contentPane.add(txt2StarThresh);
 
-		txt3StarThresh.setText("(Score required for 3 stars)");
+		txt3StarThresh.setText("");
+		TextPrompt star3prompt = new TextPrompt("Score required for 3 star", txt3StarThresh);
 		txt3StarThresh.setColumns(10);
 		txt3StarThresh.setBounds(172, 220, 171, 20);
 		contentPane.add(txt3StarThresh);
 
-		txtlevelName.setText("(Level Name)");
+		txtlevelName.setText("");
+		TextPrompt levelNamePrompt = new TextPrompt("Level Name", txtlevelName);
 		txtlevelName.setBounds(10, 126, 95, 20);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
@@ -199,11 +203,16 @@ public class LightningBuilder extends JFrame {
 		gridImg.setBounds(530, 86, 400, 400);
 		contentPane.add(gridImg);
 
-		JLabel lblTime = new JLabel("Timer:");
-		lblTime.setBounds(172, 129, 37, 14);
+		JLabel lblTime = new JLabel("*Timer:");
+		lblTime.setBounds(172, 129, 50, 14);
 		contentPane.add(lblTime);
+		
+		JLabel lblRequiredNote = new JLabel("*Required Fields");
+		lblRequiredNote.setBounds(182, 248, 110, 14);
+		contentPane.add(lblRequiredNote);
 
-		txtSetTime.setText("(Set Time)");
+		txtSetTime.setText("");
+		TextPrompt timePrompt = new TextPrompt("Set Max Time", txtSetTime);
 		txtSetTime.setBounds(217, 126, 86, 20);
 		contentPane.add(txtSetTime);
 		txtSetTime.setColumns(10);
@@ -256,6 +265,20 @@ public class LightningBuilder extends JFrame {
 
 				GetStateOfLightningBuilder state = new GetStateOfLightningBuilder(lightningBuilder, lightning);
 				state.makePreview();
+			}
+		});
+		
+		btnSaveLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetStateOfLightningBuilder getState = new GetStateOfLightningBuilder(lightningBuilder, lightning);
+				getState.saveLevel();
+			}
+		});
+
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetStateOfLightningBuilder getState = new GetStateOfLightningBuilder(lightningBuilder, lightning);
+				getState.deletePuzzle();
 			}
 		});
 	}

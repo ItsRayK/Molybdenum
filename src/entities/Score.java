@@ -30,4 +30,16 @@ public class Score {
 		setScore(value - scoreSubtracted);
 		return this;
 	}
+
+	public boolean isStar1Filled() {
+		return star1Filled;
+	}
+
+	public boolean isStar2Filled() {
+		return star2Filled;
+	}
+
+	public boolean isStar3Filled() {
+		return star3Filled;
+	}
 }

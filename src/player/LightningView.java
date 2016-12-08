@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import entities.Letter;
 import entities.Square;
 import entities.Lightning;
+import entities.Puzzle;
 import entities.Score;
 
 import java.awt.event.ActionListener;
@@ -28,8 +29,7 @@ public class LightningView extends JFrame {
 	int timer;
 	Timer count;
 
-	public LightningView(String n, Lightning l, Score oneStarScore, Score twoStarScore, Score threeStarScore, int t) {
-		timer = t;
+	public LightningView(String n, Lightning l) {
 		name = n;
 		level = l;
 
@@ -44,7 +44,7 @@ public class LightningView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LightningView frame = new LightningView("default", level, null, null, null, 0);
+					LightningView frame = new LightningView("default", level);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,10 +53,14 @@ public class LightningView extends JFrame {
 		});
 	}
 
+	public void setLevel(Lightning l) {
+		level = l;
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-
+	
 	public void initialize() {
 		initializeModel();
 		initializeView();

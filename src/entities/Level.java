@@ -39,7 +39,6 @@ public abstract class Level {
 	 */
 	abstract boolean saveLevel();
 
-
 	/**
 	 * Every empty and active square in the board is filled with a random letter
 	 * according to the distribution of letters as stored in the Letter class.
@@ -69,12 +68,54 @@ public abstract class Level {
 	public Score getCurrScore() {
 		return currScore;
 	}
-	
-	public void setCurrScore(Score s){
+
+	public void setCurrScore(Score s) {
 		this.currScore = s;
 	}
 
 	public ArrayList<Square> getLettersSelected() {
 		return lettersSelected;
 	}
+
+	public Score getOneStarScore() {
+		return oneStarScore;
+	}
+
+	public Score getTwoStarScore() {
+		return twoStarScore;
+	}
+
+	public Score getThreeStarScore() {
+		return threeStarScore;
+	}
+
+	public void compareToGoalScores() {
+		if (currScore.getScore() >= oneStarScore.getScore())
+			currScore.star1Filled = true;
+		else
+			currScore.star1Filled = false;
+
+		if (currScore.getScore() >= twoStarScore.getScore())
+			currScore.star2Filled = true;
+		else
+			currScore.star2Filled = false;
+
+		if (currScore.getScore() >= threeStarScore.getScore())
+			currScore.star3Filled = true;
+		else
+			currScore.star3Filled = false;
+	}
+
+	public void setOneStarScore(Score oneStarScore) {
+		this.oneStarScore = oneStarScore;
+	}
+
+	public void setTwoStarScore(Score twoStarScore) {
+		this.twoStarScore = twoStarScore;
+	}
+
+	public void setThreeStarScore(Score threeStarScore) {
+		this.threeStarScore = threeStarScore;
+	}
+
 }

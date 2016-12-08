@@ -3,22 +3,24 @@ package controllers;
 import java.io.IOException;
 import java.nio.file.*;
 
+import entities.Lightning;
 import entities.Puzzle;
 import entities.Score;
+import player.LightningView;
 import player.PuzzleView;
 
-public class LoadPuzzleLevel {
+public class LoadLightningLevel {
 	int k = 4;
-	Puzzle puzzle;
+	Lightning lightning;
 	String fileName;
 	String levelName;
 	Score OneStarScore;
 	Score TwoStarScore;
 	Score ThreeStarScore;
 
-	public LoadPuzzleLevel(String fileName, Puzzle p) throws IOException {
+	public LoadLightningLevel(String fileName, Lightning p) throws IOException {
 		this.fileName = fileName;
-		puzzle = p;
+		lightning = p;
 		String path = "savedLevels/" + fileName + ".txt";
 		levelName = Files.readAllLines(Paths.get(path)).get(0);
 		OneStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(1)));
@@ -30,9 +32,9 @@ public class LoadPuzzleLevel {
 
 				String readCheck = Files.readAllLines(Paths.get(path)).get(k);
 				if (readCheck.equals("true")) {
-					puzzle.getBoard().activateSquare(i, j);
+					lightning.getBoard().activateSquare(i, j);
 				} else {
-					puzzle.getBoard().deActivateSquare(i, j);
+					lightning.getBoard().deActivateSquare(i, j);
 
 				}
 				k++;
@@ -40,12 +42,12 @@ public class LoadPuzzleLevel {
 		}
 	}
 
-	public void loadPuzzle() {
-		PuzzleView frame = new PuzzleView(levelName, puzzle);
-		puzzle.setOneStarScore(OneStarScore);
-		puzzle.setTwoStarScore(TwoStarScore);
-		puzzle.setThreeStarScore(ThreeStarScore);
-		frame.setLevel(puzzle);
+	public void loadLightning() {
+		LightningView frame = new LightningView(levelName, lightning);
+		lightning.setOneStarScore(OneStarScore);
+		lightning.setTwoStarScore(TwoStarScore);
+		lightning.setThreeStarScore(ThreeStarScore);
+		frame.setLevel(lightning);
 		frame.initialize();
 		frame.setVisible(true);
 	}

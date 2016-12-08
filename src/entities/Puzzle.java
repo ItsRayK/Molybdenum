@@ -20,7 +20,7 @@ public class Puzzle extends Level {
 
 	@Override
 	public void submitWord() {
-		currScore.addToScore(currentWord.getPoints());
+		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
 
 		// Be sure to remove content for all squares in the word.

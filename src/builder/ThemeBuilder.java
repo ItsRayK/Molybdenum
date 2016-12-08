@@ -7,7 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.GetStateOfLightningBuilder;
+import controllers.GetStateOfThemeBuilder;
+import entities.Board;
 import entities.Letter;
+import entities.Lightning;
+import entities.Theme;
 
 public class ThemeBuilder extends JFrame {
 
@@ -21,8 +26,10 @@ public class ThemeBuilder extends JFrame {
 	private JCheckBox checkBox[][];
 	private JButton btnBack, btnPreview, btnDelete, btnSaveLevel;
 	private JLabel lblScoreThresholds, lblLevelTypeTheme, lblThemeName;
+	private JTextPane wordList;
 
-
+	Theme theme = new Theme("default", new Board());
+	
 	/**
 	 * Launch the application.
 	 */
@@ -158,7 +165,7 @@ public class ThemeBuilder extends JFrame {
 		btnDelete.setBounds(10, 219, 95, 23);
 		contentPane.add(btnDelete);
 		
-		JTextPane wordList = new JTextPane();
+		wordList = new JTextPane();
 		wordList.setText("(one line per word)");
 		wordList.setBounds(179, 179, 184, 119);
 		contentPane.add(wordList);
@@ -174,6 +181,7 @@ public class ThemeBuilder extends JFrame {
 	}
 	
 	private void initializeController(){
+		ThemeBuilder themeBuilder = this;
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Builder mainMenu = new Builder();
@@ -181,16 +189,45 @@ public class ThemeBuilder extends JFrame {
 				dispose();
 			}
 		});
+		btnSaveLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetStateOfThemeBuilder getState = new GetStateOfThemeBuilder(themeBuilder, theme);
+				getState.saveLevel();
+			}
+		});
 	}
 	
-		
-		
-		
-		
-		
-		
-						
-		
+	public JCheckBox[][] getCheckBox() {
+		return checkBox;
+	}			
+	
+	public void setCheckBox(JCheckBox checkBox[][]) {
+		this.checkBox = checkBox;
+	}
+	
+	public JTextField[][] getLetterField(){
+		return tfDesiredLetter;
+	}
+	
+	public JTextField getTxt1StarThresh() {
+		return txt1StarThresh;
+	}
+	
+	public JTextField getTxt2StarThresh() {
+		return txt2StarThresh;
+	}
+
+	public JTextField getTxt3StarThresh() {
+		return txt3StarThresh;
+	}
+	
+	public String getWordsToFind(){
+		return wordList.getText();
+	}
+	
+	public String getNameText() {
+		return txtlevelName.getText();
+	}
 		
 	
 }

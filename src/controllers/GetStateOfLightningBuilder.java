@@ -1,18 +1,17 @@
 package controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.Timer;
 
 import builder.LightningBuilder;
-import builder.PuzzleBuilder;
+import builder.PreviewLightning;
 import entities.Lightning;
-import entities.Puzzle;
 import entities.Score;
-import player.LevelSelect;
-import player.LightningView;
-import player.PuzzleView;
+
 
 public class GetStateOfLightningBuilder {
 	Lightning lightning;
@@ -22,6 +21,8 @@ public class GetStateOfLightningBuilder {
 	Score OneStarScore;
 	Score TwoStarScore;
 	Score ThreeStarScore;
+	BufferedWriter bw = null;
+	File file;
 	int timerInt;
 
 	public GetStateOfLightningBuilder(LightningBuilder lb, Lightning l) {
@@ -40,9 +41,8 @@ public class GetStateOfLightningBuilder {
 		}
 
 		levelName = lightningBuilder.getNameText();
-		
+
 		timerInt = Integer.parseInt(lightningBuilder.getTimerText());
-		
 
 		OneStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt2StarThresh().getText()));
@@ -50,12 +50,79 @@ public class GetStateOfLightningBuilder {
 	}
 
 	public void makePreview() {
-		LightningView lightningView = new LightningView(levelName, lightning, OneStarScore, TwoStarScore,
+		PreviewLightning lightningView = new PreviewLightning(levelName, lightning, OneStarScore, TwoStarScore,
 				ThreeStarScore, timerInt);
 		lightningView.setVisible(true);
 	}
 
 	public void saveLevel() {
+		OneStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt1StarThresh().getText()));
+		TwoStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt2StarThresh().getText()));
+		ThreeStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt3StarThresh().getText()));
 
+		file = new File("savedLevels/" + levelName + ".txt");
+
+		FileWriter writer = null;
+		try {
+			bw = new BufferedWriter(new FileWriter(file, false));
+			bw.write(levelName);
+			bw.newLine();
+			bw.flush();
+			bw.write(lightningBuilder.getTxt1StarThresh().getText());
+			bw.newLine();
+			bw.flush();
+			bw.write(lightningBuilder.getTxt2StarThresh().getText());
+			bw.newLine();
+			bw.flush();
+			bw.write(lightningBuilder.getTxt3StarThresh().getText());
+			bw.newLine();
+			bw.flush();
+
+			for (int i = 0; i <= 5; i++) {
+				for (int j = 0; j <= 5; j++) {
+					if (lightningBuilder.getCheckBox()[i][j].isSelected()) {
+						bw.write("true");
+						bw.newLine();
+						bw.flush();
+					} else {
+						bw.write("false");
+						bw.newLine();
+						bw.flush();
+					}
+				}
+			}
+
+			bw.write(lightningBuilder.getTimerText());
+			bw.newLine();
+			bw.flush();
+			bw.write("Lightning");
+			bw.newLine();
+			bw.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace(); // I'd rather declare method with throws
+									// IOException and omit this catch.
+		} finally {
+			if (writer != null)
+				try {
+					bw.close();
+					writer.close();
+				} catch (IOException ignore) {
+				}
+		}
+
+		System.out.printf("File is located at %s%n", file.getAbsolutePath());
+
+	}
+	
+	public void deletePuzzle() {
+		String path = "savedLevels/" + levelName + ".txt";
+		file = new File(path);
+		if(file.delete()){
+			System.out.println("'" + levelName + "'" + " has been deleted");
+		}
+		else
+			System.out.println("'" + levelName + "'" + " already does not exist");;
+		
 	}
 }
