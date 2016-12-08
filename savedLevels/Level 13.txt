@@ -1,4 +1,4 @@
-Level 10
+Level 13
 100
 300
 500
@@ -10,15 +10,9 @@ true
 true
 true
 false
-false
 true
 false
-true
-true
 false
-true
-true
-true
 true
 true
 true
@@ -29,7 +23,13 @@ true
 true
 false
 true
+true
+true
+true
+true
 false
+false
+true
 false
 true
 true
