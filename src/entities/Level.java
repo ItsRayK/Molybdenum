@@ -90,6 +90,9 @@ public abstract class Level {
 		return threeStarScore;
 	}
 
+	public String getLevelName(){
+		return name;
+	}
 	public void compareToGoalScores() {
 		if (currScore.getScore() >= oneStarScore.getScore())
 			currScore.star1Filled = true;
