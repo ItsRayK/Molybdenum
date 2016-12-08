@@ -22,15 +22,22 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class LevelSelect extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnLevel1, btnLevel2, btnLevel3, btnLevel4, btnLevel5, btnLevel6, btnLevel7, btnLevel8, btnLevel9,
 			btnLevel10, btnLevel11, btnLevel12, btnLevel13, btnLevel14, btnLevel15;
-	private JLabel lvl1Stars, lvl2Stars, lvl3Stars, lvl4Stars, lvl5Stars, lvl6Stars, lvl7Stars, lvl8Stars, lvl9Stars,
-			lvl10Stars, lvl11Stars, lvl12Stars, lvl13Stars, lvl14Stars, lvl15Stars;
+	private JLabel lvlStars[];
 	private JButton btnMainMenu, btnCustom;
 
 	/**
@@ -82,22 +89,6 @@ public class LevelSelect extends JFrame {
 		btnLevel13 = new JButton("Level 13");
 		btnLevel14 = new JButton("Level 14");
 		btnLevel15 = new JButton("Level 15");
-
-		lvl1Stars = new JLabel("");
-		lvl2Stars = new JLabel("");
-		lvl3Stars = new JLabel("");
-		lvl4Stars = new JLabel("");
-		lvl5Stars = new JLabel("");
-		lvl6Stars = new JLabel("");
-		lvl7Stars = new JLabel("");
-		lvl8Stars = new JLabel("");
-		lvl9Stars = new JLabel("");
-		lvl10Stars = new JLabel("");
-		lvl11Stars = new JLabel("");
-		lvl12Stars = new JLabel("");
-		lvl13Stars = new JLabel("");
-		lvl14Stars = new JLabel("");
-		lvl15Stars = new JLabel("");
 
 	}
 
@@ -178,72 +169,56 @@ public class LevelSelect extends JFrame {
 		btnLevel15.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnLevel15.setBounds(660, 355, 80, 80);
 		contentPane.add(btnLevel15);
-
-		lvl1Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl1Stars.setBounds(277, 234, 46, 14);
-		contentPane.add(lvl1Stars);
-
-		lvl2Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl2Stars.setBounds(377, 234, 46, 14);
-		contentPane.add(lvl2Stars);
-
-		lvl3Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl3Stars.setBounds(477, 234, 46, 14);
-		contentPane.add(lvl3Stars);
-
-		lvl4Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl4Stars.setBounds(577, 234, 46, 14);
-		contentPane.add(lvl4Stars);
-
-		lvl5Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl5Stars.setBounds(677, 234, 46, 14);
-		contentPane.add(lvl5Stars);
-
-		lvl6Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl6Stars.setBounds(277, 334, 46, 14);
-		contentPane.add(lvl6Stars);
-
-		lvl7Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl7Stars.setBounds(377, 334, 46, 14);
-		contentPane.add(lvl7Stars);
-
-		lvl8Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl8Stars.setBounds(477, 334, 46, 14);
-		contentPane.add(lvl8Stars);
-
-		lvl9Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl9Stars.setBounds(577, 334, 46, 14);
-		contentPane.add(lvl9Stars);
-
-		lvl10Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl10Stars.setBounds(677, 334, 46, 14);
-		contentPane.add(lvl10Stars);
-
-		lvl11Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl11Stars.setBounds(277, 434, 46, 14);
-		contentPane.add(lvl11Stars);
-
-		lvl12Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl12Stars.setBounds(377, 434, 46, 14);
-		contentPane.add(lvl12Stars);
-
-		lvl13Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl13Stars.setBounds(477, 434, 46, 14);
-		contentPane.add(lvl13Stars);
-
-		lvl14Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl14Stars.setBounds(577, 434, 46, 14);
-		contentPane.add(lvl14Stars);
-
-		lvl15Stars.setIcon(new ImageIcon(LevelSelect.class.getResource("/images/StarsBlank.gif")));
-		lvl15Stars.setBounds(677, 434, 46, 14);
-		contentPane.add(lvl15Stars);
-
+		
+		try {
+			initializeStars();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(player.LevelSelect.class.getResource("/images/BackgroundTitle.gif")));
 		bg.setBounds(0, 0, 994, 531);
 		contentPane.add(bg);
 
+	}
+
+	private void initializeStars() throws IOException {
+		lvlStars = new JLabel[15];
+		String path = "src/SavedStars.txt";
+		File file = new File(path);
+		int j = 0;
+		for (int i = 0; i < 15; i++) {
+
+			String icon = "/images/StarsBlank.gif";
+			int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
+			if (readCheck == 0) {
+				icon = "/images/StarsBlank.gif";
+			} else if (readCheck == 1) {
+				icon = "/images/onStars.gif";
+			} else if (readCheck == 2) {
+				icon = "/images/twoStars.gif";
+			} else if (readCheck == 3) {
+				icon = "/images/Stars.gif";
+			}
+
+			lvlStars[i] = new JLabel("");
+			lvlStars[i].setIcon(new ImageIcon(LevelSelect.class.getResource(icon)));
+			if(j > 4){
+				j = 0;
+			}
+			if (i < 5) {
+				lvlStars[i].setBounds(277 + (j*100), 234, 46, 14);
+			}
+			if (i >= 5 && i < 10) {
+				lvlStars[i].setBounds(277  + (j*100), 334, 46, 14);
+			}
+			if (i >= 10 && i < 15) {
+				lvlStars[i].setBounds(277  + (j*100), 434, 46, 14);
+			}
+			contentPane.add(lvlStars[i]);
+			j++;
+		}
 	}
 
 	private void initializeController() {
@@ -432,4 +407,5 @@ public class LevelSelect extends JFrame {
 			}
 		});
 	}
+
 }

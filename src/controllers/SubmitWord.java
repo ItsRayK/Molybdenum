@@ -75,15 +75,10 @@ public class SubmitWord {
 
 	public void updateSavedStars() throws IOException {
 		int scoreLineNum = Integer.parseInt(level.getLevelName().replace("Level ", ""));
-		int fileLineNum = 0;
-		int lineNum = 0;
 		String path = "src/SavedStars.txt";
 		File file = new File(path);
 		InputStream fis = new FileInputStream(file);
-		System.out.println("Level Number: " + scoreLineNum);
-		String line;
-		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-		
+	
 		savedStars = new int[15];
 		for (int i = 0; i < 15; i++) {
 			int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
@@ -117,6 +112,7 @@ public class SubmitWord {
 			bw.newLine();
 			bw.flush();
 		}
+
 
 	}
 }
