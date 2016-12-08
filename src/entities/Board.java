@@ -11,6 +11,14 @@ public class Board {
 			}
 		}
 	}
+	
+	public Board(Board b){
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				squares[i][j] = b.getSquare(i, j);
+			}
+		}
+	}
 
 	/**
 	 * Returns the square (or null if not active) for coordinates [i][j].

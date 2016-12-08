@@ -8,6 +8,11 @@ public class Puzzle extends Level {
 	public Puzzle(String name, Board b) {
 		super(name, b);
 	}
+	
+	public Puzzle(String name, Board b, Score score){
+		super(name, b);
+		this.currScore = score;
+	}
 
 	/*
 	 * Player Functions
@@ -20,6 +25,9 @@ public class Puzzle extends Level {
 
 	@Override
 	public void submitWord() {
+		Board b = new Board(this.board);
+		Puzzle previous = new Puzzle(this.name, b, this.getCurrScore());
+		previousLevels.add(previous);
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
 
