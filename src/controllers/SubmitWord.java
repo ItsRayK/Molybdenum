@@ -77,7 +77,7 @@ public class SubmitWord {
 		int scoreLineNum = Integer.parseInt(level.getLevelName().replace("Level ", ""));
 		String path = "src/SavedStars.txt";
 		File file = new File(path);
-		InputStream fis = new FileInputStream(file);
+	//	InputStream fis = new FileInputStream(file);
 	
 		savedStars = new int[15];
 		for (int i = 0; i < 15; i++) {

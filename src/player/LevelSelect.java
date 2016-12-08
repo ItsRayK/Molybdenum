@@ -195,7 +195,7 @@ public class LevelSelect extends JFrame {
 			if (readCheck == 0) {
 				icon = "/images/StarsBlank.gif";
 			} else if (readCheck == 1) {
-				icon = "/images/onStars.gif";
+				icon = "/images/oneStars.gif";
 			} else if (readCheck == 2) {
 				icon = "/images/twoStars.gif";
 			} else if (readCheck == 3) {
