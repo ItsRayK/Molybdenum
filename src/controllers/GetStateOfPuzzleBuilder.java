@@ -60,11 +60,6 @@ public class GetStateOfPuzzleBuilder {
 		FileWriter writer = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(file, false));
-			// writer = new FileWriter(file);
-			// writer.write(levelName + "\r\n" +
-			// puzzleBuilder.getTxt1StarThresh().getText() + "\r\n"
-			// + puzzleBuilder.getTxt2StarThresh().getText() + "\r\n"
-			// + puzzleBuilder.getTxt3StarThresh().getText());
 			bw.write(levelName);
 			bw.newLine();
 			bw.flush();
@@ -92,6 +87,10 @@ public class GetStateOfPuzzleBuilder {
 				}
 			}
 
+			bw.write(puzzleBuilder.getMaxWords().getText());
+			bw.newLine();
+			bw.flush();
+			
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
