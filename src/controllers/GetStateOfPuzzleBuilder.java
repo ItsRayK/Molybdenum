@@ -90,6 +90,9 @@ public class GetStateOfPuzzleBuilder {
 			bw.write(puzzleBuilder.getMaxWords().getText());
 			bw.newLine();
 			bw.flush();
+			bw.write("Puzzle");
+			bw.newLine();
+			bw.flush();
 			
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws

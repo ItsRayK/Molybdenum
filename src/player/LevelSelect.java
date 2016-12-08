@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.LoadLightningLevel;
 import controllers.LoadPuzzleLevel;
 import entities.Board;
 import entities.Puzzle;
@@ -269,9 +270,15 @@ public class LevelSelect extends JFrame {
 
 		btnLevel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
-						0);
-				temp.setVisible(true);
+				LoadLightningLevel temp;
+				try {
+					temp = new LoadLightningLevel("Level 2", new Lightning("Level 2", new Board()));
+					temp.loadLightning();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				dispose();
 			}
 		});
@@ -282,7 +289,7 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnLevel4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -298,9 +305,15 @@ public class LevelSelect extends JFrame {
 
 		btnLevel5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
-						0);
-				temp.setVisible(true);
+				LoadLightningLevel temp;
+				try {
+					temp = new LoadLightningLevel("Level 5", new Lightning("Level 5", new Board()));
+					temp.loadLightning();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				dispose();
 			}
 		});
@@ -311,7 +324,7 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnLevel7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -327,9 +340,15 @@ public class LevelSelect extends JFrame {
 
 		btnLevel8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
-						0);
-				temp.setVisible(true);
+				LoadLightningLevel temp;
+				try {
+					temp = new LoadLightningLevel("Level 8", new Lightning("Level 8", new Board()));
+					temp.loadLightning();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				dispose();
 			}
 		});
@@ -340,7 +359,7 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnLevel10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -356,9 +375,15 @@ public class LevelSelect extends JFrame {
 
 		btnLevel11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
-						0);
-				temp.setVisible(true);
+				LoadLightningLevel temp;
+				try {
+					temp = new LoadLightningLevel("Level 11", new Lightning("Level 11", new Board()));
+					temp.loadLightning();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				dispose();
 			}
 		});
@@ -369,7 +394,7 @@ public class LevelSelect extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnLevel13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -385,13 +410,21 @@ public class LevelSelect extends JFrame {
 
 		btnLevel14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LightningView temp = new LightningView("default", new Lightning("test", new Board()), null, null, null,
-						0);
-				temp.setVisible(true);
+				LoadLightningLevel temp;
+				try {
+					temp = new LoadLightningLevel("Level 14", new Lightning("Level 14", new Board()));
+					temp.loadLightning();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				dispose();
 			}
 		});
+
 		btnLevel15.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				ThemeView temp = new ThemeView();
 				temp.setVisible(true);

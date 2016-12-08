@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 
 public class Theme extends Level {
-	Theme(String n, Board b) {
+	public Theme(String n, Board b) {
 		super(n, b);
 		// TODO Auto-generated constructor stub
 	}

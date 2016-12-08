@@ -350,4 +350,6 @@ public class ThemeView extends JFrame {
 		contentPane.add(label_1);
 		
 	}
+	
+	
 }
