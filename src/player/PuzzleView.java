@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import controllers.LetterClicked;
 import controllers.LoadPuzzleLevel;
 import controllers.SubmitWord;
+import controllers.UndoManager;
 import entities.*;
 
 public class PuzzleView extends JFrame {
@@ -22,7 +23,7 @@ public class PuzzleView extends JFrame {
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 	private TextArea wordsFound;
-	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5,starimg6;
+	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
 	Score oneStarScore, twoStarScore, threeStarScore;
 	String name;
 	Puzzle level;
@@ -165,18 +166,18 @@ public class PuzzleView extends JFrame {
 
 		////// STAR IMAGES//////
 		starFilled = new ImageIcon(PuzzleView.class.getResource("/images/starlevelFilled.png"));
-		starEmpty =	new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
-		
+		starEmpty = new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
+
 		starimg1 = new JLabel("");
 		starimg1.setBounds(797, 387, 90, 90);
 		starimg1.setIcon(starEmpty);
 		contentPane.add(starimg1);
-		
+
 		starimg4 = new JLabel("");
 		starimg4.setBounds(797, 387, 90, 90);
 		starimg4.setIcon(starFilled);
 		contentPane.add(starimg4);
-		
+
 		starimg2 = new JLabel("");
 		starimg2.setBounds(797, 302, 90, 90);
 		starimg2.setIcon(starEmpty);
@@ -186,7 +187,7 @@ public class PuzzleView extends JFrame {
 		starimg5.setBounds(797, 302, 90, 90);
 		starimg5.setIcon(starFilled);
 		contentPane.add(starimg5);
-		
+
 		starimg3 = new JLabel("");
 		starimg3.setBounds(797, 217, 90, 90);
 		starimg3.setIcon(starEmpty);
@@ -254,9 +255,9 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void updateStars() {
-		
+
 		level.compareToGoalScores();
-	
+
 		if (level.getCurrScore().isStar1Filled()) {
 			starimg1.setVisible(false);
 			System.out.println("Star1");
@@ -284,6 +285,8 @@ public class PuzzleView extends JFrame {
 
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				UndoManager undo = new UndoManager(pV, p);
+				undo.undoLevel();
 			}
 		});
 
