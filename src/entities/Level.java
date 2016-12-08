@@ -14,6 +14,7 @@ public abstract class Level {
 	ArrayList<Word> wordsFound = new ArrayList<Word>();
 	ArrayList<Square> lettersSelected = new ArrayList<Square>();
 	Word currentWord = new Word(lettersSelected);
+	ArrayList<Level> previousLevels = new ArrayList<Level>();
 
 	Level(String n, Board b) {
 		name = n;
