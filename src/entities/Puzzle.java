@@ -48,7 +48,9 @@ public class Puzzle extends Level {
 	@Override
 	void undoWord() {
 		// TODO Auto-generated method stub
-
+		this.board = new Board(previousLevels.get(previousLevels.size()).getBoard());
+		this.currScore = new Score(previousLevels.get(previousLevels.size()).getCurrScore().getScore());
+		previousLevels.remove(previousLevels.size());
 	}
 
 	/*
