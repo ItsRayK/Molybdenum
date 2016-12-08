@@ -99,11 +99,23 @@ public abstract class Level {
 			currScore.star2Filled = true;
 		else
 			currScore.star1Filled = false;
-		
+
 		if (currScore.getScore() > threeStarScore.getScore())
 			currScore.star3Filled = true;
 		else
 			currScore.star3Filled = false;
+	}
+
+	public void setOneStarScore(Score oneStarScore) {
+		this.oneStarScore = oneStarScore;
+	}
+
+	public void setTwoStarScore(Score twoStarScore) {
+		this.twoStarScore = twoStarScore;
+	}
+
+	public void setThreeStarScore(Score threeStarScore) {
+		this.threeStarScore = threeStarScore;
 	}
 
 }

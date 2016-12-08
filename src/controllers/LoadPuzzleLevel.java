@@ -21,32 +21,18 @@ public class LoadPuzzleLevel {
 		this.fileName = fileName;
 		puzzle = p;
 		String path = "savedLevels/" + fileName + ".txt";
-		levelName = Files
-				.readAllLines(
-						Paths.get(path))
-				.get(0);
-		OneStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get(path))
-						.get(1)));
-		TwoStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get(path))
-						.get(2)));
-		ThreeStarScore = new Score(Integer.parseInt(
-				Files.readAllLines(Paths.get(path))
-						.get(3)));
-		System.out.println(Integer.parseInt(
-				Files.readAllLines(Paths.get(path))
-						.get(3)));
+		levelName = Files.readAllLines(Paths.get(path)).get(0);
+		OneStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(1)));
+		TwoStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(2)));
+		ThreeStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
+		System.out.println(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
-				
-				String readCheck = Files
-						.readAllLines(Paths
-								.get(path))
-						.get(k);
+
+				String readCheck = Files.readAllLines(Paths.get(path)).get(k);
 				if (readCheck.equals("true")) {
 					puzzle.getBoard().activateSquare(i, j);
-				} else{
+				} else {
 					puzzle.getBoard().deActivateSquare(i, j);
 
 				}
@@ -55,13 +41,14 @@ public class LoadPuzzleLevel {
 		}
 	}
 
-	public void loadPuzzle(){
-		PuzzleView frame = new PuzzleView(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
+	public void loadPuzzle() {
+		PuzzleView frame = new PuzzleView(levelName, puzzle);
+		puzzle.setOneStarScore(OneStarScore);
+		puzzle.setTwoStarScore(TwoStarScore);
+		puzzle.setThreeStarScore(ThreeStarScore);
 		frame.setLevel(puzzle);
 		frame.initialize();
 		frame.setVisible(true);
 	}
-	
-	
 
 }

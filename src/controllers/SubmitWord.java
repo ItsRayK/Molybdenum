@@ -39,7 +39,7 @@ public class SubmitWord {
 				System.out.println(wordFound + " is on line " + lineNum);
 				level.submitWord();
 				view.addToWordsFound(wordFound);
-				// view.updateStars();
+				view.updateStars();
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
 				level.getBoard().floatUp();
