@@ -90,17 +90,17 @@ public abstract class Level {
 	}
 
 	public void compareToGoalScores() {
-		if (currScore.getScore() > oneStarScore.getScore())
+		if (currScore.getScore() >= oneStarScore.getScore())
 			currScore.star1Filled = true;
 		else
 			currScore.star1Filled = false;
 
-		if (currScore.getScore() > twoStarScore.getScore())
+		if (currScore.getScore() >= twoStarScore.getScore())
 			currScore.star2Filled = true;
 		else
-			currScore.star1Filled = false;
+			currScore.star2Filled = false;
 
-		if (currScore.getScore() > threeStarScore.getScore())
+		if (currScore.getScore() >= threeStarScore.getScore())
 			currScore.star3Filled = true;
 		else
 			currScore.star3Filled = false;

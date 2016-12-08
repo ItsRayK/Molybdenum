@@ -14,6 +14,7 @@ import controllers.SubmitWord;
 import entities.*;
 
 public class PuzzleView extends JFrame {
+	private ImageIcon starFilled, starEmpty;
 	private JLabel lblScore;
 	private JPanel contentPane;
 	private JButton btnExitLevel;
@@ -21,7 +22,7 @@ public class PuzzleView extends JFrame {
 	private JButton btnUndo, btnGiveUp, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 	private TextArea wordsFound;
-	private JLabel starimg1, starimg2, starimg3;
+	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5,starimg6;
 	Score oneStarScore, twoStarScore, threeStarScore;
 	String name;
 	Puzzle level;
@@ -163,22 +164,38 @@ public class PuzzleView extends JFrame {
 		contentPane.add(lblPuzzle);
 
 		////// STAR IMAGES//////
-
+		starFilled = new ImageIcon(PuzzleView.class.getResource("/images/starlevelFilled.png"));
+		starEmpty =	new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
+		
 		starimg1 = new JLabel("");
-		starimg1.setBounds(797, 217, 90, 90);
-		starimg1.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg1.setBounds(797, 387, 90, 90);
+		starimg1.setIcon(starEmpty);
 		contentPane.add(starimg1);
-
+		
+		starimg4 = new JLabel("");
+		starimg4.setBounds(797, 387, 90, 90);
+		starimg4.setIcon(starFilled);
+		contentPane.add(starimg4);
+		
 		starimg2 = new JLabel("");
 		starimg2.setBounds(797, 302, 90, 90);
-		starimg2.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg2.setIcon(starEmpty);
 		contentPane.add(starimg2);
 
+		starimg5 = new JLabel("");
+		starimg5.setBounds(797, 302, 90, 90);
+		starimg5.setIcon(starFilled);
+		contentPane.add(starimg5);
+		
 		starimg3 = new JLabel("");
-		starimg3.setBounds(797, 387, 90, 90);
-		starimg3.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png")));
+		starimg3.setBounds(797, 217, 90, 90);
+		starimg3.setIcon(starEmpty);
 		contentPane.add(starimg3);
 
+		starimg6 = new JLabel("");
+		starimg6.setBounds(797, 217, 90, 90);
+		starimg6.setIcon(starFilled);
+		contentPane.add(starimg6);
 		///////////////////////////
 
 		btnExitLevel.setBounds(24, 82, 89, 23);
@@ -237,41 +254,28 @@ public class PuzzleView extends JFrame {
 	}
 
 	public void updateStars() {
-		starimg1 = new JLabel("");
-		starimg1.setBounds(797, 217, 90, 90);
-
-		starimg2 = new JLabel("");
-		starimg2.setBounds(797, 302, 90, 90);
-
-		starimg3 = new JLabel("");
-		starimg3.setBounds(797, 387, 90, 90);
-
+		
 		level.compareToGoalScores();
-		ImageIcon star1;
-		ImageIcon star2;
-		ImageIcon star3;
+	
 		if (level.getCurrScore().isStar1Filled()) {
-			star1 = new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png"));
-		} else
-			star1 = new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
+			starimg1.setVisible(false);
+			System.out.println("Star1");
+		} else {
+			starimg1.setVisible(true);
+		}
+		if (level.getCurrScore().isStar2Filled()) {
+			starimg2.setVisible(false);
+			System.out.println("Star2");
+		} else {
+			starimg2.setVisible(true);
+		}
+		if (level.getCurrScore().isStar3Filled()) {
+			starimg3.setVisible(false);
+			System.out.println("Star3");
+		} else {
+			starimg3.setVisible(true);
+		}
 
-		if (level.getCurrScore().isStar2Filled())
-			star2 = new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png"));
-		else
-			star2 = new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
-
-		if (level.getCurrScore().isStar3Filled())
-			star3 = new ImageIcon(PuzzleView.class.getResource("/images/starlevelfilled.png"));
-		else
-			star3 = new ImageIcon(PuzzleView.class.getResource("/images/starlevel.png"));
-		
-		starimg1.setIcon(star1);
-		starimg2.setIcon(star2);
-		starimg3.setIcon(star3);
-		
-		contentPane.add(starimg1);
-		contentPane.add(starimg2);
-		contentPane.add(starimg3);
 	}
 
 	public void initializeController() {
@@ -316,35 +320,11 @@ public class PuzzleView extends JFrame {
 						System.out.println("submit() returned false");
 					}
 
-					// System.out.println("Actual Score: " +
-					// p.getCurrentWord().getPoints());
-					// lblScore.setText("Score: " +
-					// p.getCurrentWord().getPoints());
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
 					lblScore.setText("Score: " + p.getCurrScore().getScore());
 
-					// Works but probably not in the correct place
-					//
-					// for (int i = 0; i <= 5; i++) {
-					// for (int j = 0; j <= 5; j++) {
-					// Letter l = new Letter();
-					// l.randomLetter();
-					// if (level.getBoard().squares[i][j].isActive()){
-					// if(level.getBoard().squares[i][j].getContentsString() ==
-					// null){
-					// level.getBoard().squares[i][j].fillSquare(l);
-					// boardSquares[i][j].setText("<html><b>" + l.getString() +
-					// "</b><font size = '3'><sub>"
-					// + l.getScore() + "</sub></font></html>");
-					// }
-					// }
-					// }
-					// }
-					//////////////////////////////////////////////
-
-					// System.out.println(p.getCurrentWord().getPoints());
 					System.out.println(p.getCurrScore().getScore());
 
 				} catch (Exception e) {
