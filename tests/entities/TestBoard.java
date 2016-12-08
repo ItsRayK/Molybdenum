@@ -31,7 +31,7 @@ public class TestBoard extends TestCase {
 		
 		// validate letters are in place
 		assertEquals ("A", b.getSquare(0, 0).getContentsString());
-		assertEquals ("E", b.getSquare(2, 0).getContentsString());
+		assertEquals ("E", b.getSquare(0, 2).getContentsString());
 		
 		// remove from board
 		Puzzle p = new Puzzle ("test", b);
