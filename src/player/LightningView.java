@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import controllers.SubmitWord;
 import entities.Letter;
 import entities.Square;
 import entities.Lightning;
@@ -198,6 +199,12 @@ public class LightningView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 			}
+		});
+		
+		btnSubmitWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}	
 		});
 	}
 

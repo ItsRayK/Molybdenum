@@ -14,7 +14,6 @@ public class SubmitWord {
 	Puzzle level;
 	PuzzleView view;
 	BufferedWriter bw;
-	int savedStars[];
 
 	public SubmitWord(PuzzleView pV, Puzzle p, Word currentWord) {
 		view = pV;
@@ -58,7 +57,7 @@ public class SubmitWord {
 						}
 					}
 				}
-				updateSavedStars();
+				
 				return true;
 			}
 
@@ -73,46 +72,4 @@ public class SubmitWord {
 
 	}
 
-	public void updateSavedStars() throws IOException {
-		int scoreLineNum = Integer.parseInt(level.getLevelName().replace("Level ", ""));
-		String path = "src/SavedStars.txt";
-		File file = new File(path);
-	//	InputStream fis = new FileInputStream(file);
-	
-		savedStars = new int[15];
-		for (int i = 0; i < 15; i++) {
-			int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
-			savedStars[i] = readCheck;
-			
-			if(scoreLineNum-1 == i){
-				int starsFilled;
-				if (level.getCurrScore().isStar3Filled()) {
-					starsFilled = 3;
-					savedStars[i] = starsFilled;
-
-				} else if (level.getCurrScore().isStar2Filled()) {
-					starsFilled = 2;
-					if (starsFilled >= savedStars[i]) {
-						savedStars[i] = starsFilled;
-					}
-
-				} else if (level.getCurrScore().isStar1Filled()) {
-					starsFilled = 1;
-					if (starsFilled >= savedStars[i]) {
-						savedStars[i] = starsFilled;
-					}
-				}
-			}
-		}
-
-		bw = new BufferedWriter(new FileWriter("src/SavedStars.txt", false));
-		for (int i = 0; i < 15; i++) {
-			
-			bw.write("" + savedStars[i]);
-			bw.newLine();
-			bw.flush();
-		}
-
-
-	}
 }

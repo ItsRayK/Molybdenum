@@ -12,6 +12,7 @@ import controllers.LetterClicked;
 import controllers.LoadPuzzleLevel;
 import controllers.SubmitWord;
 import controllers.UndoManager;
+import controllers.UpdateLevelSelectStars;
 import entities.*;
 
 public class PuzzleView extends JFrame {
@@ -292,6 +293,13 @@ public class PuzzleView extends JFrame {
 
 		btnExitLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(p);
+				try {
+					updateStars.updateSavedStars();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				LevelSelect levelSelect = new LevelSelect();
 				levelSelect.setVisible(true);
 				dispose();
