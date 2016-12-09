@@ -208,13 +208,13 @@ public class LevelSelect extends JFrame {
 				j = 0;
 			}
 			if (i < 5) {
-				lvlStars[i].setBounds(277 + (j*100), 234, 46, 14);
+				lvlStars[i].setBounds(277 + (j*100), 234, 50, 16);
 			}
 			if (i >= 5 && i < 10) {
-				lvlStars[i].setBounds(277  + (j*100), 334, 46, 14);
+				lvlStars[i].setBounds(277  + (j*100), 334, 50, 16);
 			}
 			if (i >= 10 && i < 15) {
-				lvlStars[i].setBounds(277  + (j*100), 434, 46, 14);
+				lvlStars[i].setBounds(277  + (j*100), 434, 50, 16);
 			}
 			contentPane.add(lvlStars[i]);
 			j++;
