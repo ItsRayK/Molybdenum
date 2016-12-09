@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +26,7 @@ public class LightningView extends JFrame {
 	private JToggleButton boardSquares[][];
 	Square[][] squares = new Square[6][6];
 	JLabel starimg1, starimg2, starimg3;
+	JLabel lblTimeLeft;
 	String name;
 	Lightning level;
 	int timer;
@@ -33,9 +35,7 @@ public class LightningView extends JFrame {
 	public LightningView(String n, Lightning l) {
 		name = n;
 		level = l;
-
-		initialize();
-
+		
 	}
 
 	/**
@@ -45,7 +45,9 @@ public class LightningView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					LightningView frame = new LightningView("default", level);
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,8 +66,10 @@ public class LightningView extends JFrame {
 	
 	public void initialize() {
 		initializeModel();
+		loadTimer();
 		initializeView();
 		initializeController();
+		count.start();
 	}
 
 	private void initializeModel() {
@@ -101,18 +105,7 @@ public class LightningView extends JFrame {
 				}
 			}
 		}
-		int originalTimer = timer;
-		count = new Timer(1000, new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				timer--;
-				if (timer == 0) {
-					timer = originalTimer;
-					count.restart();
-				}
-			}
-
-		});
-
+		
 	}
 
 	private void initializeView() {
@@ -146,7 +139,7 @@ public class LightningView extends JFrame {
 		txtTimeResetNote.setText("Note: The time\r\nwill continue to\r\ncountdown on\r\nreset.");
 		contentPane.add(txtTimeResetNote);
 
-		JLabel lblTimeLeft = new JLabel("Time Left: " + timer);
+		lblTimeLeft = new JLabel("Time Left: " + timer);
 		lblTimeLeft.setBounds(141, 453, 200, 31);
 		lblTimeLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		contentPane.add(lblTimeLeft);
@@ -205,6 +198,19 @@ public class LightningView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			
 			}	
+		});
+	}
+	
+	private void loadTimer(){
+		timer = level.getTimer();
+		count = new Timer(1000, new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				timer--;
+				lblTimeLeft.setText("Time Left: " + timer);
+				if(timer==0){
+					count.stop();
+				}
+			}
 		});
 	}
 

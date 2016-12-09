@@ -42,6 +42,7 @@ public class SubmitWord {
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
 				level.submitWord();
+				level.subtractWordsLeft();
 				view.addToWordsFound(wordFound);
 				view.updateStars();
 				view.unselectBoardSquares();

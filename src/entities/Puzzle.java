@@ -64,5 +64,20 @@ public class Puzzle extends Level {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public int getWordLimit(){
+		return numWords;
+	}
+	
+	public void setWordLimit(int val){
+		numWords = val;
+	}
+	
+	public void subtractWordsLeft(){
+		numWords--;
+	}
+	public void addWordsLeft(){
+		numWords++;
+	}
 
 }

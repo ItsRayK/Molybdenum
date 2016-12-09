@@ -38,5 +38,5 @@ true
 true
 true
 false
-120
+35
 Lightning

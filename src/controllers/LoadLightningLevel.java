@@ -17,6 +17,7 @@ public class LoadLightningLevel {
 	Score OneStarScore;
 	Score TwoStarScore;
 	Score ThreeStarScore;
+	int timeLimit;
 
 	public LoadLightningLevel(String fileName, Lightning p) throws IOException {
 		this.fileName = fileName;
@@ -26,6 +27,7 @@ public class LoadLightningLevel {
 		OneStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(1)));
 		TwoStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(2)));
 		ThreeStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
+		timeLimit = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(40));
 		System.out.println(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -47,6 +49,7 @@ public class LoadLightningLevel {
 		lightning.setOneStarScore(OneStarScore);
 		lightning.setTwoStarScore(TwoStarScore);
 		lightning.setThreeStarScore(ThreeStarScore);
+		lightning.setTimer(timeLimit);
 		frame.setLevel(lightning);
 		frame.initialize();
 		frame.setVisible(true);

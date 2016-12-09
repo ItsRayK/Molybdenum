@@ -38,7 +38,7 @@ public class Lightning extends Level {
 	/*
 	 * Builder functions
 	 */
-	void setTimer(int t) {
+	public void setTimer(int t) {
 		time = t; // in milliseconds
 	}
 

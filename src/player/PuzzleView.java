@@ -17,7 +17,7 @@ import entities.*;
 
 public class PuzzleView extends JFrame {
 	private ImageIcon starFilled, starEmpty;
-	private JLabel lblScore;
+	private JLabel lblScore, lblWordsLeft;
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
@@ -44,7 +44,7 @@ public class PuzzleView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+					
 					PuzzleView frame = new PuzzleView("default", level);
 					frame.initialize();
 					frame.setVisible(true);
@@ -209,6 +209,11 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
 		contentPane.add(btnSubmitWord);
+		
+		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
+		lblWordsLeft.setBounds(141, 453, 200, 31);
+		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
+		contentPane.add(lblWordsLeft);
 
 		JLabel gridimg = new JLabel("");
 		gridimg.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/Grid.gif")));
@@ -333,6 +338,7 @@ public class PuzzleView extends JFrame {
 
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
+					lblWordsLeft.setText("Words Left: " + level.getWordLimit());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
 					lblScore.setText("Score: " + p.getCurrScore().getScore());
 

@@ -17,7 +17,6 @@ public class GetStateOfLightningBuilder {
 	Lightning lightning;
 	LightningBuilder lightningBuilder;
 	String levelName;
-	Timer timer;
 	Score OneStarScore;
 	Score TwoStarScore;
 	Score ThreeStarScore;

@@ -15,6 +15,7 @@ public class LoadPuzzleLevel {
 	Score OneStarScore;
 	Score TwoStarScore;
 	Score ThreeStarScore;
+	int wordLimit;
 
 	public LoadPuzzleLevel(String fileName, Puzzle p) throws IOException {
 		this.fileName = fileName;
@@ -24,6 +25,7 @@ public class LoadPuzzleLevel {
 		OneStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(1)));
 		TwoStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(2)));
 		ThreeStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
+		wordLimit = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(40));
 		System.out.println(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -45,6 +47,7 @@ public class LoadPuzzleLevel {
 		puzzle.setOneStarScore(OneStarScore);
 		puzzle.setTwoStarScore(TwoStarScore);
 		puzzle.setThreeStarScore(ThreeStarScore);
+		puzzle.setWordLimit(wordLimit);
 		frame.setLevel(puzzle);
 		frame.initialize();
 		frame.setVisible(true);
