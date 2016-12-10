@@ -21,7 +21,7 @@ public class PuzzleView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
-	private JButton btnUndo, btnGiveUp, btnSubmitWord;
+	private JButton btnUndo, btnReset, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 	private TextArea wordsFound;
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
@@ -128,7 +128,7 @@ public class PuzzleView extends JFrame {
 		btnUndo = new JButton("");
 		spWordsFoundList = new JScrollPane();
 		btnExitLevel = new JButton("Exit Level");
-		btnGiveUp = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
 		lblScore = new JLabel("Score: " + p.getCurrentWord().getPoints());
 
@@ -209,8 +209,8 @@ public class PuzzleView extends JFrame {
 		btnExitLevel.setBounds(24, 82, 89, 23);
 		contentPane.add(btnExitLevel);
 
-		btnGiveUp.setBounds(24, 136, 89, 23);
-		contentPane.add(btnGiveUp);
+		btnReset.setBounds(24, 136, 89, 23);
+		contentPane.add(btnReset);
 
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
@@ -318,7 +318,7 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
-		btnGiveUp.addActionListener(new ActionListener() {
+		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					LoadPuzzleLevel temp = new LoadPuzzleLevel(name, new Puzzle(name, new Board()));

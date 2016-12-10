@@ -47,6 +47,10 @@ public abstract class Level {
 	public void fillEmptyWithRandomLetters() {
 		board.fillEmptyActiveSquares();
 	}
+	
+	public void clearBoardLetters() {
+		board.clearAllActiveSquares();;
+	}
 
 	public boolean addToLevelScore(int i) {
 		currScore.addToScore(i);

@@ -81,8 +81,6 @@ public class LightningView extends JFrame {
 	}
 
 	private void initializeModel() {
-		Lightning li = this.level;
-		LightningView lV = this;
 
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -96,54 +94,7 @@ public class LightningView extends JFrame {
 		btnReset = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
 
-		
-		boardSquares = new JToggleButton[6][6];
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-
-				Letter l = new Letter();
-				l.randomLetter();
-				if (level.getBoard().squares[i][j].isActive()) {
-					level.getBoard().squares[i][j].fillSquare(l);
-					
-					
-					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
-							+ l.getScore() + "</sub></font></html>");
-					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
-					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
-
-					final Square square = li.getBoard().squares[i][j];
-					JToggleButton buttonSquares = boardSquares[i][j];
-					boardSquares[i][j].addActionListener(new ActionListener() {
-
-						public void actionPerformed(ActionEvent arg0) {
-							LetterClicked letterClicked = new LetterClicked(li, square);
-							boolean selected = buttonSquares.isSelected();
-							if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
-								letterClicked.deConstructWord();
-							} else {
-								if (level.getCurrentWord().getSquares().size() == 0) {
-									letterClicked.constructWord();
-								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
-										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
-									letterClicked.constructWord();
-								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
-									buttonSquares.setSelected(true);
-								else
-									buttonSquares.setSelected(false);
-							}
-
-							System.out.println(li.getCurrentWord().getWordString());
-							System.out.println("Running score: " + li.getCurrentWord().getPoints());
-						}
-
-					});
-
-					contentPane.add(boardSquares[i][j]);
-
-				}
-			}
-		}
+		createGrid();
 
 	}
 
@@ -222,7 +173,7 @@ public class LightningView extends JFrame {
 		spWordsFoundList.setBounds(141, 116, 226, 284);
 		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		//contentPane.add(spWordsFoundList);
+		// contentPane.add(spWordsFoundList);
 
 		wordsFound = new TextArea();
 		wordsFound.setEditable(false);
@@ -259,12 +210,13 @@ public class LightningView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(l);
 				try {
+					count.stop();
 					updateStars.updateSavedStars();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				LevelSelect levelSelect = new LevelSelect();
 				levelSelect.setVisible(true);
 				dispose();
@@ -273,7 +225,22 @@ public class LightningView extends JFrame {
 
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				level.clearBoardLetters();
+				level.fillEmptyWithRandomLetters();
+				for (int i = 0; i <= 5; i++) {
+					for (int j = 0; j <= 5; j++) {
+						if (level.getBoard().squares[i][j].isActive()) {
+							boardSquares[i][j].setText("<html><b>"
+									+ level.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
+									+ level.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+						}
+					}
+				}
+				clearWordsFound();
+				l.setCurrScore(new Score(0));
+				System.out.println(l.getCurrScore().getScore());
+				unselectBoardSquares();
+				updateStars();
 			}
 		});
 
@@ -311,13 +278,13 @@ public class LightningView extends JFrame {
 		count = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				timer--;
-				if(timer <= 10){
+				if (timer <= 10) {
 					lblTimeLeft.setForeground(Color.red);
 				}
 				lblTimeLeft.setText("Time Left: " + timer);
 				if (timer == 0) {
 					count.stop();
-					
+
 					UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(l);
 					try {
 						updateStars.updateSavedStars();
@@ -340,6 +307,11 @@ public class LightningView extends JFrame {
 
 	public TextArea addToWordsFound(String s) {
 		wordsFound.setText(wordsFound.getText() + s + "\n");
+		return wordsFound;
+	}
+	
+	public TextArea clearWordsFound(){
+		wordsFound.setText("");
 		return wordsFound;
 	}
 
@@ -390,6 +362,57 @@ public class LightningView extends JFrame {
 			starimg3.setVisible(true);
 		}
 
+	}
+
+	private void createGrid() {
+		Lightning li = this.level;
+		LightningView lV = this;
+		boardSquares = new JToggleButton[6][6];
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+
+				Letter l = new Letter();
+				l.randomLetter();
+				if (level.getBoard().squares[i][j].isActive()) {
+					level.getBoard().squares[i][j].fillSquare(l);
+
+					boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b><font size = '3'><sub>"
+							+ l.getScore() + "</sub></font></html>");
+					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
+					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+
+					final Square square = li.getBoard().squares[i][j];
+					JToggleButton buttonSquares = boardSquares[i][j];
+					boardSquares[i][j].addActionListener(new ActionListener() {
+
+						public void actionPerformed(ActionEvent arg0) {
+							LetterClicked letterClicked = new LetterClicked(li, square);
+							boolean selected = buttonSquares.isSelected();
+							if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
+								letterClicked.deConstructWord();
+							} else {
+								if (level.getCurrentWord().getSquares().size() == 0) {
+									letterClicked.constructWord();
+								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
+										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
+									letterClicked.constructWord();
+								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+									buttonSquares.setSelected(true);
+								else
+									buttonSquares.setSelected(false);
+							}
+
+							System.out.println(li.getCurrentWord().getWordString());
+							System.out.println("Running score: " + li.getCurrentWord().getPoints());
+						}
+
+					});
+
+					contentPane.add(boardSquares[i][j]);
+
+				}
+			}
+		}
 	}
 
 }
