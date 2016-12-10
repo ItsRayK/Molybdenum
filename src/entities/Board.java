@@ -22,7 +22,7 @@ public class Board {
 			}
 		}
 	}
-
+ 
 	/**
 	 * Returns the square (or null if not active) for coordinates [i][j].
 	 * 

@@ -111,6 +111,12 @@ public class GetStateOfThemeBuilder {
 				}
 			}
 			
+			bw.write(themeBuilder.getWordsToFind());	
+			bw.newLine();
+			bw.flush();
+			bw.write("endofdocument");	
+			bw.newLine();
+			bw.flush();
 			
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
