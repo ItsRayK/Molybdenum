@@ -28,6 +28,7 @@ public class Puzzle extends Level {
 		Board b = new Board(this.board);
 		Puzzle previous = new Puzzle(this.name, b, this.getCurrScore());
 		previousLevels.add(previous);
+		
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
 

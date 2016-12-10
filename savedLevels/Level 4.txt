@@ -38,3 +38,6 @@ false
 false
 true
 true
+30
+Puzzle
+

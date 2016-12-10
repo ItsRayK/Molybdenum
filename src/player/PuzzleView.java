@@ -21,7 +21,7 @@ public class PuzzleView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
-	private JButton btnUndo, btnGiveUp, btnSubmitWord;
+	private JButton btnUndo, btnReset, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
 	private TextArea wordsFound;
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
@@ -44,7 +44,7 @@ public class PuzzleView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+
 					PuzzleView frame = new PuzzleView("default", level);
 					frame.initialize();
 					frame.setVisible(true);
@@ -128,7 +128,7 @@ public class PuzzleView extends JFrame {
 		btnUndo = new JButton("");
 		spWordsFoundList = new JScrollPane();
 		btnExitLevel = new JButton("Exit Level");
-		btnGiveUp = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
 		lblScore = new JLabel("Score: " + p.getCurrentWord().getPoints());
 
@@ -140,6 +140,12 @@ public class PuzzleView extends JFrame {
 		btnUndo.setBounds(913, 127, 40, 40);
 		contentPane.add(btnUndo);
 
+		spWordsFoundList = new JScrollPane();
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		//contentPane.add(spWordsFoundList);
+		
 		wordsFound = new TextArea();
 		wordsFound.setEditable(false);
 		spWordsFoundList = new JScrollPane(wordsFound, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -203,13 +209,13 @@ public class PuzzleView extends JFrame {
 		btnExitLevel.setBounds(24, 82, 89, 23);
 		contentPane.add(btnExitLevel);
 
-		btnGiveUp.setBounds(24, 136, 89, 23);
-		contentPane.add(btnGiveUp);
+		btnReset.setBounds(24, 136, 89, 23);
+		contentPane.add(btnReset);
 
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
 		contentPane.add(btnSubmitWord);
-		
+
 		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
 		lblWordsLeft.setBounds(141, 453, 200, 31);
 		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
@@ -312,7 +318,7 @@ public class PuzzleView extends JFrame {
 			}
 		});
 
-		btnGiveUp.addActionListener(new ActionListener() {
+		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					LoadPuzzleLevel temp = new LoadPuzzleLevel(name, new Puzzle(name, new Board()));
