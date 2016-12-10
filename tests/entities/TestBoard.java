@@ -51,4 +51,21 @@ public class TestBoard extends TestCase {
 		
 		assertTrue(b.getSquare(0, 5).getContentsString() != null);
 	}
+	
+	public void testStuff(){
+		Board b = new Board();
+		
+		Square[][] active = b.activeSquares();
+		
+		b.fillEmptyActiveSquares();
+		
+		b.deActivateSquare(1, 2);
+		b.activateSquare(1, 2);
+		
+		active[1][2].removeContents();
+		assertTrue(active[1][2].isEmptyAndActive());
+		
+		active[0][2].removeContents();
+		assertTrue(b.isNextAboveSquareEmpty(active[1][2]));
+	}
 }

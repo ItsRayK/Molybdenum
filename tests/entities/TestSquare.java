@@ -55,6 +55,8 @@ public class TestSquare extends TestCase {
 		assertTrue(s.isAdjacentTo(s7));
 		assertTrue(s.isAdjacentTo(s8));
 		assertTrue(s.isAdjacentTo(s9));
+		
+		
 	}
 
 }
