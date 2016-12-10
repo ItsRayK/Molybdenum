@@ -89,18 +89,20 @@ public class ThemeBuilder extends JFrame {
 	}
 	
 	private void initializeView(){
-		
+		checkBox = new JCheckBox[6][6];
+		tfDesiredLetter = new JTextField[6][6];
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				Letter l = new Letter();
 				l.randomLetter();
 				
-				checkBox = new JCheckBox[6][6];
+				
 				checkBox[i][j] = new JCheckBox("");
 				checkBox[i][j].setBounds(534 + i * 66, 91 + j * 66, 20, 20);
+				checkBox[i][j].setSelected(true);
 				contentPane.add(checkBox[i][j]);
 				
-				tfDesiredLetter = new JTextField[6][6];
+			
 				tfDesiredLetter[i][j] = new JTextField("");
 				
 				tfDesiredLetter[i][j].setBounds(550 + i * 66, 110 + j * 66, 30, 30);

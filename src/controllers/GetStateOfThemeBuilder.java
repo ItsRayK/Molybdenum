@@ -39,11 +39,6 @@ public class GetStateOfThemeBuilder {
 		}
 
 		levelName = themeBuilder.getNameText();
-
-		// puzzleBuilder.getTxt1StarThresh().getText()
-		// puzzleBuilder.getTxt2StarThresh().getText()
-		// puzzleBuilder.getTxt3StarThresh().getText()
-
 		
 	}
 
@@ -104,7 +99,7 @@ public class GetStateOfThemeBuilder {
 			
 			for (int i = 0; i <= 5; i++) {
 				for (int j = 0; j <= 5; j++) {
-					if (themeBuilder.getLetterField()[i][j].getText() != null) {
+					if (!themeBuilder.getLetterField()[i][j].getText().equals("")) {
 						bw.write(themeBuilder.getLetterField()[i][j].getText());
 						bw.newLine();
 						bw.flush();
