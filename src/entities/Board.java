@@ -15,7 +15,10 @@ public class Board {
 	public Board(Board b){
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				squares[i][j] = b.getSquare(i, j);
+				squares[i][j] = new Square(i, j, true);
+				Letter temp = b.getSquare(i, j).getContents();
+				Letter newOne = new Letter();
+				squares[i][j].fillSquare(newOne.setLetter(b.getSquare(i, j).getContents().getLetterString(), b.getSquare(i, j).getContents().getLetterVal()));
 			}
 		}
 	}
