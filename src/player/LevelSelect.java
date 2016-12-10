@@ -146,6 +146,7 @@ public class LevelSelect extends JFrame {
 
 			String icon = "/images/StarsBlank.gif";
 			int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
+
 			if (readCheck == 0) {
 				icon = "/images/StarsBlank.gif";
 			} else if (readCheck == 1) {
@@ -154,6 +155,13 @@ public class LevelSelect extends JFrame {
 				icon = "/images/twoStars.gif";
 			} else if (readCheck == 3) {
 				icon = "/images/Stars.gif";
+			}
+			if (i != 0) {
+				int prevCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i - 1));
+				if (prevCheck == 0) {
+					btnLevel[i].setEnabled(false);
+					icon = "/images/locked.gif";
+				}
 			}
 
 			lvlStars[i] = new JLabel("");
@@ -186,23 +194,11 @@ public class LevelSelect extends JFrame {
 
 		btnClearStars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String path = "src/SavedStars.txt";
-				BufferedWriter bw;
-				try {
-					bw = new BufferedWriter(new FileWriter(path, false));
-					for (int i = 0; i < 15; i++) {
-						bw.write("0");
-						bw.newLine();
-						bw.flush();
-					}
-					LevelSelect temp = new LevelSelect();
-					temp.setVisible(true);
-					dispose();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				ClearAllProgress clr = new ClearAllProgress();
+				clr.clearAllStars();
+				LevelSelect temp = new LevelSelect();
+				temp.setVisible(true);
+				dispose();
 			}
 		});
 	}

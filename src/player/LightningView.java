@@ -222,7 +222,7 @@ public class LightningView extends JFrame {
 		spWordsFoundList.setBounds(141, 116, 226, 284);
 		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		contentPane.add(spWordsFoundList);
+		//contentPane.add(spWordsFoundList);
 
 		wordsFound = new TextArea();
 		wordsFound.setEditable(false);
