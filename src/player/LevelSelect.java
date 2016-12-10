@@ -21,7 +21,7 @@ public class LevelSelect extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lvlStars[];
-	private JButton btnMainMenu, btnCustom;
+	private JButton btnMainMenu, btnClearStars;
 	private JButton[] btnLevel;
 
 	/**
@@ -55,14 +55,14 @@ public class LevelSelect extends JFrame {
 	}
 
 	private void initializeModel() {
-		
+
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		btnLevel = new JButton[15];
 		int j = 0;
 		for (int i = 0; i < 15; i++) {
@@ -112,8 +112,8 @@ public class LevelSelect extends JFrame {
 			j++;
 		}
 		btnMainMenu = new JButton("Main Menu");
-		btnCustom = new JButton("Custom Level");
-		
+		btnClearStars = new JButton("Clear Stars");
+
 	}
 
 	private void initializeView() {
@@ -121,9 +121,9 @@ public class LevelSelect extends JFrame {
 		btnMainMenu.setBounds(110, 155, 110, 30);
 		contentPane.add(btnMainMenu);
 
-		btnCustom.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnCustom.setBounds(110, 190, 110, 30);
-		contentPane.add(btnCustom);
+		btnClearStars.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnClearStars.setBounds(110, 190, 110, 30);
+		contentPane.add(btnClearStars);
 
 		try {
 			initializeStars();
@@ -141,7 +141,6 @@ public class LevelSelect extends JFrame {
 	private void initializeStars() throws IOException {
 		lvlStars = new JLabel[15];
 		String path = "src/SavedStars.txt";
-		File file = new File(path);
 		int j = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -182,6 +181,28 @@ public class LevelSelect extends JFrame {
 				Player temp = new Player();
 				temp.setVisible(true);
 				dispose();
+			}
+		});
+
+		btnClearStars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String path = "src/SavedStars.txt";
+				BufferedWriter bw;
+				try {
+					bw = new BufferedWriter(new FileWriter(path, false));
+					for (int i = 0; i < 15; i++) {
+						bw.write("0");
+						bw.newLine();
+						bw.flush();
+					}
+					LevelSelect temp = new LevelSelect();
+					temp.setVisible(true);
+					dispose();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		});
 	}
