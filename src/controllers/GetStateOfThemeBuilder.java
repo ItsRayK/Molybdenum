@@ -90,7 +90,7 @@ public class GetStateOfThemeBuilder {
 				}
 			}
 
-			bw.write(themeBuilder.getWordsToFind());
+			bw.write("*Line Break*");
 			bw.newLine();
 			bw.flush();
 			bw.write("Theme");
