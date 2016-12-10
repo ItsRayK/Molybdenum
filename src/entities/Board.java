@@ -1,6 +1,5 @@
 package entities;
 
-
 public class Board {
 	public Square[][] squares = new Square[6][6];
 
@@ -11,18 +10,22 @@ public class Board {
 			}
 		}
 	}
-	
-	public Board(Board b){
+
+	public Board(Board b) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				squares[i][j] = new Square(i, j, true);
 				Letter temp = b.getSquare(i, j).getContents();
 				Letter newOne = new Letter();
-				squares[i][j].fillSquare(newOne.setLetter(b.getSquare(i, j).getContents().getLetterString(), b.getSquare(i, j).getContents().getLetterVal()));
+				if (squares[i][j].isEmptyAndActive()) {
+					squares[i][j].fillSquare(newOne.setLetter(b.getSquare(i, j).getContents().getLetterString(),
+							b.getSquare(i, j).getContents().getLetterVal()));
+				}
+				
 			}
 		}
 	}
- 
+
 	/**
 	 * Returns the square (or null if not active) for coordinates [i][j].
 	 * 
@@ -72,24 +75,27 @@ public class Board {
 			for (int j = 0; j < 6; j++) {
 				filled = false;
 				if (squares[i][j].isEmptyAndActive()) {
-					/*Letter contentsUp = nextBelowActiveSquare(squares[i][j]).getContents();
-					nextBelowActiveSquare(squares[i][j]).removeContents();
-					squares[i][j].setContents(contentsUp);*/
-					//if(j == 5){
-						//squares[i][j].fillSquareWithRandom();
-						//filled = true;
-					//}
-					//else{
-						for(int k = j + 1; k < 6; k++){
-							if(squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)){
-								squares[i][j].setContents(squares[i][k].getContents());
-								squares[i][k].removeContents();
-								filled = true;
-							}
+					/*
+					 * Letter contentsUp =
+					 * nextBelowActiveSquare(squares[i][j]).getContents();
+					 * nextBelowActiveSquare(squares[i][j]).removeContents();
+					 * squares[i][j].setContents(contentsUp);
+					 */
+					// if(j == 5){
+					// squares[i][j].fillSquareWithRandom();
+					// filled = true;
+					// }
+					// else{
+					for (int k = j + 1; k < 6; k++) {
+						if (squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)) {
+							squares[i][j].setContents(squares[i][k].getContents());
+							squares[i][k].removeContents();
+							filled = true;
 						}
-					//}
-					
-					if(!filled){
+					}
+					// }
+
+					if (!filled) {
 						squares[i][j].fillSquareWithRandom();
 						filled = true;
 					}
@@ -143,12 +149,13 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public void clearAllActiveSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				if (squares[i][j].isActive()) {
-					squares[i][j].removeContents();;
+					squares[i][j].removeContents();
+					;
 				}
 			}
 		}
