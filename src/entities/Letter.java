@@ -27,6 +27,14 @@ public class Letter {
 		value = val;
 		return this;
 	}
+	
+	public String getLetterString(){
+		return letterString;
+	}
+	
+	public int getLetterVal(){
+		return value;
+	}
 
 	// NOTE: Might make this a static method?
 	/*
