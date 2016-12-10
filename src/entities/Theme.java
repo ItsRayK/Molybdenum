@@ -48,5 +48,14 @@ public class Theme extends Level {
 		// about where)
 		return false;
 	}
-
+	
+	public void setThemeName(String name){
+		themeName = name;
+	}
+	
+	public String getThemeName(){
+		return themeName;
+	}
+	
+	
 }
