@@ -14,10 +14,10 @@ public class Board {
 	public Board(Board b) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				squares[i][j] = new Square(i, j, true);
+				squares[i][j] = new Square(i, j, b.getSquare(i, j).isActive());
 				Letter temp = b.getSquare(i, j).getContents();
 				Letter newOne = new Letter();
-				if (squares[i][j].isEmptyAndActive()) {
+				if (squares[i][j].isActive()) {
 					squares[i][j].fillSquare(newOne.setLetter(b.getSquare(i, j).getContents().getLetterString(),
 							b.getSquare(i, j).getContents().getLetterVal()));
 				}
