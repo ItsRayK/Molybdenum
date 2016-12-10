@@ -311,6 +311,9 @@ public class LightningView extends JFrame {
 		count = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				timer--;
+				if(timer <= 10){
+					lblTimeLeft.setForeground(Color.red);
+				}
 				lblTimeLeft.setText("Time Left: " + timer);
 				if (timer == 0) {
 					count.stop();
