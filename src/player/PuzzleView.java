@@ -44,7 +44,7 @@ public class PuzzleView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+
 					PuzzleView frame = new PuzzleView("default", level);
 					frame.initialize();
 					frame.setVisible(true);
@@ -209,7 +209,7 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
 		contentPane.add(btnSubmitWord);
-		
+
 		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
 		lblWordsLeft.setBounds(141, 453, 200, 31);
 		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));

@@ -1,9 +1,16 @@
 package entities;
 
+import java.util.Iterator;
+
 public class Lightning extends Level {
 	public Lightning(String n, Board b) {
 		super(n, b);
 		// TODO Auto-generated constructor stub
+	}
+
+	public Lightning(String name, Board b, Score score) {
+		super(name, b);
+		this.currScore = score;
 	}
 
 	int time;
@@ -18,8 +25,18 @@ public class Lightning extends Level {
 	}
 
 	@Override
-	void submitWord() {
-		// TODO Auto-generated method stub
+	public void submitWord() {
+		Board b = new Board(this.board);
+		Lightning previous = new Lightning(this.name, b, this.getCurrScore());
+		previousLevels.add(previous);
+		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
+		wordsFound.add(currentWord);
+
+		// Be sure to remove content for all squares in the word.
+		Iterator<Square> it = currentWord.getSquares().iterator();
+		while (it.hasNext()) {
+			it.next().removeContents();
+		}
 
 	}
 
@@ -52,6 +69,5 @@ public class Lightning extends Level {
 		// board configuration, total time allotted, and if the level is locked
 		return false;
 	}
-
 
 }
