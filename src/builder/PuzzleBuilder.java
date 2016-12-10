@@ -99,7 +99,7 @@ public class PuzzleBuilder extends JFrame {
 
 		}
 		contentPane.setLayout(null);
-		getTxt1StarThresh().setText("");
+		txt1StarThresh.setText("");
 		TextPrompt star1prompt = new TextPrompt("Score required for 1 star", txt1StarThresh);
 		contentPane.add(getTxt1StarThresh());
 		getTxt1StarThresh().setColumns(10);
