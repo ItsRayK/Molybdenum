@@ -51,4 +51,29 @@ public class TestBoard extends TestCase {
 		b.getSquare(0, 5).fillSquareWithRandom();
 		assertTrue(!b.getSquare(0, 5).isEmptyAndActive());
 	}
+	
+	public void testEmptySquares(){
+		Board b = new Board();
+		
+		Square[][] active = b.activeSquares();
+		
+		b.fillEmptyActiveSquares();
+		
+		b.deActivateSquare(1, 2);
+		b.activateSquare(1, 2);
+		
+		active[1][2].removeContents();
+		assertTrue(active[1][2].isEmptyAndActive());
+		
+		active[2][1].removeContents();
+		assertTrue(b.isNextAboveSquareEmpty(active[2][2]));
+	}
+	
+	public void testClearAndFill(){ //Testing random letter in letter class
+		Board b  = new Board();
+		
+		b.clearAllActiveSquares();
+		
+		b.fillEmptyActiveSquares();
+	}
 }
