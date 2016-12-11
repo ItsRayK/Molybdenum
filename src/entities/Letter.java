@@ -27,12 +27,12 @@ public class Letter {
 		value = val;
 		return this;
 	}
-	
-	public String getLetterString(){
+
+	public String getLetterString() {
 		return letterString;
 	}
-	
-	public int getLetterVal(){
+
+	public int getLetterVal() {
 		return value;
 	}
 
@@ -155,12 +155,22 @@ public class Letter {
 
 	}
 
+	public Letter randomLetterNoPoints() {
+		randomLetter();
+		setValue(0);
+		return this;
+	}
+
 	public String getString() {
 		return letterString;
 	}
 
 	public int getScore() {
 		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 }
