@@ -25,13 +25,9 @@ public class Puzzle extends Level {
 
 	@Override
 	public void submitWord() {
-		Board b = new Board(this.board);
-		Puzzle previous = new Puzzle(this.name, b, this.getCurrScore());
-		previousLevels.add(previous);
-		
+
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
-
 		// Be sure to remove content for all squares in the word.
 		Iterator<Square> it = currentWord.getSquares().iterator();
 		while (it.hasNext()) {
@@ -49,12 +45,23 @@ public class Puzzle extends Level {
 	@Override
 	public void undoWord() {
 		// TODO Auto-generated method stub
-		if (previousLevels.size() != 0) {
-			this.board = new Board(previousLevels.get(previousLevels.size() - 1).getBoard());
-			this.currScore = new Score(previousLevels.get(previousLevels.size() - 1).getCurrScore().getScore());
-			previousLevels.remove(previousLevels.size() - 1);
-			//this.currScore.setScore((previousLevels.get(previousLevels.size() - 1)).getCurrScore().value);
-			//this.wordsFound.remove(previousLevels.get(previousLevels.size() - 1).getCurrentWord());
+		try {
+			if (previousLevels.size() != 0) {
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+						board.squares[i][j].setContents(
+								previousLevels.get(previousLevels.size() - 1).getBoard().getSquare(i, j).getContents());
+						;
+					}
+				}
+				
+				getCurrentWord().getSquares().clear();
+				getCurrentWord().setWordString();
+				previousLevels.remove(previousLevels.size() - 1);
+
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.print("There are no previous moves made!");
 		}
 
 	}
@@ -67,19 +74,20 @@ public class Puzzle extends Level {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	public int getWordLimit(){
+
+	public int getWordLimit() {
 		return numWords;
 	}
-	
-	public void setWordLimit(int val){
+
+	public void setWordLimit(int val) {
 		numWords = val;
 	}
-	
-	public void subtractWordsLeft(){
+
+	public void subtractWordsLeft() {
 		numWords--;
 	}
-	public void addWordsLeft(){
+
+	public void addWordsLeft() {
 		numWords++;
 	}
 

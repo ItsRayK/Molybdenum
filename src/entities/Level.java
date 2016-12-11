@@ -47,9 +47,10 @@ public abstract class Level {
 	public void fillEmptyWithRandomLetters() {
 		board.fillEmptyActiveSquares();
 	}
-	
+
 	public void clearBoardLetters() {
-		board.clearAllActiveSquares();;
+		board.clearAllActiveSquares();
+		;
 	}
 
 	public boolean addToLevelScore(int i) {
@@ -94,9 +95,10 @@ public abstract class Level {
 		return threeStarScore;
 	}
 
-	public String getLevelName(){
+	public String getLevelName() {
 		return name;
 	}
+
 	public void compareToGoalScores() {
 		if (currScore.getScore() >= oneStarScore.getScore())
 			currScore.star1Filled = true;
@@ -124,6 +126,10 @@ public abstract class Level {
 
 	public void setThreeStarScore(Score threeStarScore) {
 		this.threeStarScore = threeStarScore;
+	}
+
+	public ArrayList<Level> getPreviousLevels() {
+		return previousLevels;
 	}
 
 }

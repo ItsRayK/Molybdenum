@@ -23,7 +23,8 @@ public class PuzzleView extends JFrame {
 	private JToggleButton[][] boardSquares;
 	private JButton btnUndo, btnReset, btnSubmitWord;
 	private JScrollPane spWordsFoundList;
-	private TextArea wordsFound;
+	private JList words;
+	private DefaultListModel wordsFound;
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
 	Score oneStarScore, twoStarScore, threeStarScore;
 	String name;
@@ -144,11 +145,11 @@ public class PuzzleView extends JFrame {
 		spWordsFoundList.setBounds(141, 116, 226, 284);
 		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		//contentPane.add(spWordsFoundList);
-		
-		wordsFound = new TextArea();
-		wordsFound.setEditable(false);
-		spWordsFoundList = new JScrollPane(wordsFound, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		// contentPane.add(spWordsFoundList);
+		wordsFound = new DefaultListModel();
+		words = new JList(wordsFound);
+		// wordsFound.setEditable(false);
+		spWordsFoundList = new JScrollPane(words, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		// spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		// spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -261,9 +262,12 @@ public class PuzzleView extends JFrame {
 		}
 	}
 
-	public TextArea addToWordsFound(String s) {
-		wordsFound.setText(wordsFound.getText() + s + "\n");
-		return wordsFound;
+	public void addToWordsFound(String s) {
+		wordsFound.addElement(s);
+	}
+
+	public void removeFromWordsFound() {
+		wordsFound.remove(wordsFound.size() - 1);
 	}
 
 	public void updateStars() {
