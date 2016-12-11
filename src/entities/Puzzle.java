@@ -51,12 +51,12 @@ public class Puzzle extends Level {
 					for (int j = 0; j < 6; j++) {
 						board.squares[i][j].setContents(
 								previousLevels.get(previousLevels.size() - 1).getBoard().getSquare(i, j).getContents());
-						;
 					}
 				}
-				
+
 				getCurrentWord().getSquares().clear();
 				getCurrentWord().setWordString();
+
 				previousLevels.remove(previousLevels.size() - 1);
 
 			}

@@ -96,17 +96,12 @@ public class ThemeView extends JFrame {
 					String readCheck = Files.readAllLines(Paths.get(path)).get(k);
 					l.setLetter(readCheck, 0);
 					if (level.getBoard().squares[i][j].isActive()) {
-						if(readCheck.equals("null")){
-							l.randomLetter();
-							
-						}
-						else{
-						
+						if (readCheck.equals("null")) {
+							l.randomLetterNoPoints();
 						}
 						level.getBoard().squares[i][j].fillSquare(l);
 
-						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString()
-								+ "</b></font></html>");
+						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b></font></html>");
 
 						boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 						boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
@@ -114,7 +109,7 @@ public class ThemeView extends JFrame {
 						final Square square = p.getBoard().squares[i][j];
 						JToggleButton buttonSquares = boardSquares[i][j];
 						boardSquares[i][j].addActionListener(new ActionListener() {
-							
+
 							public void actionPerformed(ActionEvent arg0) {
 								LetterClicked letterClicked = new LetterClicked(p, square);
 								boolean selected = buttonSquares.isSelected();
@@ -137,7 +132,7 @@ public class ThemeView extends JFrame {
 							}
 
 						});
-						
+
 						contentPane.add(boardSquares[i][j]);
 					}
 				} catch (IOException e1) {
