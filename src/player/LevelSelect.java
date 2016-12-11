@@ -81,6 +81,7 @@ public class LevelSelect extends JFrame {
 				btnLevel[i].setBounds(260 + (j * 100), 355, 80, 80);
 			}
 			btnLevel[i].setFont(new Font("Tahoma", Font.PLAIN, 10));
+			btnLevel[i].setFocusPainted(false);
 			final int k = (i + 1);
 			btnLevel[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -124,10 +125,12 @@ public class LevelSelect extends JFrame {
 	private void initializeView() {
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnMainMenu.setBounds(110, 155, 110, 30);
+		btnMainMenu.setFocusPainted(false);
 		contentPane.add(btnMainMenu);
 
 		btnClearStars.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnClearStars.setBounds(110, 190, 110, 30);
+		btnClearStars.setFocusPainted(false);
 		contentPane.add(btnClearStars);
 
 		try {

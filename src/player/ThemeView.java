@@ -105,6 +105,7 @@ public class ThemeView extends JFrame {
 
 						boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 						boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+						boardSquares[i][j].setFocusPainted(false);
 
 						final Square square = p.getBoard().squares[i][j];
 						JToggleButton buttonSquares = boardSquares[i][j];
@@ -222,6 +223,7 @@ public class ThemeView extends JFrame {
 			}
 		});
 		btnExitLevel.setBounds(24, 82, 89, 23);
+		btnExitLevel.setFocusPainted(false);
 		contentPane.add(btnExitLevel);
 
 		JButton btnGiveUp = new JButton("Reset");
@@ -230,11 +232,13 @@ public class ThemeView extends JFrame {
 			}
 		});
 		btnGiveUp.setBounds(24, 136, 89, 23);
+		btnGiveUp.setFocusPainted(false);
 		contentPane.add(btnGiveUp);
 
 		JButton btnSubmitWord = new JButton("Submit Word");
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
+		btnSubmitWord.setFocusPainted(false);
 		contentPane.add(btnSubmitWord);
 
 		JLabel label_1 = new JLabel("");
