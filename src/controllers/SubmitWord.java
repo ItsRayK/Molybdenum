@@ -45,15 +45,15 @@ public class SubmitWord {
 				Puzzle previous = new Puzzle(level.getLevelName(), b, level.getCurrScore());
 				level.getPreviousLevels().add(previous);
 				level.submitWord();
-				level.getCurrentWord().setWordString();
+				
 				wordFound = level.getCurrentWord().getWordString();
-				level.subtractWordsLeft();
 				view.addToWordsFound(wordFound);
 				view.updateStars();
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
 				level.getBoard().floatUp();
 				level.fillEmptyWithRandomLetters();
+				level.getCurrentWord().setWordString();
 				for (int i = 0; i <= 5; i++) {
 					for (int j = 0; j <= 5; j++) {
 						if (level.getBoard().squares[i][j].isActive()) {
@@ -63,7 +63,7 @@ public class SubmitWord {
 						}
 					}
 				}
-
+				
 				return true;
 			}
 

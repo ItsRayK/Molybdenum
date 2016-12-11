@@ -25,7 +25,7 @@ public class Puzzle extends Level {
 
 	@Override
 	public void submitWord() {
-
+		subtractWordsLeft();
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
 		// Be sure to remove content for all squares in the word.
@@ -58,7 +58,7 @@ public class Puzzle extends Level {
 				getCurrentWord().setWordString();
 
 				previousLevels.remove(previousLevels.size() - 1);
-
+				addWordsLeft();
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.print("There are no previous moves made!");
