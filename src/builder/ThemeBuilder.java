@@ -127,21 +127,21 @@ public class ThemeBuilder extends JFrame {
 		contentPane.add(lblScoreThresholds);
 
 		txt1StarThresh.setText("");
-		TextPrompt star1prompt = new TextPrompt("Words found for 1 star", txt1StarThresh);
+		TextPrompt star1prompt = new TextPrompt("# Words found for 1 star", txt1StarThresh);
 
 		txt1StarThresh.setColumns(10);
 		txt1StarThresh.setBounds(179, 320, 171, 20);
 		contentPane.add(txt1StarThresh);
 
 		txt2StarThresh.setText("");
-		TextPrompt star2prompt = new TextPrompt("Words found for 2 star", txt2StarThresh);
+		TextPrompt star2prompt = new TextPrompt("# Words found for 2 star", txt2StarThresh);
 
 		txt2StarThresh.setColumns(10);
 		txt2StarThresh.setBounds(179, 345, 171, 20);
 		contentPane.add(txt2StarThresh);
 
 		txt3StarThresh.setText("");
-		TextPrompt star3prompt = new TextPrompt("Words found for 3 star", txt3StarThresh);
+		TextPrompt star3prompt = new TextPrompt("# Words found for 3 star", txt3StarThresh);
 
 		txt3StarThresh.setColumns(10);
 		txt3StarThresh.setBounds(179, 370, 171, 20);
@@ -174,7 +174,7 @@ public class ThemeBuilder extends JFrame {
 
 		wordList = new JTextPane();
 		wordList.setText("");
-		TextPrompt wordListPrompt = new TextPrompt("(one line per word)", wordList);
+		TextPrompt wordListPrompt = new TextPrompt("(one word per line)", wordList);
 		wordList.setBounds(179, 179, 184, 119);
 		contentPane.add(wordList);
 

@@ -26,7 +26,6 @@ public class LoadPuzzleLevel {
 		TwoStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(2)));
 		ThreeStarScore = new Score(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
 		wordLimit = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(40));
-		System.out.println(Integer.parseInt(Files.readAllLines(Paths.get(path)).get(3)));
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 
