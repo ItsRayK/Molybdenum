@@ -240,6 +240,7 @@ public class LightningView extends JFrame {
 				l.setCurrScore(new Score(0));
 				System.out.println(l.getCurrScore().getScore());
 				unselectBoardSquares();
+				lblScore.setText("Score: " + l.getCurrScore().getScore());
 				updateStars();
 			}
 		});
