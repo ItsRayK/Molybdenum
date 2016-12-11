@@ -8,7 +8,6 @@ public class Word {
 	private int points;
 	private String wordString;
 
-
 	public Word(ArrayList<Square> sqs) {
 		squares = sqs;
 		setWordString();
@@ -17,16 +16,16 @@ public class Word {
 		else
 			setPoints(0);
 	}
-	
-	public Square getLastSquare(){
-		return squares.get(squares.size()-1);
+
+	public Square getLastSquare() {
+		return squares.get(squares.size() - 1);
 	}
 
 	public ArrayList<Square> getSquares() {
 		return squares;
 	}
-    
-	/** Adds a square to the current word**/
+
+	/** Adds a square to the current word **/
 	public Word makeWord(Square square) {
 		squares.add(squares.size(), square);
 		setWordString();
@@ -34,7 +33,7 @@ public class Word {
 		return this;
 	}
 
-		/** Returns the word without the last square added**/
+	/** Returns the word without the last square added **/
 	public Word unMakeWord() {
 		removePoints(this.getLastSquare().getContentsPoints());
 		wordString = squares.remove(squares.size() - 1).getContentsString();
@@ -44,9 +43,11 @@ public class Word {
 
 	public void setWordString() {
 		StringJoiner joiner = new StringJoiner("");
-		if (squares.size() == 1) {
+		if (squares.size() == 0)
+			wordString = "";
+		else if (squares.size() == 1)
 			wordString = squares.get(0).getContentsString();
-		} else {
+		else {
 			for (int i = 0; i <= squares.size() - 1; i++) {
 				joiner.add(squares.get(i).getContentsString());
 			}
@@ -55,7 +56,6 @@ public class Word {
 		}
 
 	}
-	
 
 	public String getWordString() {
 		return wordString;
@@ -69,8 +69,8 @@ public class Word {
 		points += i;
 		return true;
 	}
-	
-	public boolean removePoints(int i){
+
+	public boolean removePoints(int i) {
 		points -= i;
 		return true;
 	}
