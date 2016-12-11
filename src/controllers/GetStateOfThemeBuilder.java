@@ -39,14 +39,14 @@ public class GetStateOfThemeBuilder {
 		}
 
 		levelName = themeBuilder.getNameText();
-		
+
 	}
 
 	public void makePreview() {
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
-		
+
 		PreviewTheme themeView = new PreviewTheme(levelName, theme, OneStarScore, TwoStarScore, ThreeStarScore);
 		themeView.setLevel(theme);
 		themeView.initialize();
@@ -57,7 +57,7 @@ public class GetStateOfThemeBuilder {
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
-		
+
 		file = new File("savedLevels/" + levelName + ".txt");
 
 		FileWriter writer = null;
@@ -90,15 +90,15 @@ public class GetStateOfThemeBuilder {
 				}
 			}
 
-			bw.write("*Line Break*");
+			bw.write(themeBuilder.getThemeNameText());
 			bw.newLine();
 			bw.flush();
 			bw.write("Theme");
 			bw.newLine();
 			bw.flush();
-			
-			for (int i = 0; i <= 5; i++) {
-				for (int j = 0; j <= 5; j++) {
+
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
 					if (!themeBuilder.getLetterField()[i][j].getText().equals("")) {
 						bw.write(themeBuilder.getLetterField()[i][j].getText());
 						bw.newLine();
@@ -110,8 +110,14 @@ public class GetStateOfThemeBuilder {
 					}
 				}
 			}
-			
-			
+
+			bw.write(themeBuilder.getWordsToFind());
+			bw.newLine();
+			bw.flush();
+			bw.write("endofdocument");
+			bw.newLine();
+			bw.flush();
+
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
@@ -131,12 +137,12 @@ public class GetStateOfThemeBuilder {
 	public void deletePuzzle() {
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);
-		if(file.delete()){
+		if (file.delete()) {
 			System.out.println("'" + levelName + "'" + " has been deleted");
-		}
-		else
-			System.out.println("'" + levelName + "'" + " already does not exist");;
-		
+		} else
+			System.out.println("'" + levelName + "'" + " already does not exist");
+		;
+
 	}
 
 }

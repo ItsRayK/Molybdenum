@@ -101,7 +101,7 @@ public class LevelSelect extends JFrame {
 							LoadThemeLevel temp = new LoadThemeLevel("Level " + k,
 									new Theme("Level " + k, new Board()));
 							temp.loadTheme();
-							System.out.println("Lightning Loaded");
+							System.out.println("Theme Loaded");
 						} else {
 							System.out.println(readCheck);
 						}

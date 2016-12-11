@@ -106,7 +106,6 @@ public class ThemeView extends JFrame {
 
 						final Square square = p.getBoard().squares[i][j];
 						JToggleButton buttonSquares = boardSquares[i][j];
-						k++;
 						boardSquares[i][j].addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent arg0) {
@@ -131,12 +130,13 @@ public class ThemeView extends JFrame {
 							}
 
 						});
-
+						
 						contentPane.add(boardSquares[i][j]);
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				k++;
 
 			}
 		}

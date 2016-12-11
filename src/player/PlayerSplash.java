@@ -31,6 +31,7 @@ public class PlayerSplash extends JFrame {
 	 * Create the frame.
 	 */
 	public PlayerSplash() {
+		UIManager.put("ToggleButton.select", Color.YELLOW);
 		splash();	
 
 	}

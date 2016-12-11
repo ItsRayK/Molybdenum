@@ -15,7 +15,7 @@ public class UndoManager {
 	public void undoLevel() {
 		puzzle.undoWord();
 		puzzleview.updateStars();
-		
+
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
 				if (puzzle.getBoard().squares[i][j].isActive()) {
