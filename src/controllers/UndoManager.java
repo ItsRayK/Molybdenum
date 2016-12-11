@@ -13,17 +13,23 @@ public class UndoManager {
 	}
 
 	public void undoLevel() {
-		puzzle.undoWord();
-		puzzleview.updateStars();
+		try {
+			puzzle.setCurrScore(puzzle.getPreviousLevels().get(puzzle.getPreviousLevels().size() - 1).getCurrScore());
+			puzzle.undoWord();
+			puzzleview.removeFromWordsFound();
+			puzzleview.updateStars();
 
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (puzzle.getBoard().squares[i][j].isActive()) {
-					puzzleview.getBoardSquares()[i][j].setText("<html><b>"
-							+ puzzle.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
-							+ puzzle.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+			for (int i = 0; i <= 5; i++) {
+				for (int j = 0; j <= 5; j++) {
+					if (puzzle.getBoard().squares[i][j].isActive()) {
+						puzzleview.getBoardSquares()[i][j].setText("<html><b>"
+								+ puzzle.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
+								+ puzzle.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+					}
 				}
 			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("There are no moves to be undone!");
 		}
 	}
 }

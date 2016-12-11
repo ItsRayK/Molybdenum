@@ -41,7 +41,12 @@ public class SubmitWord {
 				return false;
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
+				Board b = new Board(level.getBoard());
+				Puzzle previous = new Puzzle(level.getLevelName(), b, level.getCurrScore());
+				level.getPreviousLevels().add(previous);
 				level.submitWord();
+				level.getCurrentWord().setWordString();
+				wordFound = level.getCurrentWord().getWordString();
 				level.subtractWordsLeft();
 				view.addToWordsFound(wordFound);
 				view.updateStars();
@@ -58,7 +63,7 @@ public class SubmitWord {
 						}
 					}
 				}
-				
+
 				return true;
 			}
 

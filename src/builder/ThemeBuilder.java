@@ -236,8 +236,8 @@ public class ThemeBuilder extends JFrame {
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
-	
-	public String getThemeNameText(){
+
+	public String getThemeNameText() {
 		return tfThemeName.getText();
 	}
 
