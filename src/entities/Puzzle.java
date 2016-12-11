@@ -53,6 +53,8 @@ public class Puzzle extends Level {
 			this.board = new Board(previousLevels.get(previousLevels.size() - 1).getBoard());
 			this.currScore = new Score(previousLevels.get(previousLevels.size() - 1).getCurrScore().getScore());
 			previousLevels.remove(previousLevels.size() - 1);
+			//this.currScore.setScore((previousLevels.get(previousLevels.size() - 1)).getCurrScore().value);
+			//this.wordsFound.remove(previousLevels.get(previousLevels.size() - 1).getCurrentWord());
 		}
 
 	}
