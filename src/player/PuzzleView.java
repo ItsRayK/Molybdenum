@@ -303,6 +303,7 @@ public class PuzzleView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UndoManager undo = new UndoManager(pV, p);
 				undo.undoLevel();
+				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
 			}
 		});
 
@@ -338,16 +339,18 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
-
+				
 				try {
-					if (submitWord.submit() == false) {
+					boolean sw = submitWord.submit();
+					if (sw == false) {
 						p.setCurrScore(new Score(p.getCurrentWord().getPoints()
 								- (p.getCurrentWord().getPoints() - p.getCurrScore().getScore())));
 						System.out.println("submit() returned false");
 					}
-
+										
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
+					
 					lblWordsLeft.setText("Words Left: " + level.getWordLimit());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
 					lblScore.setText("Score: " + p.getCurrScore().getScore());

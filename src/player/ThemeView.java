@@ -94,12 +94,14 @@ public class ThemeView extends JFrame {
 				Letter l = new Letter();
 				try {
 					String readCheck = Files.readAllLines(Paths.get(path)).get(k);
-					l.setLetter(readCheck, 1);
+					l.setLetter(readCheck, 0);
 					if (level.getBoard().squares[i][j].isActive()) {
+						if (readCheck.equals("null")) {
+							l.randomLetterNoPoints();
+						}
 						level.getBoard().squares[i][j].fillSquare(l);
 
-						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString()
-								+ "</b><font size = '3'><sub>" + l.getScore() + "</sub></font></html>");
+						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b></font></html>");
 
 						boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 						boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
@@ -130,7 +132,7 @@ public class ThemeView extends JFrame {
 							}
 
 						});
-						
+
 						contentPane.add(boardSquares[i][j]);
 					}
 				} catch (IOException e1) {
