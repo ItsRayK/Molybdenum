@@ -69,49 +69,11 @@ public class TestBoard extends TestCase {
 		assertTrue(b.isNextAboveSquareEmpty(active[2][2]));
 	}
 	
-	public void testFillWithRandom(){ //Testing random letter in letter class
+	public void testClearAndFill(){ //Testing random letter in letter class
 		Board b  = new Board();
 		
-		b.getSquare(0, 0).fillSquareWithRandom();
-		b.getSquare(0, 1).fillSquareWithRandom();
-		b.getSquare(0, 2).fillSquareWithRandom();
-		b.getSquare(0, 3).fillSquareWithRandom();
-		b.getSquare(0, 4).fillSquareWithRandom();
-		b.getSquare(0, 5).fillSquareWithRandom();
+		b.clearAllActiveSquares();
 		
-		b.getSquare(1, 0).fillSquareWithRandom();
-		b.getSquare(1, 1).fillSquareWithRandom();
-		b.getSquare(1, 2).fillSquareWithRandom();
-		b.getSquare(1, 3).fillSquareWithRandom();
-		b.getSquare(1, 4).fillSquareWithRandom();
-		b.getSquare(1, 5).fillSquareWithRandom();
-		
-		b.getSquare(2, 0).fillSquareWithRandom();
-		b.getSquare(2, 1).fillSquareWithRandom();
-		b.getSquare(2, 2).fillSquareWithRandom();
-		b.getSquare(2, 3).fillSquareWithRandom();
-		b.getSquare(2, 4).fillSquareWithRandom();
-		b.getSquare(2, 5).fillSquareWithRandom();
-		
-		b.getSquare(3, 0).fillSquareWithRandom();
-		b.getSquare(3, 1).fillSquareWithRandom();
-		b.getSquare(3, 2).fillSquareWithRandom();
-		b.getSquare(3, 3).fillSquareWithRandom();
-		b.getSquare(3, 4).fillSquareWithRandom();
-		b.getSquare(3, 5).fillSquareWithRandom();
-		
-		b.getSquare(4, 0).fillSquareWithRandom();
-		b.getSquare(4, 1).fillSquareWithRandom();
-		b.getSquare(4, 2).fillSquareWithRandom();
-		b.getSquare(4, 3).fillSquareWithRandom();
-		b.getSquare(4, 4).fillSquareWithRandom();
-		b.getSquare(4, 5).fillSquareWithRandom();
-		
-		b.getSquare(5, 0).fillSquareWithRandom();
-		b.getSquare(5, 1).fillSquareWithRandom();
-		b.getSquare(5, 2).fillSquareWithRandom();
-		b.getSquare(5, 3).fillSquareWithRandom();
-		b.getSquare(5, 4).fillSquareWithRandom();
-		b.getSquare(5, 5).fillSquareWithRandom();
+		b.fillEmptyActiveSquares();
 	}
 }
