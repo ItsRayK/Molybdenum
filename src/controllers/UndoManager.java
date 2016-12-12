@@ -15,6 +15,7 @@ public class UndoManager {
 	public void undoLevel() {
 		try {
 			puzzle.undoWord();
+			puzzleview.unselectBoardSquares();
 			puzzleview.removeFromWordsFound();
 			puzzleview.updateStars();
 
