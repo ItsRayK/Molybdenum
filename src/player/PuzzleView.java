@@ -92,6 +92,7 @@ public class PuzzleView extends JFrame {
 
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+					boardSquares[i][j].setFocusPainted(false);
 
 					final Square square = p.getBoard().squares[i][j];
 					JToggleButton buttonSquares = boardSquares[i][j];
@@ -107,7 +108,10 @@ public class PuzzleView extends JFrame {
 									letterClicked.constructWord();
 								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
 										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
-									letterClicked.constructWord();
+									if (letterClicked.constructWord()) {
+										letterClicked.constructWord();
+									} else
+										buttonSquares.setSelected(true);
 								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
 									buttonSquares.setSelected(true);
 								else
@@ -139,6 +143,7 @@ public class PuzzleView extends JFrame {
 
 		btnUndo.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/undo-4-xxl.gif")));
 		btnUndo.setBounds(913, 127, 40, 40);
+		btnUndo.setFocusPainted(false);
 		contentPane.add(btnUndo);
 
 		spWordsFoundList = new JScrollPane();
@@ -208,13 +213,16 @@ public class PuzzleView extends JFrame {
 		///////////////////////////
 
 		btnExitLevel.setBounds(24, 82, 89, 23);
+		btnExitLevel.setFocusPainted(false);
 		contentPane.add(btnExitLevel);
 
 		btnReset.setBounds(24, 136, 89, 23);
+		btnReset.setFocusPainted(false);
 		contentPane.add(btnReset);
 
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
+		btnSubmitWord.setFocusPainted(false);
 		contentPane.add(btnSubmitWord);
 
 		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
@@ -304,6 +312,17 @@ public class PuzzleView extends JFrame {
 				UndoManager undo = new UndoManager(pV, p);
 				undo.undoLevel();
 				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+				System.out.println("Actual Score: " + p.getCurrScore().getScore());
+				lblScore.setText("Score: " + p.getCurrScore().getScore());
+				if (p.getWordLimit() > 0) {
+					for (int i = 0; i < 6; i++) {
+						for (int j = 0; j < 6; j++) {
+							if (p.getBoard().squares[i][j].isActive()) {
+								pV.boardSquares[i][j].setEnabled(true);
+							}
+						}
+					}
+				}
 			}
 		});
 
@@ -339,7 +358,7 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SubmitWord submitWord = new SubmitWord(pV, p, p.getCurrentWord());
-				
+
 				try {
 					boolean sw = submitWord.submit();
 					if (sw == false) {
@@ -347,16 +366,26 @@ public class PuzzleView extends JFrame {
 								- (p.getCurrentWord().getPoints() - p.getCurrScore().getScore())));
 						System.out.println("submit() returned false");
 					}
-										
+
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
-					
+
 					lblWordsLeft.setText("Words Left: " + level.getWordLimit());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
 					lblScore.setText("Score: " + p.getCurrScore().getScore());
 
 					System.out.println(p.getCurrScore().getScore());
+					if (p.getWordLimit() == 0) {
+						for (int i = 0; i < 6; i++) {
+							for (int j = 0; j < 6; j++) {
+								if (p.getBoard().squares[i][j].isActive()) {
+									pV.boardSquares[i][j].setEnabled(false);
+								}
+							}
+						}
+					} else {
 
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

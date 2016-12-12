@@ -10,7 +10,9 @@ import player.PuzzleView;
 import player.ThemeView;
 
 public class LoadThemeLevel {
-	int k = 4;
+	private int k = 4;
+	private int l = 78;
+	private int m = 0;
 	Theme theme;
 	String fileName;
 	String levelName;
@@ -41,10 +43,19 @@ public class LoadThemeLevel {
 				k++;
 			}
 		}
+
+		while (!((Files.readAllLines(Paths.get(path)).get(l)).equals("endofdocument"))) {
+			if (!(Files.readAllLines(Paths.get(path)).get(l).equals(""))) {
+				m++;
+			}
+
+			l++;
+		}
 	}
 
 	public void loadTheme() {
 		ThemeView frame = new ThemeView(levelName, theme);
+		theme.setWordLimit(m);
 		theme.setOneStarScore(OneStarScore);
 		theme.setTwoStarScore(TwoStarScore);
 		theme.setThreeStarScore(ThreeStarScore);

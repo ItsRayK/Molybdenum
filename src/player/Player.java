@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class Player extends JFrame {
 	private JPanel contentPane;
 	JButton levelSelectBtn;
@@ -23,18 +22,18 @@ public class Player extends JFrame {
 				try {
 					PlayerSplash frame = new PlayerSplash();
 					Player mainMenu = new Player();
-					
+
 					frame.setVisible(true);
-					
+
 					Timer timer = new Timer(3500, new ActionListener() {
-				        public void actionPerformed(ActionEvent evt) {
-				        	mainMenu.setVisible(true);
+						public void actionPerformed(ActionEvent evt) {
+							mainMenu.setVisible(true);
 							frame.dispose();
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-				    
+						}
+					});
+					timer.setRepeats(false);
+					timer.start();
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,8 +48,8 @@ public class Player extends JFrame {
 		initialize();
 
 	}
-	
-	private void initialize(){
+
+	private void initialize() {
 		initializeModel();
 		initializeControllers();
 		initializeView();
@@ -58,11 +57,10 @@ public class Player extends JFrame {
 
 	private void initializeModel() {
 		contentPane = new JPanel();
-		
+
 		levelSelectBtn = new JButton("Level Select");
-		
+
 		quitBtn = new JButton("Quit Game");
-		
 
 	}
 
@@ -71,28 +69,27 @@ public class Player extends JFrame {
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
-		
-		
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		
 		levelSelectBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		levelSelectBtn.setBounds(326, 175, 355, 61);
+		levelSelectBtn.setFocusPainted(false);
 		contentPane.add(levelSelectBtn);
 
-		
 		quitBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		quitBtn.setBounds(326, 247, 355, 61);
+		quitBtn.setFocusPainted(false);
 		contentPane.add(quitBtn);
-		
+
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(Player.class.getResource("/images/BackgroundTitle.gif")));
 		bg.setBounds(0, 0, 994, 541);
 		contentPane.add(bg);
 	}
-	
+
 	private void initializeControllers() {
 		levelSelectBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,12 +98,12 @@ public class Player extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		quitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		
+
 	}
 }

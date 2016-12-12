@@ -54,8 +54,8 @@ public class Square {
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
-	
-	public boolean getEmpty(){
+
+	public boolean getEmpty() {
 		return empty;
 	}
 
@@ -95,6 +95,10 @@ public class Square {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean isEmpty() {
+		return empty;
 	}
 
 	public boolean isSameSquare(Square s) {

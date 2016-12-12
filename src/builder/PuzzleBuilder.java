@@ -203,6 +203,26 @@ public class PuzzleBuilder extends JFrame {
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
+	
+	public void setWordLimit(String s) {
+		tfWordLimit.setText(s);
+	}
+	
+	public void set1StarScoreText(String s) {
+		txt1StarThresh.setText(s);
+	}
+	
+	public void set2StarScoreText(String s) {
+		txt2StarThresh.setText(s);
+	}
+	
+	public void set3StarScoreText(String s) {
+		txt3StarThresh.setText(s);
+	}
+	
+	public void setNameText(String s) {
+		txtlevelName.setText(s);
+	}
 
 	public JCheckBox[][] getCheckBox() {
 		return checkBox;
@@ -211,7 +231,7 @@ public class PuzzleBuilder extends JFrame {
 	public void setCheckBox(JCheckBox checkBox[][]) {
 		this.checkBox = checkBox;
 	}
-
+	
 	public JTextField getTxt1StarThresh() {
 		return txt1StarThresh;
 	}

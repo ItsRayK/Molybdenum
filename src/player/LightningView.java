@@ -102,13 +102,16 @@ public class LightningView extends JFrame {
 		Lightning l = this.level;
 
 		btnExitLevel.setBounds(24, 82, 89, 23);
+		btnExitLevel.setFocusPainted(false);
 		contentPane.add(btnExitLevel);
 
 		btnReset.setBounds(24, 136, 89, 23);
+		btnReset.setFocusPainted(false);
 		contentPane.add(btnReset);
 
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
+		btnSubmitWord.setFocusPainted(false);
 		contentPane.add(btnSubmitWord);
 
 		////// STAR IMAGES//////
@@ -230,9 +233,9 @@ public class LightningView extends JFrame {
 				for (int i = 0; i <= 5; i++) {
 					for (int j = 0; j <= 5; j++) {
 						if (level.getBoard().squares[i][j].isActive()) {
-							boardSquares[i][j].setText("<html><b>"
-									+ level.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
-									+ level.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+							boardSquares[i][j].setText("<html><b>" + level.getBoard().squares[i][j].getContentsString()
+									+ "</b><font size = '3'><sub>" + level.getBoard().squares[i][j].getContentsPoints()
+									+ "</sub></font></html>");
 						}
 					}
 				}
@@ -310,8 +313,8 @@ public class LightningView extends JFrame {
 		wordsFound.setText(wordsFound.getText() + s + "\n");
 		return wordsFound;
 	}
-	
-	public TextArea clearWordsFound(){
+
+	public TextArea clearWordsFound() {
 		wordsFound.setText("");
 		return wordsFound;
 	}
@@ -381,6 +384,7 @@ public class LightningView extends JFrame {
 							+ l.getScore() + "</sub></font></html>");
 					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
 					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+					boardSquares[i][j].setFocusPainted(false);
 
 					final Square square = li.getBoard().squares[i][j];
 					JToggleButton buttonSquares = boardSquares[i][j];

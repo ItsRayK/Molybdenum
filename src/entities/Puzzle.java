@@ -25,6 +25,11 @@ public class Puzzle extends Level {
 
 	@Override
 	public void submitWord() {
+		Board b = new Board(getBoard());
+		Score s = new Score(getCurrScore().getScore());
+		Puzzle previous = new Puzzle(getLevelName(), b, s);
+		getPreviousLevels().add(previous);
+
 		subtractWordsLeft();
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
@@ -33,7 +38,6 @@ public class Puzzle extends Level {
 		while (it.hasNext()) {
 			it.next().removeContents();
 		}
-
 	}
 
 	@Override
@@ -56,6 +60,7 @@ public class Puzzle extends Level {
 
 				getCurrentWord().getSquares().clear();
 				getCurrentWord().setWordString();
+				setCurrScore(previousLevels.get(previousLevels.size() - 1).currScore);
 
 				previousLevels.remove(previousLevels.size() - 1);
 				addWordsLeft();
