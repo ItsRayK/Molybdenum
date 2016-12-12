@@ -311,6 +311,15 @@ public class PuzzleView extends JFrame {
 				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
 				System.out.println("Actual Score: " + p.getCurrScore().getScore());
 				lblScore.setText("Score: " + p.getCurrScore().getScore());
+				if (p.getWordLimit() > 0) {
+					for (int i = 0; i < 6; i++) {
+						for (int j = 0; j < 6; j++) {
+							if (p.getBoard().squares[i][j].isActive()) {
+								pV.boardSquares[i][j].setEnabled(true);
+							}
+						}
+					}
+				}
 			}
 		});
 
@@ -363,7 +372,17 @@ public class PuzzleView extends JFrame {
 					lblScore.setText("Score: " + p.getCurrScore().getScore());
 
 					System.out.println(p.getCurrScore().getScore());
+					if (p.getWordLimit() == 0) {
+						for (int i = 0; i < 6; i++) {
+							for (int j = 0; j < 6; j++) {
+								if (p.getBoard().squares[i][j].isActive()) {
+									pV.boardSquares[i][j].setEnabled(false);
+								}
+							}
+						}
+					} else {
 
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
