@@ -14,7 +14,6 @@ public class UndoManager {
 
 	public void undoLevel() {
 		try {
-			puzzle.setCurrScore(puzzle.getPreviousLevels().get(puzzle.getPreviousLevels().size() - 1).getCurrScore());
 			puzzle.undoWord();
 			puzzleview.removeFromWordsFound();
 			puzzleview.updateStars();

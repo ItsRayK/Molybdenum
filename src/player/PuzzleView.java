@@ -309,6 +309,8 @@ public class PuzzleView extends JFrame {
 				UndoManager undo = new UndoManager(pV, p);
 				undo.undoLevel();
 				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+				System.out.println("Actual Score: " + p.getCurrScore().getScore());
+				lblScore.setText("Score: " + p.getCurrScore().getScore());
 			}
 		});
 
