@@ -246,6 +246,26 @@ public class PuzzleView extends JFrame {
 		return boardSquares;
 	}
 
+	public Puzzle getLevel() {
+		return level;
+	}
+
+	public JButton getBtnSubmitWord() {
+		return btnSubmitWord;
+	}
+
+	public JButton getBtnUndo() {
+		return btnUndo;
+	}
+
+	public JButton getBtnExitLevel() {
+		return btnExitLevel;
+	}
+
+	public JButton getBtnReset() {
+		return btnReset;
+	}
+
 	public void unselectBoardSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {

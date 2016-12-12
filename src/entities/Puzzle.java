@@ -51,6 +51,7 @@ public class Puzzle extends Level {
 		// TODO Auto-generated method stub
 		try {
 			if (previousLevels.size() != 0) {
+
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 6; j++) {
 						board.squares[i][j].setContents(

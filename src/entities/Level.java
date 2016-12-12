@@ -132,4 +132,8 @@ public abstract class Level {
 		return previousLevels;
 	}
 
+	public ArrayList<Word> getWordsFound() {
+		return wordsFound;
+	}
+
 }
