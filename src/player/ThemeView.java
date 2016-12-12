@@ -404,4 +404,20 @@ public class ThemeView extends JFrame {
 		}
 	}
 
+	public JButton getBtnExitLevel() {
+		return btnExitLevel;
+	}
+
+	public JButton getBtnGiveUp() {
+		return btnGiveUp;
+	}
+
+	public JButton getBtnSubmitWord() {
+		return btnSubmitWord;
+	}
+
+	public JButton getBtnUndo() {
+		return btnUndo;
+	}
+
 }

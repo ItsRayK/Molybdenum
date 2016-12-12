@@ -420,4 +420,15 @@ public class LightningView extends JFrame {
 		}
 	}
 
+	public JButton getBtnExitLevel() {
+		return btnExitLevel;
+	}
+
+	public JButton getBtnReset() {
+		return btnReset;
+	}
+
+	public JButton getBtnSubmitWord() {
+		return btnSubmitWord;
+	}
 }
