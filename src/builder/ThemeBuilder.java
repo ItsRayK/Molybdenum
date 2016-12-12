@@ -232,13 +232,34 @@ public class ThemeBuilder extends JFrame {
 	public String getWordsToFind() {
 		return wordList.getText();
 	}
-
+	public void setWordsToFind(String s){
+		wordList.setText(s + "\r\n" + wordList.getText());
+	}
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
 
 	public String getThemeNameText() {
 		return tfThemeName.getText();
+	}
+	public void setThemeName(String s) {
+		tfThemeName.setText(s);
+	}
+	
+	public void set1StarScoreText(String s) {
+		txt1StarThresh.setText(s);
+	}
+	
+	public void set2StarScoreText(String s) {
+		txt2StarThresh.setText(s);
+	}
+	
+	public void set3StarScoreText(String s) {
+		txt3StarThresh.setText(s);
+	}
+	
+	public void setNameText(String s) {
+		txtlevelName.setText(s);
 	}
 
 }

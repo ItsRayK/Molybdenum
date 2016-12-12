@@ -349,4 +349,24 @@ public class LightningBuilder extends JFrame {
 	public JTextField getTxt3StarThresh() {
 		return txt3StarThresh;
 	}
+	
+	public void setTimeLimit(String s) {
+		txtSetTime.setText(s);
+	}
+	
+	public void set1StarScoreText(String s) {
+		txt1StarThresh.setText(s);
+	}
+	
+	public void set2StarScoreText(String s) {
+		txt2StarThresh.setText(s);
+	}
+	
+	public void set3StarScoreText(String s) {
+		txt3StarThresh.setText(s);
+	}
+	
+	public void setNameText(String s) {
+		txtlevelName.setText(s);
+	}
 }

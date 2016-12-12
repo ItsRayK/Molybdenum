@@ -4,9 +4,20 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import controllers.LoadLightningLevel;
+import controllers.LoadPuzzleLevel;
+import controllers.LoadThemeLevel;
+import entities.Board;
+import entities.Lightning;
+import entities.Puzzle;
+import entities.Theme;
 import player.Player;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
 
 /**
@@ -206,6 +217,16 @@ public class Builder extends JFrame {
 				ThemeBuilder level = new ThemeBuilder();
 				level.setVisible(true);
 				dispose();
+			}
+		});
+		
+		editExistingBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditExistingView view = new EditExistingView();
+				view.setVisible(true);
+				dispose();
+
+				
 			}
 		});
 	}
