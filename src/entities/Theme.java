@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class Theme extends Level {
 	int numWords;
-
+	
 	public Theme(String n, Board b) {
 		super(n, b);
 		// TODO Auto-generated constructor stub
@@ -29,7 +29,7 @@ public class Theme extends Level {
 		Score s = new Score(getCurrScore().getScore());
 		Theme previous = new Theme(getLevelName(), b);
 		getPreviousLevels().add(previous);
-
+		
 		subtractWordsLeft();
 		currScore.addToScoreTheme();
 		wordsFound.add(currentWord);
@@ -53,10 +53,8 @@ public class Theme extends Level {
 			if (previousLevels.size() != 0) {
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 6; j++) {
-						if (!board.squares[i][j].isEmpty()) {
-							board.squares[i][j].setContents(previousLevels.get(previousLevels.size() - 1).getBoard()
-									.getSquare(i, j).getContents());
-						}
+						board.squares[i][j].setContents(
+								previousLevels.get(previousLevels.size() - 1).getBoard().getSquare(i, j).getContents());
 					}
 				}
 
@@ -82,15 +80,15 @@ public class Theme extends Level {
 		// about where)
 		return false;
 	}
-
-	public void setThemeName(String name) {
+	
+	public void setThemeName(String name){
 		themeName = name;
 	}
-
-	public String getThemeName() {
+	
+	public String getThemeName(){
 		return themeName;
 	}
-
+	
 	public int getWordLimit() {
 		return numWords;
 	}
@@ -106,5 +104,6 @@ public class Theme extends Level {
 	public void addWordsLeft() {
 		numWords++;
 	}
-
+	
+	
 }
