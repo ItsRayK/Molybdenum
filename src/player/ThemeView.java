@@ -29,6 +29,7 @@ import controllers.LoadThemeLevel;
 import controllers.SubmitWord;
 import controllers.SubmitWordTheme;
 import controllers.UndoManager;
+import controllers.UpdateLevelSelectStars;
 import entities.*;
 import player.LevelSelect;
 
@@ -296,6 +297,13 @@ public class ThemeView extends JFrame {
 
 		btnExitLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(p);
+				try {
+					updateStars.updateSavedStars();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				LevelSelect levelSelect = new LevelSelect();
 				levelSelect.setVisible(true);
 				dispose();

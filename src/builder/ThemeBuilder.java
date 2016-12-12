@@ -203,6 +203,20 @@ public class ThemeBuilder extends JFrame {
 				getState.saveLevel();
 			}
 		});
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetStateOfThemeBuilder getState = new GetStateOfThemeBuilder(themeBuilder, theme);
+				getState.deletePuzzle();
+			}
+		});
+		btnPreview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				GetStateOfThemeBuilder state = new GetStateOfThemeBuilder(themeBuilder, theme);
+				state.makePreview();
+			}
+		});
+		
 	}
 
 	public JCheckBox[][] getCheckBox() {

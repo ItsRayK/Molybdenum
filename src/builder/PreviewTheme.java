@@ -6,26 +6,46 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import entities.Lightning;
-import entities.Score;
-import entities.Theme;
+import controllers.LetterClicked;
+import controllers.LoadPuzzleLevel;
+import controllers.LoadThemeLevel;
+import controllers.SubmitWord;
+import controllers.SubmitWordTheme;
+import controllers.UndoManager;
+import controllers.UpdateLevelSelectStars;
+import entities.*;
 import player.LevelSelect;
 
 public class PreviewTheme extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnExitLevel, btnUndo, btnGiveUp, btnSubmitWord;
+	private JToggleButton[][] boardSquares;
+	private ImageIcon starFilled, starEmpty;
+	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
+	Score oneStarScore, twoStarScore, threeStarScore;
+	private DefaultListModel wordsFound;
+	private JScrollPane spWordsFoundList;
+	private JList words;
+	private JButton btnExitLevel, btnSubmitWord, btnGiveUp, btnUndo;
+	private JLabel lblTheme, lblWordsLeft;
+	String name;
 	Theme level;
 
 	/**
@@ -35,7 +55,8 @@ public class PreviewTheme extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PreviewTheme frame = new PreviewTheme("default", level, null, null, null);
+					PreviewTheme frame = new PreviewTheme("default", level);
+					frame.initialize();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,8 +68,9 @@ public class PreviewTheme extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PreviewTheme(String n, Theme l, Score oneStarScore, Score twoStarScore, Score threeStarScore) {
-
+	public PreviewTheme(String n, Theme t) {
+		this.name = n;
+		this.level = t;
 		initialize();
 
 	}
@@ -60,6 +82,9 @@ public class PreviewTheme extends JFrame {
 	}
 
 	private void initializeModel() {
+		Theme p = this.level;
+		PreviewTheme pV = this;
+
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
@@ -68,62 +93,137 @@ public class PreviewTheme extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		boardSquares = new JToggleButton[6][6];
+		String path = "savedLevels/" + level.getLevelName() + ".txt";
+		int k = 42;
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+
+				Letter l = new Letter();
+				try {
+					String readCheck = Files.readAllLines(Paths.get(path)).get(k);
+					l.setLetter(readCheck, 0);
+					if (level.getBoard().squares[i][j].isActive()) {
+						if (readCheck.equals("null")) {
+							l.randomLetterNoPoints();
+						}
+						level.getBoard().squares[i][j].fillSquare(l);
+
+						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b></font></html>");
+
+						boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
+						boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+						boardSquares[i][j].setFocusPainted(false);
+
+						final Square square = p.getBoard().squares[i][j];
+						JToggleButton buttonSquares = boardSquares[i][j];
+						boardSquares[i][j].addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent arg0) {
+								LetterClicked letterClicked = new LetterClicked(p, square);
+								boolean selected = buttonSquares.isSelected();
+								if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
+									letterClicked.deConstructWord();
+								} else {
+									if (level.getCurrentWord().getSquares().size() == 0) {
+										letterClicked.constructWord();
+									} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
+											&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
+										letterClicked.constructWord();
+									} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+										buttonSquares.setSelected(true);
+									else
+										buttonSquares.setSelected(false);
+								}
+
+								System.out.println(p.getCurrentWord().getWordString());
+								System.out.println("Running score: " + p.getCurrentWord().getPoints());
+							}
+
+						});
+
+						contentPane.add(boardSquares[i][j]);
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				k++;
+
+			}
+		}
+
 		btnUndo = new JButton("");
-
 		btnExitLevel = new JButton("Exit Level");
-
 		btnGiveUp = new JButton("Reset");
-
 		btnSubmitWord = new JButton("Submit Word");
+
+		lblTheme = new JLabel("Theme: " + level.getThemeName());
+		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
 
 	}
 
-	public void initializeView() {
+	private void initializeView() {
+		Theme p = this.level;
+		PreviewTheme pV = this;
+
 		btnUndo.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/undo-4-xxl.gif")));
 		btnUndo.setBounds(913, 127, 40, 40);
 		contentPane.add(btnUndo);
 
-		btnExitLevel.setBounds(24, 82, 89, 23);
-		contentPane.add(btnExitLevel);
+		////// STAR IMAGES//////
+		starFilled = new ImageIcon(PreviewTheme.class.getResource("/images/starlevelFilled.png"));
+		starEmpty = new ImageIcon(PreviewTheme.class.getResource("/images/starlevel.png"));
 
-		btnGiveUp.setBounds(24, 136, 89, 23);
-		contentPane.add(btnGiveUp);
+		starimg1 = new JLabel("");
+		starimg1.setBounds(797, 387, 90, 90);
+		starimg1.setIcon(starEmpty);
+		contentPane.add(starimg1);
 
-		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnSubmitWord.setBounds(797, 127, 106, 40);
-		contentPane.add(btnSubmitWord);
+		starimg4 = new JLabel("");
+		starimg4.setBounds(797, 387, 90, 90);
+		starimg4.setIcon(starFilled);
+		contentPane.add(starimg4);
 
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/starlevel.png")));
-		label_2.setBounds(797, 217, 90, 90);
-		contentPane.add(label_2);
+		starimg2 = new JLabel("");
+		starimg2.setBounds(797, 302, 90, 90);
+		starimg2.setIcon(starEmpty);
+		contentPane.add(starimg2);
 
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/starlevel.png")));
-		label_3.setBounds(797, 302, 90, 90);
-		contentPane.add(label_3);
+		starimg5 = new JLabel("");
+		starimg5.setBounds(797, 302, 90, 90);
+		starimg5.setIcon(starFilled);
+		contentPane.add(starimg5);
 
-		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/starlevel.png")));
-		label_4.setBounds(797, 387, 90, 90);
-		contentPane.add(label_4);
+		starimg3 = new JLabel("");
+		starimg3.setBounds(797, 217, 90, 90);
+		starimg3.setIcon(starEmpty);
+		contentPane.add(starimg3);
 
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/Grid.gif")));
-		label.setBounds(392, 82, 400, 400);
-		contentPane.add(label);
+		starimg6 = new JLabel("");
+		starimg6.setBounds(797, 217, 90, 90);
+		starimg6.setIcon(starFilled);
+		contentPane.add(starimg6);
+		///////////////////////////
 
-		JLabel lblPuzzle = new JLabel("Theme:");
-		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
-		lblPuzzle.setBounds(392, 34, 400, 37);
-		contentPane.add(lblPuzzle);
+		spWordsFoundList = new JScrollPane();
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// contentPane.add(spWordsFoundList);
+		wordsFound = new DefaultListModel();
+		words = new JList(wordsFound);
+		// wordsFound.setEditable(false);
+		spWordsFoundList = new JScrollPane(words, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		// spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		contentPane.add(spWordsFoundList);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(141, 116, 226, 284);
-		contentPane.add(scrollPane);
+		lblTheme.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTheme.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
+		lblTheme.setBounds(392, 34, 400, 37);
+		contentPane.add(lblTheme);
 
 		JLabel lblWordsFound = new JLabel("Words Found");
 		lblWordsFound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -131,10 +231,27 @@ public class PreviewTheme extends JFrame {
 		lblWordsFound.setBounds(141, 82, 226, 31);
 		contentPane.add(lblWordsFound);
 
-		JLabel lblScore = new JLabel("Score:");
-		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
-		lblScore.setBounds(141, 411, 66, 31);
-		contentPane.add(lblScore);
+		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
+		lblWordsLeft.setBounds(141, 411, 150, 31);
+		contentPane.add(lblWordsLeft);
+
+		btnExitLevel.setBounds(24, 82, 89, 23);
+		btnExitLevel.setFocusPainted(false);
+		contentPane.add(btnExitLevel);
+
+		btnGiveUp.setBounds(24, 136, 89, 23);
+		btnGiveUp.setFocusPainted(false);
+		contentPane.add(btnGiveUp);
+
+		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnSubmitWord.setBounds(797, 127, 106, 40);
+		btnSubmitWord.setFocusPainted(false);
+		contentPane.add(btnSubmitWord);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/Grid.gif")));
+		label.setBounds(392, 82, 400, 400);
+		contentPane.add(label);
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(PreviewTheme.class.getResource("/images/BackgroundBlank.gif")));
@@ -143,18 +260,87 @@ public class PreviewTheme extends JFrame {
 
 	}
 
-	public void initializeController() {
-		btnExitLevel.addMouseListener(new MouseAdapter() {
+	private void initializeController() {
+		Theme p = this.level;
+		PreviewTheme pV = this;
+		btnUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 
-			public void mouseClicked(MouseEvent e) {
-				LevelSelect levelSelect = new LevelSelect();
-				levelSelect.setVisible(true);
+		btnGiveUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+
+		});
+
+		btnExitLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
+
+		btnSubmitWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+
+		});
+
 	}
 
-	public void setLevel(Theme t) {
-		level = t;
+	public JToggleButton[][] getBoardSquares() {
+		return boardSquares;
 	}
+
+	public void setLevel(Theme p) {
+		level = p;
+	}
+
+	public void addToWordsFound(String s) {
+		wordsFound.addElement(s);
+	}
+
+	public void removeFromWordsFound() {
+		wordsFound.remove(wordsFound.size() - 1);
+	}
+
+	public void updateStars() {
+
+		level.compareToGoalScores();
+
+		if (level.getCurrScore().isStar1Filled()) {
+			starimg1.setVisible(false);
+			System.out.println("Star1");
+		} else {
+			starimg1.setVisible(true);
+		}
+		if (level.getCurrScore().isStar2Filled()) {
+			starimg2.setVisible(false);
+			System.out.println("Star2");
+		} else {
+			starimg2.setVisible(true);
+		}
+		if (level.getCurrScore().isStar3Filled()) {
+			starimg3.setVisible(false);
+			System.out.println("Star3");
+		} else {
+			starimg3.setVisible(true);
+		}
+
+	}
+
+	public void unselectBoardSquares() {
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				JToggleButton buttonSquares = boardSquares[i][j];
+				if (level.getBoard().squares[i][j].isActive()) {
+					buttonSquares.setSelected(false);
+
+				}
+			}
+		}
+	}
+
 }

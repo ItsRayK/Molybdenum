@@ -47,7 +47,7 @@ public class GetStateOfThemeBuilder {
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
 
-		PreviewTheme themeView = new PreviewTheme(levelName, theme, OneStarScore, TwoStarScore, ThreeStarScore);
+		PreviewTheme themeView = new PreviewTheme(levelName, theme);
 		themeView.setLevel(theme);
 		themeView.initialize();
 		themeView.setVisible(true);
