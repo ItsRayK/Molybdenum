@@ -68,7 +68,7 @@ public class SubmitWord {
 
 		}
 		if (line.equals("endofdocument")) {
-			System.out.println("Word does not exists");
+			System.out.println("Word does not exist");
 			view.unselectBoardSquares();
 			level.getLettersSelected().clear();
 			return false;

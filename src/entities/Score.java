@@ -33,9 +33,18 @@ public class Score {
 		setScore(value + scoreAdded);
 		return this;
 	}
-
+	
 	public Score subtractFromScore(int scoreSubtracted) {
 		setScore(value - scoreSubtracted);
+		return this;
+	}
+	
+	public Score addToScoreTheme() {
+		setScore(value + 1);
+		return this;
+	}
+	public Score subtractFromScoreTheme() {
+		setScore(value - 1);
 		return this;
 	}
 

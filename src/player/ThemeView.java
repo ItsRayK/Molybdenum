@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
@@ -22,6 +24,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controllers.LetterClicked;
+import controllers.LoadPuzzleLevel;
+import controllers.LoadThemeLevel;
+import controllers.SubmitWord;
+import controllers.SubmitWordTheme;
+import controllers.UndoManager;
 import entities.*;
 import player.LevelSelect;
 
@@ -32,8 +39,11 @@ public class ThemeView extends JFrame {
 	private ImageIcon starFilled, starEmpty;
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
 	Score oneStarScore, twoStarScore, threeStarScore;
-	private JButton btnExitLevel;
-	private JLabel lblTheme;
+	private DefaultListModel wordsFound;
+	private JScrollPane spWordsFoundList;
+	private JList words;
+	private JButton btnExitLevel, btnSubmitWord, btnGiveUp, btnUndo;
+	private JLabel lblTheme, lblWordsLeft;
 	String name;
 	Theme level;
 
@@ -71,12 +81,9 @@ public class ThemeView extends JFrame {
 	}
 
 	private void initializeModel() {
-
-	}
-
-	private void initializeView() {
 		Theme p = this.level;
 		ThemeView pV = this;
+
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
@@ -144,14 +151,23 @@ public class ThemeView extends JFrame {
 			}
 		}
 
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button.setIcon(new ImageIcon(ThemeView.class.getResource("/images/undo-4-xxl.gif")));
-		button.setBounds(913, 127, 40, 40);
-		contentPane.add(button);
+		btnUndo = new JButton("");
+		btnExitLevel = new JButton("Exit Level");
+		btnGiveUp = new JButton("Reset");
+		btnSubmitWord = new JButton("Submit Word");
+
+		lblTheme = new JLabel("Theme: " + level.getThemeName());
+		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
+
+	}
+
+	private void initializeView() {
+		Theme p = this.level;
+		ThemeView pV = this;
+
+		btnUndo.setIcon(new ImageIcon(ThemeView.class.getResource("/images/undo-4-xxl.gif")));
+		btnUndo.setBounds(913, 127, 40, 40);
+		contentPane.add(btnUndo);
 
 		////// STAR IMAGES//////
 		starFilled = new ImageIcon(PuzzleView.class.getResource("/images/starlevelFilled.png"));
@@ -188,22 +204,25 @@ public class ThemeView extends JFrame {
 		contentPane.add(starimg6);
 		///////////////////////////
 
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ThemeView.class.getResource("/images/Grid.gif")));
-		label.setBounds(392, 82, 400, 400);
-		contentPane.add(label);
+		spWordsFoundList = new JScrollPane();
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// contentPane.add(spWordsFoundList);
+		wordsFound = new DefaultListModel();
+		words = new JList(wordsFound);
+		// wordsFound.setEditable(false);
+		spWordsFoundList = new JScrollPane(words, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		// spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spWordsFoundList.setBounds(141, 116, 226, 284);
+		contentPane.add(spWordsFoundList);
 
-		lblTheme = new JLabel("Theme: " + level.getThemeName());
 		lblTheme.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTheme.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
 		lblTheme.setBounds(392, 34, 400, 37);
 		contentPane.add(lblTheme);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(141, 116, 226, 284);
-		contentPane.add(scrollPane);
 
 		JLabel lblWordsFound = new JLabel("Words Found");
 		lblWordsFound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -211,35 +230,27 @@ public class ThemeView extends JFrame {
 		lblWordsFound.setBounds(141, 82, 226, 31);
 		contentPane.add(lblWordsFound);
 
-		JLabel lblScore = new JLabel("Score:");
-		lblScore.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
-		lblScore.setBounds(141, 411, 66, 31);
-		contentPane.add(lblScore);
+		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
+		lblWordsLeft.setBounds(141, 411, 150, 31);
+		contentPane.add(lblWordsLeft);
 
-		btnExitLevel = new JButton("Exit Level");
-
-		btnExitLevel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnExitLevel.setBounds(24, 82, 89, 23);
 		btnExitLevel.setFocusPainted(false);
 		contentPane.add(btnExitLevel);
 
-		JButton btnGiveUp = new JButton("Reset");
-		btnGiveUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnGiveUp.setBounds(24, 136, 89, 23);
 		btnGiveUp.setFocusPainted(false);
 		contentPane.add(btnGiveUp);
 
-		JButton btnSubmitWord = new JButton("Submit Word");
 		btnSubmitWord.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnSubmitWord.setBounds(797, 127, 106, 40);
 		btnSubmitWord.setFocusPainted(false);
 		contentPane.add(btnSubmitWord);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ThemeView.class.getResource("/images/Grid.gif")));
+		label.setBounds(392, 82, 400, 400);
+		contentPane.add(label);
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(ThemeView.class.getResource("/images/BackgroundBlank.gif")));
@@ -249,19 +260,140 @@ public class ThemeView extends JFrame {
 	}
 
 	private void initializeController() {
-		btnExitLevel.addMouseListener(new MouseAdapter() {
+		Theme p = this.level;
+		ThemeView pV = this;
+		btnUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UndoManager undo = new UndoManager(pV, p);
+				undo.undoLevelTheme();
+				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+				System.out.println("Actual Score: " + p.getCurrScore().getScore());
+				if (p.getWordLimit() > 0) {
+					for (int i = 0; i < 6; i++) {
+						for (int j = 0; j < 6; j++) {
+							if (p.getBoard().squares[i][j].isActive()) {
+								pV.boardSquares[i][j].setEnabled(true);
+							}
+						}
+					}
+				}
+			}
+		});
 
-			public void mouseClicked(MouseEvent e) {
+		btnGiveUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					LoadThemeLevel temp = new LoadThemeLevel(name, new Theme(name, new Board()));
+					temp.loadTheme();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				dispose();
+			}
+
+		});
+
+		btnExitLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				LevelSelect levelSelect = new LevelSelect();
 				levelSelect.setVisible(true);
 				dispose();
 			}
 		});
 
+		btnSubmitWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SubmitWordTheme submitWord = new SubmitWordTheme(pV, p, p.getCurrentWord());
+
+				try {
+					boolean sw = submitWord.submit();
+					if (sw == false) {
+						p.setCurrScore(new Score(p.getCurrentWord().getPoints()
+								- (p.getCurrentWord().getPoints() - p.getCurrScore().getScore())));
+						System.out.println("submit() returned false");
+					}
+
+					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
+					p.setCurrScore(p.getCurrScore());
+
+					lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+					System.out.println("Actual Score: " + p.getCurrScore().getScore());
+
+					System.out.println(p.getCurrScore().getScore());
+					if (p.getWordLimit() == 0) {
+						for (int i = 0; i < 6; i++) {
+							for (int j = 0; j < 6; j++) {
+								if (p.getBoard().squares[i][j].isActive()) {
+									pV.boardSquares[i][j].setEnabled(false);
+								}
+							}
+						}
+					} else {
+
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		});
+
+	}
+
+	public JToggleButton[][] getBoardSquares() {
+		return boardSquares;
 	}
 
 	public void setLevel(Theme p) {
 		level = p;
+	}
+
+	public void addToWordsFound(String s) {
+		wordsFound.addElement(s);
+	}
+
+	public void removeFromWordsFound() {
+		wordsFound.remove(wordsFound.size() - 1);
+	}
+
+	public void updateStars() {
+
+		level.compareToGoalScores();
+
+		if (level.getCurrScore().isStar1Filled()) {
+			starimg1.setVisible(false);
+			System.out.println("Star1");
+		} else {
+			starimg1.setVisible(true);
+		}
+		if (level.getCurrScore().isStar2Filled()) {
+			starimg2.setVisible(false);
+			System.out.println("Star2");
+		} else {
+			starimg2.setVisible(true);
+		}
+		if (level.getCurrScore().isStar3Filled()) {
+			starimg3.setVisible(false);
+			System.out.println("Star3");
+		} else {
+			starimg3.setVisible(true);
+		}
+
+	}
+
+	public void unselectBoardSquares() {
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				JToggleButton buttonSquares = boardSquares[i][j];
+				if (level.getBoard().squares[i][j].isActive()) {
+					buttonSquares.setSelected(false);
+
+				}
+			}
+		}
 	}
 
 }

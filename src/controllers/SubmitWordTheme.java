@@ -7,16 +7,15 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import entities.*;
-import player.LightningView;
-import player.PuzzleView;
+import player.ThemeView;
 
-public class SubmitWordLightning {
+public class SubmitWordTheme {
 	Word word;
-	Lightning level;
-	LightningView view;
+	Theme level;
+	ThemeView view;
 	BufferedWriter bw;
 
-	public SubmitWordLightning(LightningView pV, Lightning p, Word currentWord) {
+	public SubmitWordTheme(ThemeView pV, Theme p, Word currentWord) {
 		view = pV;
 		level = p;
 		word = currentWord;
@@ -24,7 +23,7 @@ public class SubmitWordLightning {
 
 	public boolean submit() throws Exception {
 		String wordFound = word.getWordString();
-		File file = new File("src/WordTable.sort");
+		File file = new File("savedLevels/" + level.getLevelName() + ".txt");
 		InputStream fis = new FileInputStream(file);
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -42,29 +41,33 @@ public class SubmitWordLightning {
 				return false;
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
+				
+
 				level.submitWord();
+
+				wordFound = level.getCurrentWord().getWordString();
 				view.addToWordsFound(wordFound);
 				view.updateStars();
 				view.unselectBoardSquares();
 				level.getLettersSelected().clear();
-				level.getBoard().floatUp();
-				level.fillEmptyWithRandomLetters();
+				level.getBoard().floatUpTheme();
+				level.getCurrentWord().setWordString();
+				
 				for (int i = 0; i <= 5; i++) {
 					for (int j = 0; j <= 5; j++) {
 						if (level.getBoard().squares[i][j].isActive()) {
 							view.getBoardSquares()[i][j].setText("<html><b>"
-									+ level.getBoard().squares[i][j].getContentsString() + "</b><font size = '3'><sub>"
-									+ level.getBoard().squares[i][j].getContentsPoints() + "</sub></font></html>");
+									+ level.getBoard().squares[i][j].getContentsString() + "</font></html>");
 						}
 					}
 				}
-				
+
 				return true;
 			}
 
 		}
 		if (line.equals("endofdocument")) {
-			System.out.println("Word does not exist");
+			System.out.println("Word is not part of the theme.");
 			view.unselectBoardSquares();
 			level.getLettersSelected().clear();
 			return false;
