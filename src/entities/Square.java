@@ -51,11 +51,23 @@ public class Square {
 		return active;
 	}
 
+	public boolean isActiveandFilled() {
+		return active && !empty;
+	}
+
+	public void setEmpty(boolean empty) {
+		this.empty = empty;
+	}
+
+	public boolean isEmpty() {
+		return empty;
+	}
+
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
-	
-	public boolean getEmpty(){
+
+	public boolean getEmpty() {
 		return empty;
 	}
 

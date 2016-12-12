@@ -41,7 +41,6 @@ public class SubmitWordTheme {
 				return false;
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
-				
 
 				level.submitWord();
 
@@ -52,13 +51,15 @@ public class SubmitWordTheme {
 				level.getLettersSelected().clear();
 				level.getBoard().floatUpTheme();
 				level.getCurrentWord().setWordString();
-				
+
 				for (int i = 0; i <= 5; i++) {
 					for (int j = 0; j <= 5; j++) {
 						if (level.getBoard().squares[i][j].isActive()) {
 							view.getBoardSquares()[i][j].setText("<html><b>"
 									+ level.getBoard().squares[i][j].getContentsString() + "</font></html>");
 						}
+						if (level.getBoard().squares[i][j].isEmpty())
+							view.getBoardSquares()[i][j].setVisible(false);
 					}
 				}
 

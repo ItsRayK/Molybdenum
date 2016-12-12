@@ -153,6 +153,7 @@ public class PuzzleView extends JFrame {
 		// contentPane.add(spWordsFoundList);
 		wordsFound = new DefaultListModel();
 		words = new JList(wordsFound);
+
 		// wordsFound.setEditable(false);
 		spWordsFoundList = new JScrollPane(words, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
