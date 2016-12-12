@@ -1,18 +1,9 @@
 Level 13
 100
-300
-500
+250
+400
 true
 true
-true
-true
-true
-true
-true
-false
-true
-false
-false
 true
 true
 true
@@ -24,6 +15,15 @@ true
 false
 true
 true
+true
+false
+false
+true
+true
+true
+true
+false
+false
 true
 true
 true
