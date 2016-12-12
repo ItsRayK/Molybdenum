@@ -15,13 +15,17 @@ public class LetterClicked {
 		square = s;
 	}
 
-	public void constructWord() {
-		level.getCurrentWord().makeWord(square);
+	public boolean constructWord() {
+		if (!level.getCurrentWord().getSquares().contains(square)) {
+			level.getCurrentWord().makeWord(square);
+			return true;
+		}
+		return false;
+
 	}
-	
+
 	public void deConstructWord() {
 		level.getCurrentWord().unMakeWord();
 	}
-	
-	
+
 }
