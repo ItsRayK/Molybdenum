@@ -38,7 +38,6 @@ public class Puzzle extends Level {
 		while (it.hasNext()) {
 			it.next().removeContents();
 		}
-
 	}
 
 	@Override
