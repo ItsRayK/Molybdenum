@@ -16,6 +16,7 @@ public class UndoManager {
 		try {
 			puzzle.undoWord();
 			puzzleview.unselectBoardSquares();
+			puzzle.getLettersSelected().clear();
 			puzzleview.removeFromWordsFound();
 			puzzleview.updateStars();
 
