@@ -1,6 +1,7 @@
 package player;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,9 +21,10 @@ import java.nio.file.*;
 public class LevelSelect extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel lvlStars[];
+	private JLabel lvlStars[], lblScore[];
 	private JButton btnMainMenu, btnClearStars, btnCustom;
 	private JButton[] btnLevel;
+
 
 	/**
 	 * Launch the application.
@@ -75,10 +77,10 @@ public class LevelSelect extends JFrame {
 				btnLevel[i].setBounds(260 + (j * 100), 155, 80, 80);
 			}
 			if (i >= 5 && i < 10) {
-				btnLevel[i].setBounds(260 + (j * 100), 255, 80, 80);
+				btnLevel[i].setBounds(260 + (j * 100), 275, 80, 80);
 			}
 			if (i >= 10 && i < 15) {
-				btnLevel[i].setBounds(260 + (j * 100), 355, 80, 80);
+				btnLevel[i].setBounds(260 + (j * 100), 395, 80, 80);
 			}
 			btnLevel[i].setFont(new Font("Tahoma", Font.PLAIN, 10));
 			btnLevel[i].setFocusPainted(false);
@@ -118,7 +120,7 @@ public class LevelSelect extends JFrame {
 			j++;
 		}
 		btnMainMenu = new JButton("Main Menu");
-		btnClearStars = new JButton("Clear Stars");
+		btnClearStars = new JButton("Clear All Data");
 		btnCustom = new JButton("Custom Levels");
 	}
 
@@ -153,13 +155,16 @@ public class LevelSelect extends JFrame {
 
 	private void initializeStars() throws IOException {
 		lvlStars = new JLabel[15];
+		lblScore = new JLabel[15];
 		String path = "src/SavedStars.txt";
+		String pathScore = "src/SavedScores.txt";
 		int j = 0;
 		for (int i = 0; i < 15; i++) {
 
 			String icon = "/images/StarsBlank.gif";
 			int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
-
+			int scoreCheck = Integer.parseInt(Files.readAllLines(Paths.get(pathScore)).get(i));
+			
 			if (readCheck == 0) {
 				icon = "/images/StarsBlank.gif";
 			} else if (readCheck == 1) {
@@ -176,21 +181,28 @@ public class LevelSelect extends JFrame {
 					icon = "/images/locked.gif";
 				}
 			}
-
+			lblScore[i] = new JLabel("High: " + scoreCheck, SwingConstants.CENTER);
 			lvlStars[i] = new JLabel("");
 			lvlStars[i].setIcon(new ImageIcon(LevelSelect.class.getResource(icon)));
 			if (j > 4) {
 				j = 0;
 			}
 			if (i < 5) {
-				lvlStars[i].setBounds(277 + (j * 100), 234, 50, 16);
+				lblScore[i].setBounds(260 + (j * 100), 235, 80, 16);
+				lvlStars[i].setBounds(277 + (j * 100), 254, 50, 16);
 			}
 			if (i >= 5 && i < 10) {
-				lvlStars[i].setBounds(277 + (j * 100), 334, 50, 16);
+				lblScore[i].setBounds(260 + (j * 100), 355, 80, 16);
+				lvlStars[i].setBounds(277 + (j * 100), 374, 50, 16);
 			}
 			if (i >= 10 && i < 15) {
-				lvlStars[i].setBounds(277 + (j * 100), 434, 50, 16);
+				lblScore[i].setBounds(260 + (j * 100), 475, 80, 16);
+				lvlStars[i].setBounds(277 + (j * 100), 494, 50, 16);
 			}
+			lblScore[i].setForeground(Color.WHITE);
+			lblScore[i].setBackground(Color.BLACK);
+			lblScore[i].setOpaque(true);
+			contentPane.add(lblScore[i]);
 			contentPane.add(lvlStars[i]);
 			j++;
 		}
@@ -208,7 +220,7 @@ public class LevelSelect extends JFrame {
 		btnClearStars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ClearAllProgress clr = new ClearAllProgress();
-				clr.clearAllStars();
+				clr.clearAllData();
 				LevelSelect temp = new LevelSelect();
 				temp.setVisible(true);
 				dispose();

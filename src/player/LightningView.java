@@ -84,7 +84,7 @@ public class LightningView extends JFrame {
 	private void initializeModel() {
 
 		setTitle("Letter Craze");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -215,6 +215,7 @@ public class LightningView extends JFrame {
 				try {
 					count.stop();
 					updateStars.updateSavedStars();
+					updateStars.updateSavedScore();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -292,6 +293,7 @@ public class LightningView extends JFrame {
 					UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(l);
 					try {
 						updateStars.updateSavedStars();
+						updateStars.updateSavedScore();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

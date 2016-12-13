@@ -17,7 +17,7 @@ import entities.*;
 
 public class PuzzleView extends JFrame {
 	private ImageIcon starFilled, starEmpty;
-	private JLabel lblScore, lblWordsLeft;
+	private JLabel lblScore, lblWordsLeft, lblNoMoreMoves;
 	private JPanel contentPane;
 	private JButton btnExitLevel;
 	private JToggleButton[][] boardSquares;
@@ -76,7 +76,15 @@ public class PuzzleView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		lblNoMoreMoves = new JLabel("No Moves Left!", SwingConstants.CENTER);
+		lblNoMoreMoves.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
+		lblNoMoreMoves.setBounds(442, 100, 300, 35);
+		lblNoMoreMoves.setForeground(Color.WHITE);
+		lblNoMoreMoves.setBackground(Color.GRAY);
+		lblNoMoreMoves.setVisible(false);
+		lblNoMoreMoves.setOpaque(false);
+		contentPane.add(lblNoMoreMoves);
+		
 		boardSquares = new JToggleButton[6][6];
 
 		for (int i = 0; i <= 5; i++) {
@@ -136,11 +144,13 @@ public class PuzzleView extends JFrame {
 		btnReset = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
 		lblScore = new JLabel("Score: " + p.getCurrentWord().getPoints());
+		
 
 	}
 
 	public void initializeView() {
-
+		
+		
 		btnUndo.setIcon(new ImageIcon(PuzzleView.class.getResource("/images/undo-4-xxl.gif")));
 		btnUndo.setBounds(913, 127, 40, 40);
 		btnUndo.setFocusPainted(false);
@@ -225,7 +235,7 @@ public class PuzzleView extends JFrame {
 		btnSubmitWord.setFocusPainted(false);
 		contentPane.add(btnSubmitWord);
 
-		lblWordsLeft = new JLabel("Words Left: " + level.getWordLimit());
+		lblWordsLeft = new JLabel("Moves Left: " + level.getWordLimit());
 		lblWordsLeft.setBounds(141, 453, 200, 31);
 		lblWordsLeft.setFont(new Font("Gill Sans MT", Font.BOLD, 19));
 		contentPane.add(lblWordsLeft);
@@ -329,9 +339,11 @@ public class PuzzleView extends JFrame {
 
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				lblNoMoreMoves.setVisible(false);
+				lblNoMoreMoves.setOpaque(false);
 				UndoManager undo = new UndoManager(pV, p);
 				undo.undoLevel();
-				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+				lblWordsLeft.setText("Moves Left: " + level.getWordLimit());
 				System.out.println("Actual Score: " + p.getCurrScore().getScore());
 				lblScore.setText("Score: " + p.getCurrScore().getScore());
 				if (p.getWordLimit() > 0) {
@@ -351,6 +363,7 @@ public class PuzzleView extends JFrame {
 				UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(p);
 				try {
 					updateStars.updateSavedStars();
+					updateStars.updateSavedScore();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -390,12 +403,14 @@ public class PuzzleView extends JFrame {
 					p.getCurrentWord().setPoints(-p.getCurrentWord().getPoints());
 					p.setCurrScore(p.getCurrScore());
 
-					lblWordsLeft.setText("Words Left: " + level.getWordLimit());
+					lblWordsLeft.setText("Moves Left: " + level.getWordLimit());
 					System.out.println("Actual Score: " + p.getCurrScore().getScore());
 					lblScore.setText("Score: " + p.getCurrScore().getScore());
 
 					System.out.println(p.getCurrScore().getScore());
 					if (p.getWordLimit() == 0) {
+						lblNoMoreMoves.setVisible(true);
+						lblNoMoreMoves.setOpaque(true);
 						for (int i = 0; i < 6; i++) {
 							for (int j = 0; j < 6; j++) {
 								if (p.getBoard().squares[i][j].isActive()) {

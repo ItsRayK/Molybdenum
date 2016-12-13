@@ -23,9 +23,9 @@ import java.awt.event.ActionEvent;
 /**
  * The over-arching class for the Builder for LetterCraze.
  * <p>
- * This allows the user to build levels to play in <code>Player.java</code>. 
- * The most important method for developers is <code>initialize</code> which 
- * is invoked when the Builder is started.
+ * This allows the user to build levels to play in <code>Player.java</code>. The
+ * most important method for developers is <code>initialize</code> which is
+ * invoked when the Builder is started.
  * <p>
  * <code>initialize</code> must satisfy three responsibilities:
  * <ol>
@@ -34,8 +34,7 @@ import java.awt.event.ActionEvent;
  * <li>Initialize the controllers</li>
  * </ol>
  * <p>
- * Most <code>initialize</code> methods will follow this suggested format:
- * <br>
+ * Most <code>initialize</code> methods will follow this suggested format: <br>
  * 
  * <pre>
  * &lt;blockquote&gt;
@@ -55,37 +54,38 @@ import java.awt.event.ActionEvent;
  * <p>
  * <b>Initialize the Model </b>
  * <p>
- * This constructs a model of basic elements found in the Builder for LetterCraze -- 
- * a button to create a puzzle level, lightning level, and theme level, and anything
- * required for the GUI (e.g. labels and panes). Each model element has a name 
- * unique to the model. 
+ * This constructs a model of basic elements found in the Builder for
+ * LetterCraze -- a button to create a puzzle level, lightning level, and theme
+ * level, and anything required for the GUI (e.g. labels and panes). Each model
+ * element has a name unique to the model.
  * <p>
  * <b>Initialize the View </b>
  * <p>
- * Each model element can be represented by exactly one View Widget. Each View 
+ * Each model element can be represented by exactly one View Widget. Each View
  * Widget is placed at a specific (x,y) location within the coordinates of the
  * JPanel, and has a calculated width, and height.
  * <p>
  * <b>Initialize the Controllers </b>
  * <p>
- * The real power is in the way controller objects are constructed and attached 
- * to View Widgets. These controllers react to the buttons being pressed. 
- * The controllers manage the user's interaction with the Builder.
+ * The real power is in the way controller objects are constructed and attached
+ * to View Widgets. These controllers react to the buttons being pressed. The
+ * controllers manage the user's interaction with the Builder.
  * <p>
  * <p>
  * Creation date: (12/5/2016)
  * 
- * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren Pontbriant (Molybdenum)
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
  *
  */
 
 public class Builder extends JFrame {
 	/** The JPanel to manage the Builder. */
 	private JPanel contentPane;
-	
+
 	/** The JButtons that will be added to the JPanel for the user to press. */
-	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn, editExistingBtn;
-	
+	private JButton createPuzzleBtn, createLightningBtn, createThemeBtn, editExistingBtn, quitBtn;
+
 	/** The JLabel that will be added to the JPanel for the user to read. */
 	private JLabel lblBuilder;
 
@@ -98,104 +98,107 @@ public class Builder extends JFrame {
 				try {
 					BuilderSplash frame = new BuilderSplash();
 					Builder mainMenu = new Builder();
-					
+
 					frame.setVisible(true);
-					
+
 					Timer timer = new Timer(3500, new ActionListener() {
-				        public void actionPerformed(ActionEvent evt) {
-				        	mainMenu.setVisible(true);
+						public void actionPerformed(ActionEvent evt) {
+							mainMenu.setVisible(true);
 							frame.dispose();
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-				    
+						}
+					});
+					timer.setRepeats(false);
+					timer.start();
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-			}
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Builder() {	
+	public Builder() {
 		initialize();
 	}
-	
+
 	/**
 	 * Initialize the Builder.
 	 */
-	private void initialize(){
+	private void initialize() {
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
-	
+
 	/**
 	 * Initialize everything that will be added to the JPanel.
 	 */
-	private void initializeModel(){
+	private void initializeModel() {
 		contentPane = new JPanel();
-		
+
 		createPuzzleBtn = new JButton("Build New Puzzle");
 		createLightningBtn = new JButton("Build New Lightning");
 		createThemeBtn = new JButton("Build New Theme");
 		editExistingBtn = new JButton("Edit an Existing Level");
-		
-		
+		quitBtn = new JButton("Quit Builder");
+
 		lblBuilder = new JLabel("Level Builder");
-		
+
 	}
-	
+
 	/**
 	 * Initialize where all the models will be placed on the JPanel.
 	 */
-	private void initializeView(){
+	private void initializeView() {
 		setResizable(false);
 		setTitle("Letter Craze");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
-		
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblBuilder = new JLabel("Level Builder");
 		lblBuilder.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblBuilder.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBuilder.setBounds(326, 132, 355, 61);
 		contentPane.add(lblBuilder);
-		
+
 		createPuzzleBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createPuzzleBtn.setBounds(326, 200, 355, 61);
+		createPuzzleBtn.setBounds(326, 200, 355, 40);
 		contentPane.add(createPuzzleBtn);
-		
+
 		createLightningBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createLightningBtn.setBounds(326, 200+70, 355, 61);
+		createLightningBtn.setBounds(326, 250, 355, 40);
 		contentPane.add(createLightningBtn);
-		
+
 		createThemeBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		createThemeBtn.setBounds(326, 200+140, 355, 61);
+		createThemeBtn.setBounds(326, 300, 355, 40);
 		contentPane.add(createThemeBtn);
-		
+
 		editExistingBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		editExistingBtn.setBounds(326, 200+140+70, 355, 61);
+		editExistingBtn.setBounds(326, 370, 355, 40);
 		contentPane.add(editExistingBtn);
-		
+
+		quitBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		quitBtn.setBounds(326, 420, 355, 40);
+		contentPane.add(quitBtn);
+
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(Player.class.getResource("/images/BackgroundTitle.gif")));
 		bg.setBounds(0, 0, 994, 541);
 		contentPane.add(bg);
-		
-		
+
 	}
-	
+
 	/**
-	 * Initialize what happens when the buttons on the JPanel are pressed. 
+	 * Initialize what happens when the buttons on the JPanel are pressed.
 	 */
-	private void initializeController(){
+	private void initializeController() {
 		createPuzzleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PuzzleBuilder level = new PuzzleBuilder();
@@ -203,7 +206,7 @@ public class Builder extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		createLightningBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LightningBuilder level = new LightningBuilder();
@@ -211,7 +214,7 @@ public class Builder extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		createThemeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ThemeBuilder level = new ThemeBuilder();
@@ -219,15 +222,21 @@ public class Builder extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		editExistingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditExistingView view = new EditExistingView();
 				view.setVisible(true);
 				dispose();
 
-				
+			}
+		});
+
+		quitBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
 			}
 		});
 	}
-		}
+}

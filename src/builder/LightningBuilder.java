@@ -128,7 +128,7 @@ public class LightningBuilder extends JFrame {
 	private void initializeModel() {
 		setResizable(false);
 		setTitle("Letter Craze Builder");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

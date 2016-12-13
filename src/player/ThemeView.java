@@ -1,5 +1,6 @@
 package player;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,7 @@ public class ThemeView extends JFrame {
 	private JScrollPane spWordsFoundList;
 	private JList words;
 	private JButton btnExitLevel, btnSubmitWord, btnGiveUp, btnUndo;
-	private JLabel lblTheme, lblWordsLeft;
+	private JLabel lblTheme, lblWordsLeft, lblCongrats;
 	String name;
 	Theme level;
 
@@ -86,13 +87,22 @@ public class ThemeView extends JFrame {
 		ThemeView pV = this;
 
 		setTitle("Letter Craze");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1000, 570);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		lblCongrats = new JLabel("Level Complete!", SwingConstants.CENTER);
+		lblCongrats.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
+		lblCongrats.setBounds(442, 100, 300, 35);
+		lblCongrats.setForeground(Color.WHITE);
+		lblCongrats.setBackground(Color.GRAY);
+		lblCongrats.setVisible(false);
+		lblCongrats.setOpaque(false);
+		contentPane.add(lblCongrats);
+		
+		
 		boardSquares = new JToggleButton[6][6];
 		String path = "savedLevels/" + level.getLevelName() + ".txt";
 		int k = 42;
@@ -303,6 +313,7 @@ public class ThemeView extends JFrame {
 				UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(p);
 				try {
 					updateStars.updateSavedStars();
+					updateStars.updateSavedScore();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -333,6 +344,8 @@ public class ThemeView extends JFrame {
 
 					System.out.println(p.getCurrScore().getScore());
 					if (p.getWordLimit() == 0) {
+						lblCongrats.setVisible(true);
+						lblCongrats.setOpaque(true);
 						for (int i = 0; i < 6; i++) {
 							for (int j = 0; j < 6; j++) {
 								if (p.getBoard().squares[i][j].isActive()) {
