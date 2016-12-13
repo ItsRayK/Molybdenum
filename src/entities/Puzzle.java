@@ -91,6 +91,11 @@ public class Puzzle extends Level {
 
 	public void subtractWordsLeft() {
 		numWords--;
+
+	}
+
+	public int getNumWords() {
+		return numWords;
 	}
 
 	public void addWordsLeft() {

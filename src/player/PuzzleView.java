@@ -112,7 +112,7 @@ public class PuzzleView extends JFrame {
 										letterClicked.constructWord();
 									} else
 										buttonSquares.setSelected(true);
-								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+								} else if (level.getCurrentWord().getSquares().contains(square))
 									buttonSquares.setSelected(true);
 								else
 									buttonSquares.setSelected(false);

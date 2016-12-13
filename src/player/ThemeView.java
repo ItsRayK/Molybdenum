@@ -129,8 +129,11 @@ public class ThemeView extends JFrame {
 										letterClicked.constructWord();
 									} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
 											&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
-										letterClicked.constructWord();
-									} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+										if (letterClicked.constructWord()) {
+											letterClicked.constructWord();
+										} else
+											buttonSquares.setSelected(true);
+									} else if (level.getCurrentWord().getSquares().contains(square))
 										buttonSquares.setSelected(true);
 									else
 										buttonSquares.setSelected(false);
