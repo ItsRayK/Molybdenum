@@ -187,12 +187,6 @@ public class LightningBuilder extends JFrame {
 		txt3StarThresh.setBounds(172, 220, 171, 20);
 		contentPane.add(txt3StarThresh);
 
-		txtlevelName.setText("");
-		TextPrompt levelNamePrompt = new TextPrompt("Level Name", txtlevelName);
-		txtlevelName.setBounds(10, 126, 95, 20);
-		contentPane.add(txtlevelName);
-		txtlevelName.setColumns(10);
-
 		lblLevelTypeLightning.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelTypeLightning.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblLevelTypeLightning.setBounds(10, 86, 510, 32);

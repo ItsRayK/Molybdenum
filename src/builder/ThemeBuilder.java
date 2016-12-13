@@ -75,8 +75,8 @@ public class ThemeBuilder extends JFrame {
 		btnDelete = new JButton("Delete");
 
 		lblLevelTypeTheme = new JLabel("Level Type: Theme");
-		lblThemeName = new JLabel("Theme:");
-		lblScoreThresholds = new JLabel("Star Thresholds:");
+		lblThemeName = new JLabel("*Theme:");
+		lblScoreThresholds = new JLabel("*Star Thresholds:");
 
 		txt1StarThresh = new JTextField();
 		txt2StarThresh = new JTextField();
@@ -156,20 +156,20 @@ public class ThemeBuilder extends JFrame {
 
 		txtlevelName.setText("");
 		TextPrompt lvlNamePrompt = new TextPrompt("Level Name", txtlevelName);
-		txtlevelName.setBounds(10, 126, 95, 20);
+		txtlevelName.setBounds(10, 146, 95, 20);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
 
 		btnSaveLevel.setBounds(10, 95, 95, 23);
 		contentPane.add(btnSaveLevel);
 
-		btnBack.setBounds(10, 161, 95, 23);
+		btnBack.setBounds(10, 171, 95, 23);
 		contentPane.add(btnBack);
 
-		btnPreview.setBounds(10, 190, 95, 23);
+		btnPreview.setBounds(10, 200, 95, 23);
 		contentPane.add(btnPreview);
 
-		btnDelete.setBounds(10, 219, 95, 23);
+		btnDelete.setBounds(10, 230, 95, 23);
 		contentPane.add(btnDelete);
 
 		wordList = new JTextPane();
@@ -178,9 +178,17 @@ public class ThemeBuilder extends JFrame {
 		wordList.setBounds(179, 179, 184, 195);
 		contentPane.add(wordList);
 		
-		JLabel lblWordsToBeFound = new JLabel("Words to be found:");
+		JLabel lblWordsToBeFound = new JLabel("*Words to be found:");
 		lblWordsToBeFound.setBounds(179, 154, 184, 14);
 		contentPane.add(lblWordsToBeFound);
+		
+		JLabel lblLevelName = new JLabel("*Level Name");
+		lblLevelName.setBounds(10, 126, 95, 20);
+		contentPane.add(lblLevelName);
+		
+		JLabel lblRequiredNote = new JLabel("*Required Fields");
+		lblRequiredNote.setBounds(182, 480, 110, 14);
+		contentPane.add(lblRequiredNote);
 
 		JLabel bg = new JLabel("");
 		bg.setIcon(new ImageIcon(ThemeBuilder.class.getResource("/images/BackgroundBlank.gif")));
