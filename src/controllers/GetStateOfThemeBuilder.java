@@ -66,10 +66,11 @@ public class GetStateOfThemeBuilder {
 	}
 	
 	public void saveLevel() {
+		
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
-
+		
 		file = new File("savedLevels/" + levelName + ".txt");
 
 		FileWriter writer = null;
