@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import javax.swing.JLabel;
+
 import entities.*;
 import player.PuzzleView;
 
@@ -41,7 +43,6 @@ public class SubmitWord {
 				return false;
 			} else if (line.equalsIgnoreCase(wordFound)) {
 				System.out.println(wordFound + " is on line " + lineNum);
-				
 
 				level.submitWord();
 

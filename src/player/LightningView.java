@@ -30,7 +30,8 @@ public class LightningView extends JFrame {
 	private JButton btnExitLevel, btnReset, btnSubmitWord;
 	private JToggleButton boardSquares[][];
 	private JScrollPane spWordsFoundList;
-	private TextArea wordsFound;
+	private JList words;
+	private DefaultListModel wordsFound;
 	private ImageIcon starFilled, starEmpty;
 	Square[][] squares = new Square[6][6];
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
@@ -177,10 +178,9 @@ public class LightningView extends JFrame {
 		spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		// contentPane.add(spWordsFoundList);
-
-		wordsFound = new TextArea();
-		wordsFound.setEditable(false);
-		spWordsFoundList = new JScrollPane(wordsFound, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		wordsFound = new DefaultListModel();
+		words = new JList(wordsFound);
+		spWordsFoundList = new JScrollPane(words, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		// spWordsFoundList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		// spWordsFoundList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -309,14 +309,16 @@ public class LightningView extends JFrame {
 		return boardSquares;
 	}
 
-	public TextArea addToWordsFound(String s) {
-		wordsFound.setText(wordsFound.getText() + s + "\n");
-		return wordsFound;
+	public void addToWordsFound(String s) {
+		wordsFound.addElement(s);
 	}
 
-	public TextArea clearWordsFound() {
-		wordsFound.setText("");
-		return wordsFound;
+	public void removeFromWordsFound() {
+		wordsFound.remove(wordsFound.size() - 1);
+	}
+
+	public void clearWordsFound() {
+		wordsFound.clear();
 	}
 
 	public void unselectBoardSquares() {
@@ -400,8 +402,11 @@ public class LightningView extends JFrame {
 									letterClicked.constructWord();
 								} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
 										&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
-									letterClicked.constructWord();
-								} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
+									if (letterClicked.constructWord()) {
+										letterClicked.constructWord();
+									} else
+										buttonSquares.setSelected(true);
+								} else if (level.getCurrentWord().getSquares().contains(square))
 									buttonSquares.setSelected(true);
 								else
 									buttonSquares.setSelected(false);
