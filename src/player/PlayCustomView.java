@@ -80,10 +80,9 @@ public class PlayCustomView extends JFrame {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				System.out.println("File " + listOfFiles[i].getName());
-
-				levelList.addElement(listOfFiles[i].getName());
-
+				if (!listOfFiles[i].getName().contains("Level")) {
+					levelList.addElement(listOfFiles[i].getName());
+				}
 			} else if (listOfFiles[i].isDirectory()) {
 				System.out.println("Directory " + listOfFiles[i].getName());
 			}
@@ -94,33 +93,37 @@ public class PlayCustomView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String lvlname = (String) list.getSelectedValue();
 				String path = "savedLevels/" + lvlname;
-				try {
-					String readCheck = Files.readAllLines(Paths.get(path)).get(41);
-					if (readCheck.equals("Puzzle")) {
-						LoadPuzzleLevel puzz = new LoadPuzzleLevel(lvlname.replace(".txt", ""),
-								new Puzzle(lvlname.replace(".txt", ""), new Board()));
-						puzz.loadPuzzle();
-						System.out.println("Puzzle Loaded");
-					} else if (readCheck.equals("Lightning")) {
-						LoadLightningLevel temp = new LoadLightningLevel(lvlname.replace(".txt", ""),
-								new Lightning(lvlname.replace(".txt", ""), new Board()));
-						temp.loadLightning();
-						System.out.println("Lightning Loaded");
-					} else if (readCheck.equals("Theme")) {
-						LoadThemeLevel temp = new LoadThemeLevel(lvlname.replace(".txt", ""),
-								new Theme(lvlname.replace(".txt", ""), new Board()));
-						temp.loadTheme();
-						System.out.println("Theme Loaded");
-					} else {
-						System.out.println(readCheck);
+				if (lvlname != null) {
+					try {
+						String readCheck = Files.readAllLines(Paths.get(path)).get(41);
+						if (readCheck.equals("Puzzle")) {
+							LoadPuzzleLevel puzz = new LoadPuzzleLevel(lvlname.replace(".txt", ""),
+									new Puzzle(lvlname.replace(".txt", ""), new Board()));
+							puzz.loadPuzzle();
+							System.out.println("Puzzle Loaded");
+						} else if (readCheck.equals("Lightning")) {
+							LoadLightningLevel temp = new LoadLightningLevel(lvlname.replace(".txt", ""),
+									new Lightning(lvlname.replace(".txt", ""), new Board()));
+							temp.loadLightning();
+							System.out.println("Lightning Loaded");
+						} else if (readCheck.equals("Theme")) {
+							LoadThemeLevel temp = new LoadThemeLevel(lvlname.replace(".txt", ""),
+									new Theme(lvlname.replace(".txt", ""), new Board()));
+							temp.loadTheme();
+							System.out.println("Theme Loaded");
+						} else {
+							System.out.println(readCheck);
+						}
+						dispose();
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					dispose();
-
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
-
+				else{
+					System.out.println("Please select a file.");
+				}
 			}
 		});
 	}
