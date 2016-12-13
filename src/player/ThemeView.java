@@ -101,8 +101,7 @@ public class ThemeView extends JFrame {
 		lblCongrats.setVisible(false);
 		lblCongrats.setOpaque(false);
 		contentPane.add(lblCongrats);
-		
-		
+
 		boardSquares = new JToggleButton[6][6];
 		String path = "savedLevels/" + level.getLevelName() + ".txt";
 		int k = 42;
@@ -437,4 +436,7 @@ public class ThemeView extends JFrame {
 		return btnUndo;
 	}
 
+	public Theme getLevel() {
+		return level;
+	}
 }

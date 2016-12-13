@@ -44,7 +44,7 @@ public class LoadThemeLevel {
 
 	}
 
-	public void loadTheme() {
+	public ThemeView loadTheme() {
 		ThemeView frame = new ThemeView(levelName, theme);
 		theme.setWordLimit(ThreeStarScore.getScore());
 		theme.setOneStarScore(OneStarScore);
@@ -54,6 +54,7 @@ public class LoadThemeLevel {
 		frame.setLevel(theme);
 		frame.initialize();
 		frame.setVisible(true);
+		return frame;
 	}
 
 }

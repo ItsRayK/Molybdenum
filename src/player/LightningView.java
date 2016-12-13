@@ -438,4 +438,8 @@ public class LightningView extends JFrame {
 	public JButton getBtnSubmitWord() {
 		return btnSubmitWord;
 	}
+
+	public Lightning getLevel() {
+		return level;
+	}
 }
