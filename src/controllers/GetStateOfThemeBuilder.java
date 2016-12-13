@@ -1,17 +1,25 @@
 package controllers;
 
+import java.awt.Font;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JToggleButton;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Utilities;
+
+import builder.PreviewLightning;
 import builder.PreviewPuzzle;
 import builder.PreviewTheme;
 import builder.PuzzleBuilder;
 import builder.ThemeBuilder;
+import entities.Letter;
 import entities.Puzzle;
 import entities.Score;
 import entities.Theme;
+import player.ThemeView;
 
 public class GetStateOfThemeBuilder {
 	Theme theme;
@@ -26,33 +34,38 @@ public class GetStateOfThemeBuilder {
 	public GetStateOfThemeBuilder(ThemeBuilder pb, Theme p) {
 		themeBuilder = pb;
 		theme = p;
-
+		Letter l = new Letter();
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
-				if (themeBuilder.getCheckBox()[i][j].isSelected())
+				if (themeBuilder.getCheckBox()[i][j].isSelected()) {
 					theme.getBoard().activateSquare(i, j);
-				else
+					if (!themeBuilder.getLetterField()[i][j].equals("")) {
+						theme.getBoard().squares[i][j]
+								.setContents(l.setLetter(themeBuilder.getLetterField()[i][j].getText(), 0));
+					} else {
+						theme.getBoard().squares[i][j].setContents(l.randomLetterNoPoints());
+					}
+				} else {
 					theme.getBoard().deActivateSquare(i, j);
-
+				}
 			}
 
 		}
 
-		levelName = themeBuilder.getNameText();
-
+		
 	}
 
 	public void makePreview() {
-		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
-		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
-		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
-
-		PreviewTheme themeView = new PreviewTheme(levelName, theme);
+		PreviewTheme themeView = new PreviewTheme(levelName, theme, themeBuilder);
+		
+		levelName = themeBuilder.getNameText();
+		theme.setThemeName(themeBuilder.getThemeNameText());
+		theme.setWordLimit(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
 		themeView.setLevel(theme);
 		themeView.initialize();
 		themeView.setVisible(true);
 	}
-
+	
 	public void saveLevel() {
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
@@ -135,6 +148,7 @@ public class GetStateOfThemeBuilder {
 	}
 
 	public void deletePuzzle() {
+		levelName = themeBuilder.getNameText();
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);
 		if (file.delete()) {

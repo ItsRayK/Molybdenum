@@ -40,9 +40,6 @@ public class GetStateOfPuzzleBuilder {
 	}
 
 	public void makePreview() {
-		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
-		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
-		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
 		
 		PreviewPuzzle puzzleView = new PreviewPuzzle(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
 		puzzleView.setLevel(puzzle);

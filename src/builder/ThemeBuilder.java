@@ -246,6 +246,10 @@ public class ThemeBuilder extends JFrame {
 	public String getWordsToFind() {
 		return wordList.getText();
 	}
+	
+	public JTextPane getWordList(){
+		return wordList;
+	}
 	public void setWordsToFind(String s){
 		wordList.setText(s + "\r\n" + wordList.getText());
 	}

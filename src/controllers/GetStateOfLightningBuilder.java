@@ -43,9 +43,6 @@ public class GetStateOfLightningBuilder {
 
 		timerInt = Integer.parseInt(lightningBuilder.getTimerText());
 
-		OneStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt1StarThresh().getText()));
-		TwoStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt2StarThresh().getText()));
-		ThreeStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt3StarThresh().getText()));
 	}
 
 	public void makePreview() {

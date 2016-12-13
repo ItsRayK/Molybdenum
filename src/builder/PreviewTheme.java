@@ -47,6 +47,7 @@ public class PreviewTheme extends JFrame {
 	private JLabel lblTheme, lblWordsLeft;
 	String name;
 	Theme level;
+	ThemeBuilder lb;
 
 	/**
 	 * Launch the application.
@@ -55,9 +56,9 @@ public class PreviewTheme extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PreviewTheme frame = new PreviewTheme("default", level);
-					frame.initialize();
-					frame.setVisible(true);
+//					PreviewTheme frame = new PreviewTheme("default", level, lb);
+//					frame.initialize();
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,9 +69,10 @@ public class PreviewTheme extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PreviewTheme(String n, Theme t) {
+	public PreviewTheme(String n, Theme t, ThemeBuilder tb) {
 		this.name = n;
 		this.level = t;
+		this.lb = tb;
 		initialize();
 
 	}
@@ -95,63 +97,25 @@ public class PreviewTheme extends JFrame {
 
 		boardSquares = new JToggleButton[6][6];
 		String path = "savedLevels/" + level.getLevelName() + ".txt";
-		int k = 42;
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
-
-				Letter l = new Letter();
-				try {
-					String readCheck = Files.readAllLines(Paths.get(path)).get(k);
-					l.setLetter(readCheck, 0);
-					if (level.getBoard().squares[i][j].isActive()) {
-						if (readCheck.equals("null")) {
-							l.randomLetterNoPoints();
-						}
-						level.getBoard().squares[i][j].fillSquare(l);
-
-						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getString() + "</b></font></html>");
-
-						boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
-						boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
-						boardSquares[i][j].setFocusPainted(false);
-
-						final Square square = p.getBoard().squares[i][j];
-						JToggleButton buttonSquares = boardSquares[i][j];
-						boardSquares[i][j].addActionListener(new ActionListener() {
-
-							public void actionPerformed(ActionEvent arg0) {
-								LetterClicked letterClicked = new LetterClicked(p, square);
-								boolean selected = buttonSquares.isSelected();
-								if (!selected && level.getCurrentWord().getLastSquare().isSameSquare(square)) {
-									letterClicked.deConstructWord();
-								} else {
-									if (level.getCurrentWord().getSquares().size() == 0) {
-										letterClicked.constructWord();
-									} else if ((level.getCurrentWord().getLastSquare().isAdjacentTo(square))
-											&& !square.isAlreadyInList(level.getCurrentWord().getSquares())) {
-										letterClicked.constructWord();
-									} else if (square.isAlreadyInList(level.getCurrentWord().getSquares()))
-										buttonSquares.setSelected(true);
-									else
-										buttonSquares.setSelected(false);
-								}
-
-								System.out.println(p.getCurrentWord().getWordString());
-								System.out.println("Running score: " + p.getCurrentWord().getPoints());
-							}
-
-						});
-
-						contentPane.add(boardSquares[i][j]);
+				if (level.getBoard().squares[i][j].isActive()) {
+					if(!lb.getLetterField()[i][j].getText().equals("")){
+					boardSquares[i][j] = new JToggleButton("<html><b>" + lb.getLetterField()[i][j].getText().toUpperCase() + "</b></font></html>");
 					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
+					else{
+						Letter l = new Letter();
+						l.randomLetterNoPoints();
+						boardSquares[i][j] = new JToggleButton("<html><b>" + l.getLetterString() + "</b></font></html>");
+					}
+					boardSquares[i][j].setFont(new Font("Tahoma", Font.PLAIN, 18));
+					boardSquares[i][j].setBounds(396 + i * 66, 86 + j * 66, 60, 60);
+					boardSquares[i][j].setFocusPainted(false);
+					contentPane.add(boardSquares[i][j]);
 				}
-				k++;
-
 			}
 		}
-
+		
 		btnUndo = new JButton("");
 		btnExitLevel = new JButton("Exit Level");
 		btnGiveUp = new JButton("Reset");
