@@ -181,6 +181,7 @@ public class ThemeView extends JFrame {
 
 		btnUndo.setIcon(new ImageIcon(ThemeView.class.getResource("/images/undo-4-xxl.gif")));
 		btnUndo.setBounds(913, 127, 40, 40);
+		btnUndo.setEnabled(false);
 		contentPane.add(btnUndo);
 
 		////// STAR IMAGES//////
