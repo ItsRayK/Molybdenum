@@ -51,14 +51,13 @@ public class GetStateOfThemeBuilder {
 			}
 
 		}
-
+		levelName = themeBuilder.getNameText();
 		
 	}
 
 	public void makePreview() {
 		PreviewTheme themeView = new PreviewTheme(levelName, theme, themeBuilder);
 		
-		levelName = themeBuilder.getNameText();
 		theme.setThemeName(themeBuilder.getThemeNameText());
 		theme.setWordLimit(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
 		themeView.setLevel(theme);

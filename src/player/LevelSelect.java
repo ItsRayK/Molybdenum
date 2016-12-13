@@ -21,7 +21,7 @@ public class LevelSelect extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lvlStars[];
-	private JButton btnMainMenu, btnClearStars;
+	private JButton btnMainMenu, btnClearStars, btnCustom;
 	private JButton[] btnLevel;
 
 	/**
@@ -119,7 +119,7 @@ public class LevelSelect extends JFrame {
 		}
 		btnMainMenu = new JButton("Main Menu");
 		btnClearStars = new JButton("Clear Stars");
-
+		btnCustom = new JButton("Custom Levels");
 	}
 
 	private void initializeView() {
@@ -129,9 +129,14 @@ public class LevelSelect extends JFrame {
 		contentPane.add(btnMainMenu);
 
 		btnClearStars.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnClearStars.setBounds(110, 190, 110, 30);
+		btnClearStars.setBounds(110, 405, 110, 30);
 		btnClearStars.setFocusPainted(false);
 		contentPane.add(btnClearStars);
+		
+		btnCustom.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnCustom.setBounds(110, 190, 110, 30);
+		btnCustom.setFocusPainted(false);
+		contentPane.add(btnCustom);
 
 		try {
 			initializeStars();
@@ -205,6 +210,14 @@ public class LevelSelect extends JFrame {
 				ClearAllProgress clr = new ClearAllProgress();
 				clr.clearAllStars();
 				LevelSelect temp = new LevelSelect();
+				temp.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnCustom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PlayCustomView temp = new PlayCustomView();
 				temp.setVisible(true);
 				dispose();
 			}
