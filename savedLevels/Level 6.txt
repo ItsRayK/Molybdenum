@@ -1,7 +1,7 @@
 Level 6
 2
 4
-6
+5
 true
 true
 true
@@ -66,16 +66,17 @@ L
 E
 T
 A
+A
 Y
 A
 S
-null
 I
 L
+Y
 A
 N
 E
-null
+
 TABBY
 PERSIAN
 SIAMESE
@@ -85,4 +86,5 @@ REX
 BOBTAIL
 BOMBAY
 BENGAL
+
 endofdocument
