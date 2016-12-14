@@ -12,7 +12,6 @@ import builder.PreviewLightning;
 import entities.Lightning;
 import entities.Score;
 
-
 public class GetStateOfLightningBuilder {
 	Lightning lightning;
 	LightningBuilder lightningBuilder;
@@ -58,7 +57,6 @@ public class GetStateOfLightningBuilder {
 
 		file = new File("savedLevels/" + levelName + ".txt");
 
-		FileWriter writer = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(file, false));
 			bw.write(levelName);
@@ -94,31 +92,24 @@ public class GetStateOfLightningBuilder {
 			bw.write("Lightning");
 			bw.newLine();
 			bw.flush();
-
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
-		} finally {
-			if (writer != null)
-				try {
-					bw.close();
-					writer.close();
-				} catch (IOException ignore) {
-				}
 		}
 
 		System.out.printf("File is located at %s%n", file.getAbsolutePath());
 
 	}
-	
+
 	public void deletePuzzle() {
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);
-		if(file.delete()){
+		if (file.delete()) {
 			System.out.println("'" + levelName + "'" + " has been deleted");
-		}
-		else
-			System.out.println("'" + levelName + "'" + " already does not exist");;
-		
+		} else
+			System.out.println("'" + levelName + "'" + " already does not exist");
+		;
+
 	}
 }

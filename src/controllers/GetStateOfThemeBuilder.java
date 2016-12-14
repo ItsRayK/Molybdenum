@@ -52,28 +52,27 @@ public class GetStateOfThemeBuilder {
 
 		}
 		levelName = themeBuilder.getNameText();
-		
+
 	}
 
 	public void makePreview() {
 		PreviewTheme themeView = new PreviewTheme(levelName, theme, themeBuilder);
-		
+
 		theme.setThemeName(themeBuilder.getThemeNameText());
 		theme.setWordLimit(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
 		themeView.setLevel(theme);
 		themeView.initialize();
 		themeView.setVisible(true);
 	}
-	
+
 	public void saveLevel() {
-		
+
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(themeBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(themeBuilder.getTxt3StarThresh().getText()));
-		
+
 		file = new File("savedLevels/" + levelName + ".txt");
 
-		FileWriter writer = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(file, false));
 			bw.write(levelName);
@@ -130,17 +129,10 @@ public class GetStateOfThemeBuilder {
 			bw.write("endofdocument");
 			bw.newLine();
 			bw.flush();
-
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
-		} finally {
-			if (writer != null)
-				try {
-					bw.close();
-					writer.close();
-				} catch (IOException ignore) {
-				}
 		}
 
 		System.out.printf("File is located at %s%n", file.getAbsolutePath());

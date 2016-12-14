@@ -55,7 +55,6 @@ public class GetStateOfPuzzleBuilder {
 
 		file = new File("savedLevels/" + levelName + ".txt");
 
-		FileWriter writer = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(file, false));
 			bw.write(levelName);
@@ -91,17 +90,10 @@ public class GetStateOfPuzzleBuilder {
 			bw.write("Puzzle");
 			bw.newLine();
 			bw.flush();
-
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
-		} finally {
-			if (writer != null)
-				try {
-					bw.close();
-					writer.close();
-				} catch (IOException ignore) {
-				}
 		}
 
 		System.out.printf("File is located at %s%n", file.getAbsolutePath());
@@ -115,7 +107,6 @@ public class GetStateOfPuzzleBuilder {
 			System.out.println("'" + levelName + "'" + " has been deleted");
 		} else
 			System.out.println("'" + levelName + "'" + " already does not exist");
-		;
 
 	}
 
