@@ -25,6 +25,19 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 
+/**
+ * The Builder class to edit existing levels.
+ * <p>
+ * This allows the user to edit an existing level in case they want to make
+ * changes for a certain level that will be played by the <code>Player.java</code>.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class EditExistingView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnEditLevel;

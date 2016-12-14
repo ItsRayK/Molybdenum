@@ -17,6 +17,19 @@ import entities.Score;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * The Builder class for previewing Lightning Levels.
+ * <p>
+ * This allows the user to preview a level of type Lightning  after they created it
+ * without exiting the Builder and running the Player.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PreviewLightning extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel, btnReset, btnSubmitWord;
@@ -63,6 +76,9 @@ public class PreviewLightning extends JFrame {
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -110,6 +126,9 @@ public class PreviewLightning extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel
+	 */
 	private void initializeView() {
 
 		btnExitLevel.setBounds(24, 82, 89, 23);
@@ -181,6 +200,9 @@ public class PreviewLightning extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		btnExitLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

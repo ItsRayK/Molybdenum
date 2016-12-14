@@ -14,6 +14,19 @@ import entities.Letter;
 import entities.Lightning;
 import entities.Theme;
 
+/**
+ * The Builder class for Theme Levels.
+ * <p>
+ * This allows the user to create a level of type Theme to be played by the
+ * <code>Player.java</code>.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class ThemeBuilder extends JFrame {
 
 	private JPanel contentPane;
@@ -59,6 +72,9 @@ public class ThemeBuilder extends JFrame {
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		setResizable(false);
 		setTitle("Letter Craze Builder");
@@ -87,6 +103,9 @@ public class ThemeBuilder extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		checkBox = new JCheckBox[6][6];
 		tfDesiredLetter = new JTextField[6][6];
@@ -196,6 +215,9 @@ public class ThemeBuilder extends JFrame {
 		contentPane.add(bg);
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		ThemeBuilder themeBuilder = this;
 		btnBack.addActionListener(new ActionListener() {
@@ -227,6 +249,7 @@ public class ThemeBuilder extends JFrame {
 
 	}
 
+	// Getters and setters
 	public JCheckBox[][] getCheckBox() {
 		return checkBox;
 	}
