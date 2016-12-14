@@ -17,11 +17,6 @@ public class Theme extends Level {
 	/*
 	 * Player Functions
 	 */
-	@Override
-	boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	/**
 	 * This function submits the current word and at the same time saves the
@@ -44,12 +39,6 @@ public class Theme extends Level {
 		while (it.hasNext()) {
 			it.next().removeContents();
 		}
-
-	}
-
-	@Override
-	void reset() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -84,13 +73,6 @@ public class Theme extends Level {
 	/*
 	 * Builder functions
 	 */
-	@Override
-	boolean saveLevel() {
-		// save name of theme and words to be found
-		// needs to be saved to a disk (look at online form discussion for more
-		// about where)
-		return false;
-	}
 
 	public void setThemeName(String name) {
 		themeName = name;

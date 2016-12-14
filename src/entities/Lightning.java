@@ -18,11 +18,6 @@ public class Lightning extends Level {
 	/*
 	 * Player Functions
 	 */
-	@Override
-	boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	/**
 	 * This function submits the current word and at the same time saves the
@@ -46,12 +41,6 @@ public class Lightning extends Level {
 	}
 
 	@Override
-	void reset() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	void undoWord() {
 		// TODO Auto-generated method stub
 
@@ -66,13 +55,6 @@ public class Lightning extends Level {
 
 	public int getTimer() {
 		return time;
-	}
-
-	@Override
-	boolean saveLevel() {
-		// The fields that need to be known to save a lightning level are the
-		// board configuration, total time allotted, and if the level is locked
-		return false;
 	}
 
 }

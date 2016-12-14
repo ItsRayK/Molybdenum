@@ -17,11 +17,6 @@ public class Puzzle extends Level {
 	/*
 	 * Player Functions
 	 */
-	@Override
-	boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	/**
 	 * This function submits the current word and at the same time saves the
@@ -43,12 +38,6 @@ public class Puzzle extends Level {
 		while (it.hasNext()) {
 			it.next().removeContents();
 		}
-	}
-
-	@Override
-	void reset() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -85,11 +74,6 @@ public class Puzzle extends Level {
 	/*
 	 * Builder functions
 	 */
-	@Override
-	boolean saveLevel() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	public int getWordLimit() {
 		return numWords;

@@ -23,22 +23,11 @@ public abstract class Level {
 	}
 
 	// player functions
-	abstract boolean hasWon();
-
 	abstract void submitWord();
-
-	abstract void reset();
 
 	abstract void undoWord();
 
 	// builder functions
-
-	/*
-	 * This over-arching version of the method should assign the level name, the
-	 * check box values creating the customized board, and the score values for
-	 * each star level
-	 */
-	abstract boolean saveLevel();
 
 	/**
 	 * Every empty and active square in the board is filled with a random letter
@@ -69,13 +58,6 @@ public abstract class Level {
 		return true;
 	}
 
-	/**
-	 * This function subtracts the current score with the value of the i
-	 * parameter
-	 * 
-	 * @param i
-	 * @return
-	 */
 	public boolean subtractFromLevelScore(int i) {
 		currScore.subtractFromScore(i);
 		return true;
