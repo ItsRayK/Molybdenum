@@ -59,6 +59,7 @@ public class UpdateLevelSelectStars {
 				bw.flush();
 			}
 		}
+		bw.close();
 	}
 
 	public void updateSavedScore() throws IOException {
@@ -87,6 +88,7 @@ public class UpdateLevelSelectStars {
 				bw.flush();
 			}
 		}
+		bw.close();
 	}
 
 }
