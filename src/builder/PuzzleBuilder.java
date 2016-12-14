@@ -18,6 +18,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+/**
+ * The Builder class for Puzzle Levels.
+ * <p>
+ * This allows the user to create a level of type Puzzle to be played by the
+ * <code>Player.java</code>.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PuzzleBuilder extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfWordLimit;
@@ -60,6 +73,9 @@ public class PuzzleBuilder extends JFrame {
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		setResizable(false);
 		setTitle("Letter Craze Builder");
@@ -86,6 +102,9 @@ public class PuzzleBuilder extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 
 		for (i = 0; i <= 5; i++) {
@@ -166,6 +185,9 @@ public class PuzzleBuilder extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	public void initializeController() {
 		PuzzleBuilder puzzleBuilder = this;
 		btnBack.addActionListener(new ActionListener() {

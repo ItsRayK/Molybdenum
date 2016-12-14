@@ -13,6 +13,19 @@ import javax.swing.border.EmptyBorder;
 import controllers.LoadPuzzleLevel;
 import entities.*;
 
+/**
+ * The Builder class for previewing Puzzle Levels.
+ * <p>
+ * This allows the user to preview a level of type Puzzle after they created it
+ * without exiting the Builder and running the Player.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PreviewPuzzle extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel;
@@ -53,13 +66,18 @@ public class PreviewPuzzle extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Create the Frame.
+	 */
 	public void initialize() {
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	public void initializeModel() {
 		setTitle("Letter Craze");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -97,6 +115,9 @@ public class PreviewPuzzle extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	public void initializeView() {
 
 		btnUndo.setIcon(new ImageIcon(PreviewPuzzle.class.getResource("/images/undo-4-xxl.gif")));
@@ -166,6 +187,9 @@ public class PreviewPuzzle extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on JPanel are pressed.
+	 */
 	public void initializeController() {
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

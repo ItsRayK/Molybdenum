@@ -33,6 +33,19 @@ import controllers.UpdateLevelSelectStars;
 import entities.*;
 import player.LevelSelect;
 
+/**
+ * The Builder class for previewing Theme Levels.
+ * <p>
+ * This allows the user to preview a level of type Theme after they created it
+ * without exiting the Builder and running the Player.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PreviewTheme extends JFrame {
 
 	private JPanel contentPane;
@@ -83,6 +96,9 @@ public class PreviewTheme extends JFrame {
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		Theme p = this.level;
 		PreviewTheme pV = this;
@@ -126,6 +142,9 @@ public class PreviewTheme extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		Theme p = this.level;
 		PreviewTheme pV = this;
@@ -224,6 +243,9 @@ public class PreviewTheme extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on JPanel are pressed.
+	 */
 	private void initializeController() {
 		Theme p = this.level;
 		PreviewTheme pV = this;
@@ -262,14 +284,24 @@ public class PreviewTheme extends JFrame {
 		level = p;
 	}
 
+	/**
+	 * Add given string to array of words found.
+	 * @param s Given string to add to array
+	 */
 	public void addToWordsFound(String s) {
 		wordsFound.addElement(s);
 	}
 
+	/**
+	 * Remove given last word from array of words found
+	 */
 	public void removeFromWordsFound() {
 		wordsFound.remove(wordsFound.size() - 1);
 	}
 
+	/**'
+	 * Update number of stars based on the current score.
+	 */
 	public void updateStars() {
 
 		level.compareToGoalScores();
@@ -295,6 +327,9 @@ public class PreviewTheme extends JFrame {
 
 	}
 
+	/**
+	 * Unselect all button squares that were selected.
+	 */
 	public void unselectBoardSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
