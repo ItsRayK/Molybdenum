@@ -17,14 +17,6 @@ public class Score {
 		return this;
 	}
 
-	public Score scoreSet(Score s) {
-		value = s.value;
-		star1Filled = s.star1Filled;
-		star2Filled = s.star2Filled;
-		star3Filled = s.star3Filled;
-		return this;
-	}
-
 	public int getScore() {
 		return value;
 	}
