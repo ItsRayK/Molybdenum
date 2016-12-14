@@ -16,16 +16,29 @@ public class Square {
 
 	}
 
+	/**
+	 * Changes the empty flag of a full square to true
+	 */
 	public void removeContents() {
 		// contents = null;
 		empty = true;
 	}
+
+	/**
+	 * Fill a square with the letter l.
+	 * 
+	 * @param l
+	 * @return
+	 */
 
 	public Square fillSquare(Letter l) {
 		contents = l;
 		return this;
 	}
 
+	/**
+	 * Fill a square with a random letter.
+	 */
 	public void fillSquareWithRandom() {
 		Letter l = new Letter();
 		l.randomLetter();
@@ -51,6 +64,11 @@ public class Square {
 		return active;
 	}
 
+	/**
+	 * Sets if a square is active or not in the board with the parameter tf.
+	 * 
+	 * @param tf
+	 */
 	public void setActivity(boolean tf) {
 		active = tf;
 	}
@@ -59,6 +77,13 @@ public class Square {
 		return empty;
 	}
 
+	/**
+	 * This function determines if a square s is adjacent to this square. This
+	 * is used to see if a clicked letter is valid to make a word with.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public boolean isAdjacentTo(Square s) {
 		if (this.column == s.column) {
 			if (this.row == (s.row + 1)) {
@@ -101,6 +126,13 @@ public class Square {
 		return empty;
 	}
 
+	/**
+	 * This determines if two squares are in the same spot coloumnwise and
+	 * rowwise.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public boolean isSameSquare(Square s) {
 		if (this.column == s.column && this.row == s.row)
 			return true;
@@ -108,10 +140,24 @@ public class Square {
 			return false;
 	}
 
+	/**
+	 * This sees if a square is already in a list of squares. This is used to
+	 * determine if you can't deselect a square on the board if it is not
+	 * adjacent.
+	 * 
+	 * @param squares
+	 * @return
+	 */
 	public boolean isAlreadyInList(ArrayList<Square> squares) {
 		return squares.iterator().next().isSameSquare(this);
 	}
 
+	/**
+	 * This returns true if a square's empty flag is true and it is also an
+	 * active square.
+	 * 
+	 * @return
+	 */
 	public boolean isEmptyAndActive() {
 		if (empty && isActive())
 			return true;
@@ -119,6 +165,11 @@ public class Square {
 			return false;
 	}
 
+	/**
+	 * This returns true if a square is active and there is a letter in it.
+	 * 
+	 * @return
+	 */
 	public boolean notEmptyActive() {
 		if (contents != null && isActive())
 			return true;

@@ -48,16 +48,34 @@ public abstract class Level {
 		board.fillEmptyActiveSquares();
 	}
 
+	/**
+	 * This function clears the board of all the squares that currently occupy
+	 * the board
+	 */
 	public void clearBoardLetters() {
 		board.clearAllActiveSquares();
-		
+
 	}
+
+	/**
+	 * This function adds to the current score of the level with the i parameter
+	 * 
+	 * @param i
+	 * @return
+	 */
 
 	public boolean addToLevelScore(int i) {
 		currScore.addToScore(i);
 		return true;
 	}
 
+	/**
+	 * This function subtracts the current score with the value of the i
+	 * parameter
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public boolean subtractFromLevelScore(int i) {
 		currScore.subtractFromScore(i);
 		return true;
@@ -99,6 +117,12 @@ public abstract class Level {
 		return name;
 	}
 
+	/**
+	 * This function serves to determine if the stars need to be filled in or
+	 * not. It compares the current score's value to the score thresholds for
+	 * the stars and sets the booleans of the star filled to either true or
+	 * false.
+	 */
 	public void compareToGoalScores() {
 		if (currScore.getScore() >= oneStarScore.getScore())
 			currScore.star1Filled = true;

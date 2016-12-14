@@ -36,13 +36,13 @@ public class Letter {
 		return value;
 	}
 
-	// NOTE: Might make this a static method?
-	/*
+	/**
 	 * Using the letter distribution values, these numbers are the probability
 	 * out of 1 that these letters will occur. The random letter generated will
 	 * be between 0.0 and 1.0 and given the random number the correct letter and
 	 * point value will be assigned
 	 */
+
 	public Letter randomLetter() {
 		Random r = new Random();
 		double randomValue = r.nextDouble();
@@ -155,6 +155,13 @@ public class Letter {
 
 	}
 
+	/**
+	 * This function generates a random letter and then sets the value of the
+	 * points to 0. This is used for theme level when the score is not
+	 * determined by the score of the word.
+	 * 
+	 * @return
+	 */
 	public Letter randomLetterNoPoints() {
 		randomLetter();
 		setValue(0);

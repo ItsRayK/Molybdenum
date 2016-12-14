@@ -24,6 +24,11 @@ public class Lightning extends Level {
 		return false;
 	}
 
+	/**
+	 * This function submits the current word and at the same time saves the
+	 * state of the level to a list of previous states. After it is done, the
+	 * current word will then be cleared.
+	 */
 	@Override
 	public void submitWord() {
 		Board b = new Board(this.board);

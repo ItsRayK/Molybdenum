@@ -21,7 +21,7 @@ public class Board {
 					squares[i][j].fillSquare(newOne.setLetter(b.getSquare(i, j).getContents().getLetterString(),
 							b.getSquare(i, j).getContents().getLetterVal()));
 				}
-				
+
 			}
 		}
 	}
@@ -75,17 +75,6 @@ public class Board {
 			for (int j = 0; j < 6; j++) {
 				filled = false;
 				if (squares[i][j].isEmptyAndActive()) {
-					/*
-					 * Letter contentsUp =
-					 * nextBelowActiveSquare(squares[i][j]).getContents();
-					 * nextBelowActiveSquare(squares[i][j]).removeContents();
-					 * squares[i][j].setContents(contentsUp);
-					 */
-					// if(j == 5){
-					// squares[i][j].fillSquareWithRandom();
-					// filled = true;
-					// }
-					// else{
 					for (int k = j + 1; k < 6; k++) {
 						if (squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)) {
 							squares[i][j].setContents(squares[i][k].getContents());
@@ -103,24 +92,22 @@ public class Board {
 			}
 		}
 	}
-	
+
+	/**
+	 * For all empty squares (i.e, active squares whose contents are empty) go
+	 * through board and move up letters to fill these squares. This process may
+	 * make other squares empty, so the process repeats until all letters have
+	 * floated up to fill the empty squares in the board.
+	 * 
+	 * Note: when done, the only empty squares that remain are left empty
+	 */
+
 	public void floatUpTheme() {
 		boolean filled;
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				filled = false;
 				if (squares[i][j].isEmptyAndActive()) {
-					/*
-					 * Letter contentsUp =
-					 * nextBelowActiveSquare(squares[i][j]).getContents();
-					 * nextBelowActiveSquare(squares[i][j]).removeContents();
-					 * squares[i][j].setContents(contentsUp);
-					 */
-					// if(j == 5){
-					// squares[i][j].fillSquareWithRandom();
-					// filled = true;
-					// }
-					// else{
 					for (int k = j + 1; k < 6; k++) {
 						if (squares[i][k].isActive() && ((!(squares[i][k].getEmpty())) && !filled)) {
 							squares[i][j].setContents(squares[i][k].getContents());

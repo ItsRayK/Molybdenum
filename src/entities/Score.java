@@ -29,20 +29,48 @@ public class Score {
 		return value;
 	}
 
+	/**
+	 * Adds the value of the current score with the parameter scoreAdded.
+	 * 
+	 * @param scoreAdded
+	 * @return
+	 */
+
 	public Score addToScore(int scoreAdded) {
 		setScore(value + scoreAdded);
 		return this;
 	}
-	
+
+	/**
+	 * Subtracts the value of the current score with the parameter
+	 * scoreSubtracted.
+	 * 
+	 * @param scoreSubtracted
+	 * @return
+	 */
 	public Score subtractFromScore(int scoreSubtracted) {
 		setScore(value - scoreSubtracted);
 		return this;
 	}
-	
+
+	/**
+	 * Adds a score with theme levels because the score is not determined by the
+	 * values of the word.
+	 * 
+	 * @return
+	 */
 	public Score addToScoreTheme() {
 		setScore(value + 1);
 		return this;
 	}
+
+	/**
+	 * Subtracts a score with theme levels because the score is not determined
+	 * by the values of the word.
+	 * 
+	 * @return
+	 */
+
 	public Score subtractFromScoreTheme() {
 		setScore(value - 1);
 		return this;

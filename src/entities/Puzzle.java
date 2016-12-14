@@ -23,6 +23,11 @@ public class Puzzle extends Level {
 		return false;
 	}
 
+	/**
+	 * This function submits the current word and at the same time saves the
+	 * state of the level to a list of previous states. After it is done, the
+	 * current word will then be cleared.
+	 */
 	@Override
 	public void submitWord() {
 		Board b = new Board(getBoard());
@@ -46,6 +51,11 @@ public class Puzzle extends Level {
 
 	}
 
+	/**
+	 * This function goes through the previous levels list and sets the values
+	 * of the puzzle attributes to the ones of the last previous level. And
+	 * throws an exception if the there are no more previous levels to undo to.
+	 */
 	@Override
 	public void undoWord() {
 		// TODO Auto-generated method stub

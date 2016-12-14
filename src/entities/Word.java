@@ -17,6 +17,11 @@ public class Word {
 			setPoints(0);
 	}
 
+	/**
+	 * Returns the last square in a list of squares.
+	 * 
+	 * @return
+	 */
 	public Square getLastSquare() {
 		return squares.get(squares.size() - 1);
 	}
@@ -25,7 +30,9 @@ public class Word {
 		return squares;
 	}
 
-	/** Adds a square to the current word **/
+	/**
+	 * Adds a square to the current word.
+	 */
 	public Word makeWord(Square square) {
 		squares.add(squares.size(), square);
 		setWordString();
@@ -33,7 +40,9 @@ public class Word {
 		return this;
 	}
 
-	/** Returns the word without the last square added **/
+	/**
+	 * Returns the word without the last square added.
+	 */
 	public Word unMakeWord() {
 		removePoints(this.getLastSquare().getContentsPoints());
 		wordString = squares.remove(squares.size() - 1).getContentsString();
@@ -41,6 +50,9 @@ public class Word {
 		return this;
 	}
 
+	/**
+	 * Sets the string of the word to the contents of the word squares.
+	 */
 	public void setWordString() {
 		StringJoiner joiner = new StringJoiner("");
 		if (squares.size() == 0)
