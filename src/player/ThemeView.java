@@ -276,24 +276,6 @@ public class ThemeView extends JFrame {
 	private void initializeController() {
 		Theme p = this.level;
 		ThemeView pV = this;
-		btnUndo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				UndoManager undo = new UndoManager(pV, p);
-				undo.undoLevelTheme();
-				lblWordsLeft.setText("Words Left: " + level.getWordLimit());
-				System.out.println("Actual Score: " + p.getCurrScore().getScore());
-				if (p.getWordLimit() > 0) {
-					for (int i = 0; i < 6; i++) {
-						for (int j = 0; j < 6; j++) {
-							if (p.getBoard().squares[i][j].isActive()) {
-								pV.boardSquares[i][j].setEnabled(true);
-							}
-						}
-					}
-				}
-			}
-		});
-
 		btnGiveUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -432,9 +414,6 @@ public class ThemeView extends JFrame {
 		return btnSubmitWord;
 	}
 
-	public JButton getBtnUndo() {
-		return btnUndo;
-	}
 
 	public Theme getLevel() {
 		return level;

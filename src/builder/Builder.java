@@ -239,4 +239,16 @@ public class Builder extends JFrame {
 			}
 		});
 	}
+
+	public JButton getCreateLightningBtn() {
+		return createLightningBtn;
+	}
+
+	public JButton getCreatePuzzleBtn() {
+		return createPuzzleBtn;
+	}
+
+	public JButton getCreateThemeBtn() {
+		return createThemeBtn;
+	}
 }

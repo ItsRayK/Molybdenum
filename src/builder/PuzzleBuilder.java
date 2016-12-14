@@ -68,13 +68,13 @@ public class PuzzleBuilder extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		setTxt1StarThresh(new JTextField());
 		txt2StarThresh = new JTextField();
 		txt2StarThresh.setBounds(182, 193, 171, 20);
 		txt3StarThresh = new JTextField();
 		txt3StarThresh.setBounds(182, 218, 171, 20);
-		
+
 		lblScoreThresholds = new JLabel("<html> <b> * </b> Score Thresholds:</html>");
 		btnSaveLevel = new JButton("Save Level");
 		btnBack = new JButton("Main Menu");
@@ -83,7 +83,6 @@ public class PuzzleBuilder extends JFrame {
 		lblLevelTypePuzzle = new JLabel("Level Type: Puzzle");
 		tfWordLimit = new JTextField();
 		txtlevelName = new JTextField("");
-
 
 	}
 
@@ -142,7 +141,7 @@ public class PuzzleBuilder extends JFrame {
 		TextPrompt levelNameprompt = new TextPrompt("<html><text color = black></text>Level Name</html>", txtlevelName);
 		contentPane.add(txtlevelName);
 		txtlevelName.setColumns(10);
-		
+
 		JLabel lblLevelName = new JLabel("*Level Name");
 		lblLevelName.setBounds(10, 126, 95, 20);
 		contentPane.add(lblLevelName);
@@ -181,6 +180,7 @@ public class PuzzleBuilder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GetStateOfPuzzleBuilder getState = new GetStateOfPuzzleBuilder(puzzleBuilder, puzzle);
 				getState.makePreview();
+
 			}
 		});
 
@@ -203,23 +203,23 @@ public class PuzzleBuilder extends JFrame {
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
-	
+
 	public void setWordLimit(String s) {
 		tfWordLimit.setText(s);
 	}
-	
+
 	public void set1StarScoreText(String s) {
 		txt1StarThresh.setText(s);
 	}
-	
+
 	public void set2StarScoreText(String s) {
 		txt2StarThresh.setText(s);
 	}
-	
+
 	public void set3StarScoreText(String s) {
 		txt3StarThresh.setText(s);
 	}
-	
+
 	public void setNameText(String s) {
 		txtlevelName.setText(s);
 	}
@@ -231,7 +231,7 @@ public class PuzzleBuilder extends JFrame {
 	public void setCheckBox(JCheckBox checkBox[][]) {
 		this.checkBox = checkBox;
 	}
-	
+
 	public JTextField getTxt1StarThresh() {
 		return txt1StarThresh;
 	}
@@ -248,9 +248,24 @@ public class PuzzleBuilder extends JFrame {
 	public JTextField getTxt3StarThresh() {
 		return txt3StarThresh;
 	}
-	
-	public JTextField getMaxWords(){
+
+	public JTextField getMaxWords() {
 		return tfWordLimit;
 	}
 
+	public JButton getBtnPreview() {
+		return btnPreview;
+	}
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public JButton getBtnSaveLevel() {
+		return btnSaveLevel;
+	}
 }

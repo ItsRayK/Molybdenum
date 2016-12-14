@@ -134,14 +134,15 @@ public class EditExistingView extends JFrame {
 									puzz.getCheckBox()[i][j].setSelected(false);
 								}
 								if (!Files.readAllLines(Paths.get(path)).get(l).equals("null")) {
-									puzz.getLetterField()[i][j].setText(Files.readAllLines(Paths.get(path)).get(l));;
+									puzz.getLetterField()[i][j].setText(Files.readAllLines(Paths.get(path)).get(l));
+									;
 								}
 								k++;
 								l++;
 							}
 						}
 						int m = 78;
-						while(!Files.readAllLines(Paths.get(path)).get(m).equals("endofdocument")){
+						while (!Files.readAllLines(Paths.get(path)).get(m).equals("endofdocument")) {
 							puzz.setWordsToFind(Files.readAllLines(Paths.get(path)).get(m));
 							m++;
 						}
@@ -150,7 +151,7 @@ public class EditExistingView extends JFrame {
 						puzz.set1StarScoreText(Files.readAllLines(Paths.get(path)).get(1));
 						puzz.set2StarScoreText(Files.readAllLines(Paths.get(path)).get(2));
 						puzz.set3StarScoreText(Files.readAllLines(Paths.get(path)).get(3));
-						
+
 						puzz.setVisible(true);
 						System.out.println("Theme Builder Loaded");
 					} else {
@@ -164,5 +165,9 @@ public class EditExistingView extends JFrame {
 
 			}
 		});
+	}
+
+	public JButton getBtnEditLevel() {
+		return btnEditLevel;
 	}
 }

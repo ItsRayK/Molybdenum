@@ -50,7 +50,7 @@ public abstract class Level {
 
 	public void clearBoardLetters() {
 		board.clearAllActiveSquares();
-		;
+		
 	}
 
 	public boolean addToLevelScore(int i) {
@@ -136,4 +136,7 @@ public abstract class Level {
 		return wordsFound;
 	}
 
+	public void setCurrentWord(Word currentWord) {
+		this.currentWord = currentWord;
+	}
 }

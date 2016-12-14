@@ -177,15 +177,15 @@ public class ThemeBuilder extends JFrame {
 		TextPrompt wordListPrompt = new TextPrompt("(one word per line)", wordList);
 		wordList.setBounds(179, 179, 184, 195);
 		contentPane.add(wordList);
-		
+
 		JLabel lblWordsToBeFound = new JLabel("*Words to be found:");
 		lblWordsToBeFound.setBounds(179, 154, 184, 14);
 		contentPane.add(lblWordsToBeFound);
-		
+
 		JLabel lblLevelName = new JLabel("*Level Name");
 		lblLevelName.setBounds(10, 126, 95, 20);
 		contentPane.add(lblLevelName);
-		
+
 		JLabel lblRequiredNote = new JLabel("*Required Fields");
 		lblRequiredNote.setBounds(182, 480, 110, 14);
 		contentPane.add(lblRequiredNote);
@@ -224,7 +224,7 @@ public class ThemeBuilder extends JFrame {
 				state.makePreview();
 			}
 		});
-		
+
 	}
 
 	public JCheckBox[][] getCheckBox() {
@@ -254,13 +254,15 @@ public class ThemeBuilder extends JFrame {
 	public String getWordsToFind() {
 		return wordList.getText();
 	}
-	
-	public JTextPane getWordList(){
+
+	public JTextPane getWordList() {
 		return wordList;
 	}
-	public void setWordsToFind(String s){
+
+	public void setWordsToFind(String s) {
 		wordList.setText(s + "\r\n" + wordList.getText());
 	}
+
 	public String getNameText() {
 		return txtlevelName.getText();
 	}
@@ -268,24 +270,41 @@ public class ThemeBuilder extends JFrame {
 	public String getThemeNameText() {
 		return tfThemeName.getText();
 	}
+
 	public void setThemeName(String s) {
 		tfThemeName.setText(s);
 	}
-	
+
 	public void set1StarScoreText(String s) {
 		txt1StarThresh.setText(s);
 	}
-	
+
 	public void set2StarScoreText(String s) {
 		txt2StarThresh.setText(s);
 	}
-	
+
 	public void set3StarScoreText(String s) {
 		txt3StarThresh.setText(s);
 	}
-	
+
 	public void setNameText(String s) {
 		txtlevelName.setText(s);
+	}
+
+	public JButton getBtnPreview() {
+		return btnPreview;
+	}
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public JButton getBtnSaveLevel() {
+		return btnSaveLevel;
 	}
 
 }

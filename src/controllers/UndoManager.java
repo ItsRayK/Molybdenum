@@ -41,26 +41,5 @@ public class UndoManager {
 		}
 	}
 
-	public void undoLevelTheme() {
-		try {
-			theme.undoWord();
-			themeview.unselectBoardSquares();
-			theme.getLettersSelected().clear();
-			themeview.removeFromWordsFound();
-			themeview.updateStars();
-
-			for (int i = 0; i <= 5; i++) {
-				for (int j = 0; j <= 5; j++) {
-					if (theme.getBoard().squares[i][j].isActive()) {
-						if (!theme.getBoard().squares[i][j].isEmpty())
-							themeview.getBoardSquares()[i][j].setVisible(true);
-						themeview.getBoardSquares()[i][j].setText(
-								"<html><b>" + theme.getBoard().squares[i][j].getContentsString() + "</font></html>");
-					}
-				}
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("There are no moves to be undone!");
-		}
-	}
+	
 }

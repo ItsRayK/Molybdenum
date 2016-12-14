@@ -7,6 +7,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import controllers.LoadThemeLevel;
+import controllers.*;
+import controllers.SubmitWordTheme;
 import entities.*;
 import entities.Lightning;
 import entities.Puzzle;
@@ -74,9 +76,19 @@ public class PlayerTestCases {
 		pV.getBoardSquares()[0][1].doClick();
 		pV.getBoardSquares()[0][2].doClick();
 
+		// test to see if move is valid
+		SubmitWord submit = new SubmitWord(pV, pV.getLevel(), pV.getLevel().getCurrentWord());
+		try {
+			assertTrue(submit.submit());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// submit that word
 		pV.getBtnSubmitWord().doClick();
 		assertEquals(pV.getLevel().getCurrScore().getScore(), 3);
+
 		// assertEquals(pV.getLevel().getWordsFound().get(pV.getLevel().getWordsFound().size()
 		// - 1).getWordString(), "ADD");
 		// test float up
@@ -156,6 +168,14 @@ public class PlayerTestCases {
 		lV.getBoardSquares()[0][1].doClick();
 		lV.getBoardSquares()[0][2].doClick();
 
+		// test to see if move is valid
+		SubmitWordLightning submit = new SubmitWordLightning(lV, lV.getLevel(), lV.getLevel().getCurrentWord());
+		try {
+			assertTrue(submit.submit());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// submit that word
 		lV.getBtnSubmitWord().doClick();
 		assertEquals(lV.getLevel().getCurrScore().getScore(), 3);
@@ -165,6 +185,14 @@ public class PlayerTestCases {
 		// last button
 		lV.getBoardSquares()[0][0].doClick();
 		lV.getBoardSquares()[0][1].doClick();
+		// test to see if move is valid
+		SubmitWordLightning submit2 = new SubmitWordLightning(lV, lV.getLevel(), lV.getLevel().getCurrentWord());
+		try {
+			assertFalse(submit2.submit());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		lV.getBtnSubmitWord().doClick();
 
 		lV.getBoardSquares()[0][0].doClick();
@@ -225,7 +253,6 @@ public class PlayerTestCases {
 		tV.getLevel().setOneStarScore(new Score(1));
 		tV.getLevel().setTwoStarScore(new Score(5));
 		tV.getLevel().setThreeStarScore(new Score(10));
-		tV.getLevel().setWordLimit(3);
 
 		// get the squares below those to test float up
 		Square square = new Square(0, 5, true);
@@ -238,8 +265,19 @@ public class PlayerTestCases {
 		tV.getBoardSquares()[0][3].doClick();
 		tV.getBoardSquares()[0][4].doClick();
 
+		// verify that that word is valid
+		SubmitWordTheme submit = new SubmitWordTheme(tV, tV.getLevel(), tV.getLevel().getCurrentWord());
+		try {
+			assertTrue(submit.submit());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// submit that word
 		tV.getBtnSubmitWord().doClick();
+
+		//
 
 	}
 

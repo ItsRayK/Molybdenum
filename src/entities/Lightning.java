@@ -31,7 +31,7 @@ public class Lightning extends Level {
 		previousLevels.add(previous);
 		currScore.addToScore(currentWord.getPoints() * (currentWord.getSquares().size() - 2));
 		wordsFound.add(currentWord);
-
+		compareToGoalScores();
 		// Be sure to remove content for all squares in the word.
 		Iterator<Square> it = currentWord.getSquares().iterator();
 		while (it.hasNext()) {

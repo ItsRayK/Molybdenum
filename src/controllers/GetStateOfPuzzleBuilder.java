@@ -4,6 +4,7 @@ import java.io.*;
 
 import builder.*;
 import entities.*;
+import player.PuzzleView;
 
 public class GetStateOfPuzzleBuilder {
 	Puzzle puzzle;
@@ -36,22 +37,22 @@ public class GetStateOfPuzzleBuilder {
 		// puzzleBuilder.getTxt2StarThresh().getText()
 		// puzzleBuilder.getTxt3StarThresh().getText()
 
-		
 	}
 
-	public void makePreview() {
-		
+	public PreviewPuzzle makePreview() {
+
 		PreviewPuzzle puzzleView = new PreviewPuzzle(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
 		puzzleView.setLevel(puzzle);
 		puzzleView.initialize();
 		puzzleView.setVisible(true);
+		return puzzleView;
 	}
 
 	public void saveLevel() {
 		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
 		ThreeStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt3StarThresh().getText()));
-		
+
 		file = new File("savedLevels/" + levelName + ".txt");
 
 		FileWriter writer = null;
@@ -90,7 +91,7 @@ public class GetStateOfPuzzleBuilder {
 			bw.write("Puzzle");
 			bw.newLine();
 			bw.flush();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace(); // I'd rather declare method with throws
 									// IOException and omit this catch.
@@ -110,12 +111,12 @@ public class GetStateOfPuzzleBuilder {
 	public void deletePuzzle() {
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);
-		if(file.delete()){
+		if (file.delete()) {
 			System.out.println("'" + levelName + "'" + " has been deleted");
-		}
-		else
-			System.out.println("'" + levelName + "'" + " already does not exist");;
-		
+		} else
+			System.out.println("'" + levelName + "'" + " already does not exist");
+		;
+
 	}
 
 }
