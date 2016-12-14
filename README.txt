@@ -1,8 +1,10 @@
 # Molybdenum
 Letter Craze
 
+**TESTING**
+Note: Running a JUnitTest will clear ALL progress in the game!
 
-*PLAYER*
+**PLAYER**
 To run the Game (as Player):
   Run 'Player.java' as Java Application
    src > player > Player.java
@@ -17,9 +19,7 @@ From player you can also play custom creations (See *BUILDER* on how to create o
 	You will be presented with a list of all custom levels to choose from.
 	
 
-  
-
-*BUILDER*
+**BUILDER**
 To run the LevelBuilder (as Builder):
   Run 'Builder.java' as Java Application
    src > builder > Builder.java
@@ -27,6 +27,7 @@ To run the LevelBuilder (as Builder):
 When the builder is run, you will be presented with the option to create either a puzzle, lightning, or theme level
 This will open a fresh builder view in which you need to set the parameters.
 
+-All Builders-
 By setting the level name to "Level #" (i.e. Level 12) you can overwrite the existing level.
 By setting the level name to anything that does not contain the word "Level" (i.e. Custom 2) you will be creating a brand new
 	custom level which can be played when you return as the player.
@@ -36,6 +37,12 @@ Another option is to click on "Edit an Existing Level" in which you will be pres
 
 (You can overwrite any of the initial 15 levels as any type (i.e. you can build a Lightning Level and call it "Level 1", changing "Level 1" from Puzzle to Lightning.))
 
+THE GRID:
+When you open any builder ALL checkboxes will be checked. By un-checking a box you will be deactivating the corresponding square in the level.
+
+PREVIEW:
+Fill out all of the fields in the builder. Click the preview button. See what happens.
+
 SAVE A LEVEL:
 Levels will be saved by the name of what is set as the level name .txt (i.e. Level 3.txt)
 
@@ -44,8 +51,60 @@ You can delete any level from any builder. This will delete the file correspondi
 It is recommended that you don't delete Levels 1-15, but rather change them.
 
 
-*CHEATERS CORNER*
+-Theme Builder Specific-
+You will notice a letter field associated with each checkbox. You can fill each box with a letter of your choosing.
+	Any squares that are activated, but are not specified a letter will be filled with a random letter.
+
+The number of words to find in a theme level is determined by the number of words set to achieve 3 Stars.
+
+
+
+**CHEATERS CORNER**
 
 THEME WORDS TO LOOK OUT FOR:
+
+COLORS:
+Cyan
+Blue
+Red
+Green
+Purple
+Maroon
+Gold
+
+CATS:
+Tabby
+Persian
+Siamese
+Himalayan
+Ocicat
+Rex
+Bobtail
+Bombay
+Bengal
+
+TRUMPISMS:
+Haters
+Crooked
+Wrong
+Wall
+Temperament
+
+RENOWNED LEADERS:
+Heineman (Top Left of Grid)
+Alexander
+Francis
+Elizabeth
+Catherine
+
+THE GREATEST PEOPLE EVER:
+Tom
+Rachel
+Pontbriant
+Olshansky
+Khan
+Hahn
+Hagen
+
 
 
