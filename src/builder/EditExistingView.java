@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controllers.UpdateLevelSelectStars;
@@ -22,6 +23,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
 
 public class EditExistingView extends JFrame {
 	private JPanel contentPane;
@@ -64,9 +66,13 @@ public class EditExistingView extends JFrame {
 		levelList = new DefaultListModel();
 
 		list = new JList(levelList);
+		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBounds(10, 11, 266, 341);
-		contentPane.add(list);
+		JScrollPane jsp = new JScrollPane(list, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		jsp.setBounds(10, 11, 266, 341);
+		contentPane.add(jsp);
 
 		File folder = new File("savedLevels");
 		File[] listOfFiles = folder.listFiles();

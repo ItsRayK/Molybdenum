@@ -1,4 +1,4 @@
-DO NOT EDIT THIS
+Test Theme DO NOT EDIT
 1
 2
 3
@@ -76,8 +76,9 @@ null
 null
 null
 null
-TESTA
-TESTB
+
 TESTC
+TESTB
+TESTA
 
 endofdocument

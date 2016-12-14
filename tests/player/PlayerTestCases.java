@@ -253,7 +253,7 @@ public class PlayerTestCases {
 		setupThemeLevel();
 		PlayCustomView custom = new PlayCustomView();
 		try {
-			load = new LoadThemeLevel("DO NOT EDIT THIS", new Theme("DO NOT EDIT THIS", new Board()));
+			load = new LoadThemeLevel("Test Theme DO NOT EDIT", new Theme("Test Theme DO NOT EDIT", new Board()));
 			custom.dispose();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
