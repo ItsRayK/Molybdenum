@@ -251,7 +251,7 @@ public class PlayerTestCases {
 	public void testThemePlayer() {
 		LoadThemeLevel load = null;
 		setupThemeLevel();
-		PlayCustomView custom = new PlayCustomView();
+		PlayCustomView custom = new PlayCustomView(null);
 		try {
 			load = new LoadThemeLevel("Test Theme DO NOT EDIT", new Theme("Test Theme DO NOT EDIT", new Board()));
 			custom.dispose();

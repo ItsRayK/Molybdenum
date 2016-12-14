@@ -154,6 +154,7 @@ public class LevelSelect extends JFrame {
 	}
 
 	private void initializeStars() throws IOException {
+		
 		lvlStars = new JLabel[15];
 		lblScore = new JLabel[15];
 		String path = "src/SavedStars.txt";
@@ -209,6 +210,7 @@ public class LevelSelect extends JFrame {
 	}
 
 	private void initializeController() {
+		LevelSelect ls = this;
 		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Player temp = new Player();
@@ -229,9 +231,9 @@ public class LevelSelect extends JFrame {
 		
 		btnCustom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PlayCustomView temp = new PlayCustomView();
+				PlayCustomView temp = new PlayCustomView(ls);
 				temp.setVisible(true);
-				dispose();
+				
 			}
 		});
 	}

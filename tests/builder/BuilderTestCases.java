@@ -30,7 +30,7 @@ public class BuilderTestCases {
 	@Test
 	public void testPuzzleBuilder() throws IOException {
 		PuzzleBuilder pb = setupPuzzleBuilder();
-		EditExistingView custom = new EditExistingView();
+		EditExistingView custom = new EditExistingView(new Builder());
 		String path = "savedLevels/Puzzle Test.txt";
 
 		pb.getCheckBox()[0][0].setSelected(false);

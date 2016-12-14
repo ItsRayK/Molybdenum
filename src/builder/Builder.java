@@ -199,6 +199,7 @@ public class Builder extends JFrame {
 	 * Initialize what happens when the buttons on the JPanel are pressed.
 	 */
 	private void initializeController() {
+		Builder b = this;
 		createPuzzleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PuzzleBuilder level = new PuzzleBuilder();
@@ -224,10 +225,11 @@ public class Builder extends JFrame {
 		});
 
 		editExistingBtn.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				EditExistingView view = new EditExistingView();
+				EditExistingView view = new EditExistingView(b);
 				view.setVisible(true);
-				dispose();
+				//dispose();
 
 			}
 		});
@@ -251,4 +253,5 @@ public class Builder extends JFrame {
 	public JButton getCreateThemeBtn() {
 		return createThemeBtn;
 	}
+	
 }

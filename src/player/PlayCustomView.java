@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controllers.LoadLightningLevel;
@@ -29,6 +30,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
 
 public class PlayCustomView extends JFrame {
 	private JPanel contentPane;
@@ -43,7 +45,7 @@ public class PlayCustomView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayCustomView frame = new PlayCustomView();
+					PlayCustomView frame = new PlayCustomView(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +57,7 @@ public class PlayCustomView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PlayCustomView() {
+	public PlayCustomView(LevelSelect ls) {
 		setTitle("Select a Level to Play");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 302, 440);
@@ -73,7 +75,10 @@ public class PlayCustomView extends JFrame {
 		list = new JList(levelList);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBounds(10, 11, 266, 341);
-		contentPane.add(list);
+		JScrollPane jsp = new JScrollPane(list, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		jsp.setBounds(10, 11, 266, 341);
+		contentPane.add(jsp);
 
 		File folder = new File("savedLevels");
 		File[] listOfFiles = folder.listFiles();
@@ -115,7 +120,7 @@ public class PlayCustomView extends JFrame {
 							System.out.println(readCheck);
 						}
 						dispose();
-
+						ls.dispose();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
