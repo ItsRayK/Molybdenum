@@ -46,5 +46,6 @@ It is recommended that you don't delete Levels 1-15, but rather change them.
 
 *CHEATERS CORNER*
 
-THEME ANSWERS:
+THEME WORDS TO LOOK OUT FOR:
+
 

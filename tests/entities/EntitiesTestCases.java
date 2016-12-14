@@ -61,7 +61,9 @@ public class EntitiesTestCases {
 
 		
 	}
-	public void TestSquareActivation(){
+	
+	@Test
+	public void testSquareActivation(){
 		Board testBoard = new Board();
 		for(int i=0; i<5; i++){
 			for(int j= 0; j<5; j++){
@@ -83,7 +85,7 @@ public class EntitiesTestCases {
 				assertEquals(testBoard.squares[i][j].isActive(),false);
 			}
 		}
-		testBoard.deActivateSquare(2, -3);
+		testBoard.deActivateSquare(2, 3);
 	}
 
 }

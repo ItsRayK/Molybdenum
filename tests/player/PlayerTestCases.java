@@ -3,6 +3,8 @@ package player;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 
@@ -38,8 +40,9 @@ public class PlayerTestCases {
 	}
 
 	@Test
-	public void testPuzzlePlayer() {
+	public void testPuzzlePlayer() throws IOException {
 		PuzzleView pV = setupPuzzleLevel();
+		LoadPuzzleLevel lPl = new LoadPuzzleLevel("Level 1", new Puzzle("Level 1", new Board()));
 		pV.initialize();
 		// Click a square and see if the current word is that square, then
 		// deselect the square
@@ -67,6 +70,9 @@ public class PlayerTestCases {
 		pV.getLevel().getBoard().squares[2][2].setContents(new Letter('E', 1));
 		pV.getLevel().getBoard().squares[3][1].setContents(new Letter('S', 1));
 		pV.getLevel().getBoard().squares[3][2].setContents(new Letter('T', 1));
+		
+		PlayerSplash pS = new PlayerSplash();
+		pS.dispose();
 
 		// get the squares below those to test float up
 		Square square = new Square(0, 3, true);
@@ -127,6 +133,7 @@ public class PlayerTestCases {
 
 		// quit board
 		pV.getBtnExitLevel().doClick();
+		
 	}
 
 	@Test
@@ -198,35 +205,42 @@ public class PlayerTestCases {
 		lV.getBoardSquares()[0][0].doClick();
 		lV.getBoardSquares()[0][1].doClick();
 		lV.getBoardSquares()[0][2].doClick();
-		lV.getBtnSubmitWord().doClick();
+		
+		assertTrue(lV.getBoardSquares()[0][0].isSelected());
+		assertTrue(lV.getBoardSquares()[0][1].isSelected());
+		assertTrue(lV.getBoardSquares()[0][2].isSelected());
 
-		// pick the third word and you accident pick a square thats too far away
+		lV.getBtnSubmitWord().doClick();
+		
+		assertFalse(lV.getBoardSquares()[0][0].isSelected());
+		assertFalse(lV.getBoardSquares()[0][1].isSelected());
+		assertFalse(lV.getBoardSquares()[0][2].isSelected());
+
+		// pick the third letter and you accidently pick a square thats too far away
 		lV.getBoardSquares()[1][1].doClick();
 		lV.getBoardSquares()[2][2].doClick();
 		lV.getBoardSquares()[0][0].doClick();
 		lV.getBoardSquares()[3][1].doClick();
 		lV.getBoardSquares()[3][2].doClick();
+		
+		assertFalse(lV.getBoardSquares()[0][0].isSelected());
+		
 		lV.getBtnSubmitWord().doClick();
-		// pick the second word but first submit // you accidently forgot to hit
+		// pick the second letter but first submit // you accidently forgot to hit
 		// last button
 		lV.getBoardSquares()[0][0].doClick();
 		lV.getBoardSquares()[0][1].doClick();
 		lV.getBtnSubmitWord().doClick();
+		
+		assertFalse(lV.getBoardSquares()[0][0].isSelected());
+		assertFalse(lV.getBoardSquares()[0][1].isSelected());
 
 		lV.getBoardSquares()[0][0].doClick();
 		lV.getBoardSquares()[0][1].doClick();
 		lV.getBoardSquares()[0][2].doClick();
 		lV.getBtnSubmitWord().doClick();
 
-		// pick the third word and you accident pick a square thats too far away
-		lV.getBoardSquares()[1][1].doClick();
-		lV.getBoardSquares()[2][2].doClick();
-		lV.getBoardSquares()[0][0].doClick();
-		lV.getBoardSquares()[3][1].doClick();
-		lV.getBoardSquares()[3][2].doClick();
-		lV.getBtnSubmitWord().doClick();
-
-		// reset level
+			// reset level
 		lV.getBtnReset().doClick();
 
 		// quit level
@@ -236,8 +250,11 @@ public class PlayerTestCases {
 	@Test
 	public void testThemePlayer() {
 		LoadThemeLevel load = null;
+		setupThemeLevel();
+		PlayCustomView custom = new PlayCustomView();
 		try {
 			load = new LoadThemeLevel("DO NOT EDIT THIS", new Theme("DO NOT EDIT THIS", new Board()));
+			custom.dispose();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -264,6 +281,13 @@ public class PlayerTestCases {
 		tV.getBoardSquares()[0][2].doClick();
 		tV.getBoardSquares()[0][3].doClick();
 		tV.getBoardSquares()[0][4].doClick();
+		
+
+		assertTrue(tV.getBoardSquares()[0][0].isSelected());
+		assertTrue(tV.getBoardSquares()[0][1].isSelected());
+		assertTrue(tV.getBoardSquares()[0][2].isSelected());
+		assertTrue(tV.getBoardSquares()[0][3].isSelected());
+		assertTrue(tV.getBoardSquares()[0][4].isSelected());
 
 		// verify that that word is valid
 		SubmitWordTheme submit = new SubmitWordTheme(tV, tV.getLevel(), tV.getLevel().getCurrentWord());
@@ -277,8 +301,30 @@ public class PlayerTestCases {
 		// submit that word
 		tV.getBtnSubmitWord().doClick();
 
-		//
+			
+		assertFalse(tV.getBoardSquares()[0][0].isSelected());
+		assertFalse(tV.getBoardSquares()[0][1].isSelected());
+		assertFalse(tV.getBoardSquares()[0][2].isSelected());
+		assertFalse(tV.getBoardSquares()[0][3].isSelected());
+		assertFalse(tV.getBoardSquares()[0][4].isSelected());
 
+	}
+	
+	@Test
+	public void testClearAllData() throws IOException{
+		ClearAllProgress cap = new ClearAllProgress();
+		String path = "src/SavedStars.txt";
+		String path2 = "src/SavedScores.txt";
+		cap.clearAllData();
+		assertEquals("0", Files.readAllLines(Paths.get(path)).get(0));
+		assertEquals("0", Files.readAllLines(Paths.get(path)).get(1));
+		assertEquals("0", Files.readAllLines(Paths.get(path2)).get(2));
+		assertEquals("0", Files.readAllLines(Paths.get(path2)).get(3));
+		assertEquals("0", Files.readAllLines(Paths.get(path)).get(8));
+		assertEquals("0", Files.readAllLines(Paths.get(path)).get(9));
+		assertEquals("0", Files.readAllLines(Paths.get(path2)).get(10));
+		assertEquals("0", Files.readAllLines(Paths.get(path2)).get(11));
+		
 	}
 
 }
