@@ -82,7 +82,7 @@ public class UpdateLevelSelectStars {
 	}
 
 	/**
-	 * Updates saved acore based on the highest score that was achieved
+	 * Updates saved score based on the highest score that was achieved
 	 * in each game played.
 	 * @throws IOException
 	 */
