@@ -2,6 +2,17 @@ package entities;
 
 import java.util.Random;
 
+/**
+ * The Entities class for the letter.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Letter {
 	String letterString;
 	int value;

@@ -3,6 +3,17 @@ package entities;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * The Entities class for theme levels.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Theme extends Level {
 	int numWords;
 

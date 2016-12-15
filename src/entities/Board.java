@@ -1,5 +1,16 @@
 package entities;
 
+/**
+ * The Entities class for the board.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Board {
 	public Square[][] squares = new Square[6][6];
 
@@ -125,6 +136,11 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Determines if the square above is empty.
+	 * @param s Square to check the square above it
+	 * @return boolean dependent on if the square above the given square is empty
+	 */
 	public boolean isNextAboveSquareEmpty(Square s) {
 		boolean tf = false;
 		int k = 0;
@@ -139,6 +155,11 @@ public class Board {
 
 	}
 
+	/**
+	 * Finds next above square that is empty
+	 * @param s Square to check the square above it
+	 * @return Square that is the next empty square above the given square
+	 */
 	public Square nextAboveEmptySquare(Square s) {
 		Square square = null;
 		int k = 0;
@@ -150,6 +171,11 @@ public class Board {
 		return square;
 	}
 
+	/**
+	 * Finds next below square that is not empty and active
+	 * @param s Square to check the square below it
+	 * @return Square that is the next not empty and active square below the given square
+	 */
 	public Square nextBelowActiveSquare(Square s) {
 		Square square = null;
 		int k = 0;
@@ -161,6 +187,9 @@ public class Board {
 		return square;
 	}
 
+	/**
+	 * Fills all empty and active squares with a random letter.
+	 */
 	public void fillEmptyActiveSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -171,6 +200,9 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Removes the contents of all active squares.
+	 */
 	public void clearAllActiveSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {

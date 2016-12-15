@@ -3,6 +3,17 @@ package entities;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
+/**
+ * The Entities class for the word.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Word {
 	private ArrayList<Square> squares = new ArrayList<Square>();
 	private int points;

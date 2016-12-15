@@ -2,6 +2,17 @@ package entities;
 
 import java.util.ArrayList;
 
+/**
+ * The Entities class for the square.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Square {
 	Letter contents;
 	int row;

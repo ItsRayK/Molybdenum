@@ -2,6 +2,17 @@ package entities;
 
 import java.util.ArrayList;
 
+/**
+ * The Entities class for the level.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public abstract class Level {
 	String name;
 	Board board;
@@ -49,15 +60,19 @@ public abstract class Level {
 	/**
 	 * This function adds to the current score of the level with the i parameter
 	 * 
-	 * @param i
-	 * @return
+	 * @param i The amount of points to add to the current score
+	 * @return boolean dependent on if the points were added
 	 */
-
 	public boolean addToLevelScore(int i) {
 		currScore.addToScore(i);
 		return true;
 	}
 
+	/**
+	 * Subtracts from the current score of the level with the i parameter.
+	 * @param i The amount of points to subtract from the current score
+	 * @return boolean dependent on if the points were subtracted
+	 */
 	public boolean subtractFromLevelScore(int i) {
 		currScore.subtractFromScore(i);
 		return true;

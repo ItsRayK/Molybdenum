@@ -1,5 +1,16 @@
 package entities;
 
+/**
+ * The Entities class for the score.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Score {
 	int value;
 	boolean star1Filled;

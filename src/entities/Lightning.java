@@ -2,6 +2,17 @@ package entities;
 
 import java.util.Iterator;
 
+/**
+ * The Entities class for lightning levels.
+ * <p>
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class Lightning extends Level {
 	public Lightning(String n, Board b) {
 		super(n, b);
