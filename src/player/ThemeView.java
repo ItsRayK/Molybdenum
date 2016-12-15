@@ -34,6 +34,18 @@ import controllers.UpdateLevelSelectStars;
 import entities.*;
 import player.LevelSelect;
 
+/**
+ * The Player class for Theme Levels.
+ * <p>
+ * This allows the player to play a Theme Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class ThemeView extends JFrame {
 
 	private JPanel contentPane;
@@ -76,12 +88,18 @@ public class ThemeView extends JFrame {
 
 	}
 
+	/**
+	 * Create the frame.
+	 */
 	public void initialize() {
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		Theme p = this.level;
 		ThemeView pV = this;
@@ -174,6 +192,9 @@ public class ThemeView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		Theme p = this.level;
 		ThemeView pV = this;
@@ -273,6 +294,9 @@ public class ThemeView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		Theme p = this.level;
 		ThemeView pV = this;
@@ -357,14 +381,24 @@ public class ThemeView extends JFrame {
 		level = p;
 	}
 
+	/**
+	 * Add given string to array of words found.
+	 * @param s String to add to array
+	 */
 	public void addToWordsFound(String s) {
 		wordsFound.addElement(s);
 	}
 
+	/**
+	 * Remove last word in the array.
+	 */
 	public void removeFromWordsFound() {
 		wordsFound.remove(wordsFound.size() - 1);
 	}
 
+	/**
+	 * Sets stars as visiable depending on the player's score
+	 */
 	public void updateStars() {
 
 		level.compareToGoalScores();
@@ -390,6 +424,9 @@ public class ThemeView extends JFrame {
 
 	}
 
+	/**
+	 * Sets all buttons to unselected.
+	 */
 	public void unselectBoardSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {

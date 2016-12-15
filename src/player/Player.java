@@ -8,6 +8,66 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * The over-arching class for the Player for LetterCraze.
+ * <p>
+ * This allows the user to play levels created by <code>Builder.java</code>. The
+ * most important method for developers is <code>initialize</code> which is
+ * invoked when the Player is started.
+ * <p>
+ * <code>initialize</code> must satisfy three responsibilities:
+ * <ol>
+ * <li>Initialize the model</li>
+ * <li>Initialize the view</li>
+ * <li>Initialize the controllers</li>
+ * </ol>
+ * <p>
+ * Most <code>initialize</code> methods will follow this suggested format: <br>
+ * 
+ * <pre>
+ * &lt;blockquote&gt;
+ *  public void initialize() {
+ *    initializeModel();
+ *    initializeView();
+ *    initializeController();
+ *  
+ *    // Prepare initial player setup.
+ *    ...
+ *  }
+ *  &lt;/blockquote&gt;
+ * </pre>
+ * 
+ * where <code>initializeModel</code>,<code>initializeView</code>, and
+ * <code>initializeControllers</code> are protected methods of the plugin.
+ * <p>
+ * <b>Initialize the Model </b>
+ * <p>
+ * This constructs a model of basic elements found in the Player for
+ * LetterCraze -- buttons to select a level, clear stars, anything required
+ * to play a level (letter toggle buttons, submit word and undo buttons, etc.), 
+ * and anything required for the GUI (e.g. labels and panes). Each model
+ * element has a name unique to the model.
+ * <p>
+ * <b>Initialize the View </b>
+ * <p>
+ * Each model element can be represented by exactly one View Widget. Each View
+ * Widget is placed at a specific (x,y) location within the coordinates of the
+ * JPanel, and has a calculated width, and height.
+ * <p>
+ * <b>Initialize the Controllers </b>
+ * <p>
+ * The real power is in the way controller objects are constructed and attached
+ * to View Widgets. These controllers react to the buttons being pressed. The
+ * controllers manage the user's interaction with the Player.
+ * <p>
+ * <p>
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ *
+ */
+
 public class Player extends JFrame {
 	private JPanel contentPane;
 	JButton levelSelectBtn;
@@ -55,6 +115,9 @@ public class Player extends JFrame {
 		initializeView();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		contentPane = new JPanel();
 
@@ -64,6 +127,9 @@ public class Player extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		setResizable(false);
 		setTitle("Letter Craze");
@@ -90,6 +156,9 @@ public class Player extends JFrame {
 		contentPane.add(bg);
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeControllers() {
 		levelSelectBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

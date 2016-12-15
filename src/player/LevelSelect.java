@@ -18,6 +18,18 @@ import java.awt.Font;
 import java.io.*;
 import java.nio.file.*;
 
+/**
+ * The Player class for Selecting Levels.
+ * <p>
+ * This allows the player to select a level they would like to play.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class LevelSelect extends JFrame {
 
 	private JPanel contentPane;
@@ -56,6 +68,9 @@ public class LevelSelect extends JFrame {
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -124,6 +139,9 @@ public class LevelSelect extends JFrame {
 		btnCustom = new JButton("Custom Levels");
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnMainMenu.setBounds(110, 155, 110, 30);
@@ -153,6 +171,9 @@ public class LevelSelect extends JFrame {
 
 	}
 
+	/**
+	 * Initialize the stars that will be placed in the JPanel.
+	 */
 	private void initializeStars() throws IOException {
 		
 		lvlStars = new JLabel[15];
@@ -209,6 +230,9 @@ public class LevelSelect extends JFrame {
 		}
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		LevelSelect ls = this;
 		btnMainMenu.addActionListener(new ActionListener() {

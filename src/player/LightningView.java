@@ -25,6 +25,18 @@ import entities.Score;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * The Player class for Lightning Levels.
+ * <p>
+ * This allows the player to play a Lightning Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class LightningView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnExitLevel, btnReset, btnSubmitWord;
@@ -81,6 +93,9 @@ public class LightningView extends JFrame {
 		count.start();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 
 		setTitle("Letter Craze");
@@ -99,6 +114,9 @@ public class LightningView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	private void initializeView() {
 		Lightning l = this.level;
 
@@ -205,6 +223,9 @@ public class LightningView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	private void initializeController() {
 		Lightning l = this.level;
 		LightningView lV = this;
@@ -277,6 +298,9 @@ public class LightningView extends JFrame {
 		});
 	}
 
+	/**
+	 * Set the timer based on created level and count down 
+	 */
 	private void loadTimer() {
 		timer = level.getTimer();
 		Lightning l = this.level;
@@ -311,18 +335,31 @@ public class LightningView extends JFrame {
 		return boardSquares;
 	}
 
+	/**
+	 * Add given string to array of words found.
+	 * @param s String to add to array
+	 */
 	public void addToWordsFound(String s) {
 		wordsFound.addElement(s);
 	}
 
+	/**
+	 * Remove last word in the array.
+	 */
 	public void removeFromWordsFound() {
 		wordsFound.remove(wordsFound.size() - 1);
 	}
 
+	/**
+	 * Remove all words from the array
+	 */
 	public void clearWordsFound() {
 		wordsFound.clear();
 	}
 
+	/**
+	 * Sets all buttons to unselected.
+	 */
 	public void unselectBoardSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -335,18 +372,9 @@ public class LightningView extends JFrame {
 		}
 	}
 
-	public void replaceBoardLetters() {
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				JToggleButton buttonSquares = boardSquares[i][j];
-				if (level.getBoard().squares[i][j].isActive()) {
-					buttonSquares.setSelected(false);
-
-				}
-			}
-		}
-	}
-
+	/**
+	 * Sets stars as visiable depending on the player's score
+	 */
 	public void updateStars() {
 
 		level.compareToGoalScores();
@@ -372,6 +400,9 @@ public class LightningView extends JFrame {
 
 	}
 
+	/**
+	 * Creates the board of squares for the player to create words with.
+	 */
 	private void createGrid() {
 		Lightning li = this.level;
 		LightningView lV = this;

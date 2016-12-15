@@ -37,11 +37,17 @@ public class PlayerSplash extends JFrame {
 	}
 
 
+	/**
+	 * Initialize the Splash Screen.
+	 */
 	private void splash(){
 		initializeModel();
 		initializeView();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	private void initializeModel() {
 		contentPane = new JPanel();
 		
@@ -49,6 +55,9 @@ public class PlayerSplash extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed on the JPanel.
+	 */
 	private void initializeView() {
 		
 		

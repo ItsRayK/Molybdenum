@@ -15,6 +15,18 @@ import controllers.UndoManager;
 import controllers.UpdateLevelSelectStars;
 import entities.*;
 
+/**
+ * The Player class for Puzzle Levels.
+ * <p>
+ * This allows the player to play a Puzzle Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PuzzleView extends JFrame {
 	private ImageIcon starFilled, starEmpty;
 	private JLabel lblScore, lblWordsLeft, lblNoMoreMoves;
@@ -60,12 +72,18 @@ public class PuzzleView extends JFrame {
 		level = p;
 	}
 
+	/**
+	 * Create the frame.
+	 */
 	public void initialize() {
 		initializeModel();
 		initializeView();
 		initializeController();
 	}
 
+	/**
+	 * Initialize everything that will be added to the JPanel.
+	 */
 	public void initializeModel() {
 		Puzzle p = this.level;
 		PuzzleView pV = this;
@@ -148,6 +166,9 @@ public class PuzzleView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize where everything will be placed in the JPanel.
+	 */
 	public void initializeView() {
 		
 		
@@ -276,6 +297,9 @@ public class PuzzleView extends JFrame {
 		return btnReset;
 	}
 
+	/**
+	 * Sets all buttons to unselected.
+	 */
 	public void unselectBoardSquares() {
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -288,26 +312,24 @@ public class PuzzleView extends JFrame {
 		}
 	}
 
-	public void replaceBoardLetters() {
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				JToggleButton buttonSquares = boardSquares[i][j];
-				if (level.getBoard().squares[i][j].isActive()) {
-					buttonSquares.setSelected(false);
-
-				}
-			}
-		}
-	}
-
+	/**
+	 * Add given string to array of words found.
+	 * @param s String to add to array
+	 */
 	public void addToWordsFound(String s) {
 		wordsFound.addElement(s);
 	}
 
+	/**
+	 * Remove last word in the array.
+	 */
 	public void removeFromWordsFound() {
 		wordsFound.remove(wordsFound.size() - 1);
 	}
 
+	/**
+	 * Sets stars as visiable depending on the player's score
+	 */
 	public void updateStars() {
 
 		level.compareToGoalScores();
@@ -333,6 +355,9 @@ public class PuzzleView extends JFrame {
 
 	}
 
+	/**
+	 * Initialize what happens when buttons on the JPanel are pressed.
+	 */
 	public void initializeController() {
 		Puzzle p = this.level;
 		PuzzleView pV = this;

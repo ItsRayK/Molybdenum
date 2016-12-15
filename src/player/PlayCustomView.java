@@ -32,6 +32,18 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 
+/**
+ * The Player class for Custom Levels.
+ * <p>
+ * This allows the player to play a Custom Made Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class PlayCustomView extends JFrame {
 	private JPanel contentPane;
 	private JButton btnPlayLevel;
