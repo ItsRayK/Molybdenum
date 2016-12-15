@@ -61,6 +61,8 @@ The number of words to find in a theme level is determined by the number of word
 
 **CHEATERS CORNER**
 
+////SPOILERS BELOW////
+
 THEME WORDS TO LOOK OUT FOR:
 
 COLORS:
