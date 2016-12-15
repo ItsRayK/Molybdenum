@@ -1,10 +1,28 @@
 # Molybdenum
 Letter Craze
 
-**TESTING**
+---This Document Contains---
+*Testing Note*
+*Player Instructions*
+	-Playing a Custom Level
+*Builder Instructions*
+	-The Grid
+	-Preview
+	-Saving a level
+	-Deleting a level
+	-Special Theme Builder Notes
+*Cheaters Corner*
+	-Contains Spoilers
+*Ultimate Cheater*
+	-Unlock all levels with 3 stars
+
+----------------------------
+
+
+**TESTING NOTE**
 Note: Running a JUnitTest will clear ALL progress in the game!
 
-**PLAYER**
+**PLAYER INSTRUCTIONS**
 To run the Game (as Player):
   Run 'Player.java' as Java Application
    src > player > Player.java
@@ -13,13 +31,15 @@ The initial levels are in order of: puzzle, lightning, theme...
 Only level 1 will be unlocked initially.
 In order to unlock the next level, at least 1 star must be achieved in the previous level.
 
-You can make edits to these levels or change them completely with the builder (See *BUILDER*)   
+You can make edits to these levels or change them completely with the builder (See *BUILDER*) 
+
+PLAYING A CUSTOM LEVEL:  
 From player you can also play custom creations (See *BUILDER* on how to create one)
 	In order to play a custom level you can click on "Custom Level" on the Level Select screen.
 	You will be presented with a list of all custom levels to choose from.
 	
 
-**BUILDER**
+**BUILDER INSTRUCTIONS**
 To run the LevelBuilder (as Builder):
   Run 'Builder.java' as Java Application
    src > builder > Builder.java
