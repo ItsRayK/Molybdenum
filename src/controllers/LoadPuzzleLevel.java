@@ -7,6 +7,18 @@ import entities.Puzzle;
 import entities.Score;
 import player.PuzzleView;
 
+/**
+ * The Controller class for loading a Puzzle Level.
+ * <p>
+ * This allows the player to load a Puzzle Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class LoadPuzzleLevel {
 	int k = 4;
 	Puzzle puzzle;
@@ -41,6 +53,9 @@ public class LoadPuzzleLevel {
 		}
 	}
 
+	/**
+	 * Loads a Puzzle Level that was previously created and saved.
+	 */
 	public void loadPuzzle() {
 		PuzzleView frame = new PuzzleView(levelName, puzzle);
 		puzzle.setOneStarScore(OneStarScore);

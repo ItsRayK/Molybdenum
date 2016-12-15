@@ -6,6 +6,18 @@ import java.io.FileWriter;
 import entities.Level;
 import entities.Square;
 
+/**
+ * The Controller class for Clearing all Levels.
+ * <p>
+ * This allows the player to clear their scores and stars for all letters.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class ClearAllProgress {
 
 	public ClearAllProgress() {

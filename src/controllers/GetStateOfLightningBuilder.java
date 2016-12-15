@@ -12,6 +12,19 @@ import builder.PreviewLightning;
 import entities.Lightning;
 import entities.Score;
 
+/**
+ * The Controller class for getting the state of the Lightning Builder.
+ * <p>
+ * This allows the user to preview, save, and delete a Lightning Level 
+ * in the Builder.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class GetStateOfLightningBuilder {
 	Lightning lightning;
 	LightningBuilder lightningBuilder;
@@ -44,12 +57,18 @@ public class GetStateOfLightningBuilder {
 
 	}
 
+	/**
+	 * Allows user to preview a created level.
+	 */
 	public void makePreview() {
 		PreviewLightning lightningView = new PreviewLightning(levelName, lightning, OneStarScore, TwoStarScore,
 				ThreeStarScore, timerInt);
 		lightningView.setVisible(true);
 	}
 
+	/**
+	 * Allows user to save a level they have created.
+	 */
 	public void saveLevel() {
 		OneStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(lightningBuilder.getTxt2StarThresh().getText()));
@@ -102,6 +121,9 @@ public class GetStateOfLightningBuilder {
 
 	}
 
+	/**
+	 * Allows user to delete a puzzle they have created.
+	 */
 	public void deletePuzzle() {
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);

@@ -21,6 +21,19 @@ import entities.Score;
 import entities.Theme;
 import player.ThemeView;
 
+/**
+ * The Controller class for getting the state of the Theme Builder.
+ * <p>
+ * This allows the user to preview, save, and delete a Theme Level 
+ * in the Builder.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class GetStateOfThemeBuilder {
 	Theme theme;
 	ThemeBuilder themeBuilder;
@@ -55,6 +68,9 @@ public class GetStateOfThemeBuilder {
 
 	}
 
+	/**
+	 * Allows user to preview a created level.
+	 */
 	public void makePreview() {
 		PreviewTheme themeView = new PreviewTheme(levelName, theme, themeBuilder);
 
@@ -65,6 +81,9 @@ public class GetStateOfThemeBuilder {
 		themeView.setVisible(true);
 	}
 
+	/**
+	 * Allows user to save a level they have created.
+	 */
 	public void saveLevel() {
 
 		OneStarScore = new Score(Integer.parseInt(themeBuilder.getTxt1StarThresh().getText()));
@@ -139,6 +158,9 @@ public class GetStateOfThemeBuilder {
 
 	}
 
+	/**
+	 * Allows user to delete a puzzle they have created.
+	 */
 	public void deletePuzzle() {
 		levelName = themeBuilder.getNameText();
 		String path = "savedLevels/" + levelName + ".txt";

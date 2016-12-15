@@ -9,6 +9,18 @@ import entities.Theme;
 import player.PuzzleView;
 import player.ThemeView;
 
+/**
+ * The Controller class for loading a Theme Level.
+ * <p>
+ * This allows the player to load a Theme Level.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class LoadThemeLevel {
 	private int k = 4;
 	Theme theme;
@@ -44,6 +56,9 @@ public class LoadThemeLevel {
 
 	}
 
+	/**
+	 * Loads a Puzzle Level that was previously created and saved.
+	 */
 	public ThemeView loadTheme() {
 		ThemeView frame = new ThemeView(levelName, theme);
 		theme.setWordLimit(ThreeStarScore.getScore());

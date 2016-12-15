@@ -10,6 +10,19 @@ import entities.*;
 import player.LightningView;
 import player.PuzzleView;
 
+/**
+ * The Controller class for submitting words in a Lightning Level.
+ * <p>
+ * This allows the user to submit words they have created from the 
+ * letters on the board.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class SubmitWordLightning {
 	Word word;
 	Lightning level;
@@ -22,6 +35,12 @@ public class SubmitWordLightning {
 		word = currentWord;
 	}
 
+	/**
+	 * Checks if submitted word is in the dictionary. If it is, update points, 
+	 * list of found words, and letters on the board.
+	 * @return boolean dependent  on whether the word is in the dictionary.
+	 * @throws Exception
+	 */
 	public boolean submit() throws Exception {
 		String wordFound = word.getWordString();
 		File file = new File("src/WordTable.sort");

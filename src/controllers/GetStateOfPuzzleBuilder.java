@@ -6,6 +6,19 @@ import builder.*;
 import entities.*;
 import player.PuzzleView;
 
+/**
+ * The Controller class for getting the state of the Puzzle Builder.
+ * <p>
+ * This allows the user to preview, save, and delete a Puzzle Level 
+ * in the Builder.
+ * 
+ * Creation date: (12/5/2016)
+ * 
+ * @author Thomas Hagen, Rachel Hahn, Rayyan Khan, Hannah Olshansky, Lauren
+ *         Pontbriant (Molybdenum)
+ * 
+ */
+
 public class GetStateOfPuzzleBuilder {
 	Puzzle puzzle;
 	PuzzleBuilder puzzleBuilder;
@@ -39,6 +52,9 @@ public class GetStateOfPuzzleBuilder {
 
 	}
 
+	/**
+	 * Allows user to preview a created level.
+	 */
 	public PreviewPuzzle makePreview() {
 
 		PreviewPuzzle puzzleView = new PreviewPuzzle(levelName, puzzle, OneStarScore, TwoStarScore, ThreeStarScore);
@@ -48,6 +64,9 @@ public class GetStateOfPuzzleBuilder {
 		return puzzleView;
 	}
 
+	/**
+	 * Allows user to save a level they have created.
+	 */
 	public void saveLevel() {
 		OneStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt1StarThresh().getText()));
 		TwoStarScore = new Score(Integer.parseInt(puzzleBuilder.getTxt2StarThresh().getText()));
@@ -100,6 +119,9 @@ public class GetStateOfPuzzleBuilder {
 
 	}
 
+	/**
+	 * Allows user to delete a puzzle they have created.
+	 */
 	public void deletePuzzle() {
 		String path = "savedLevels/" + levelName + ".txt";
 		file = new File(path);
