@@ -185,7 +185,7 @@ public class LightningView extends JFrame {
 		gridImg.setIcon(new ImageIcon(LightningView.class.getResource("/images/Grid.gif")));
 		contentPane.add(gridImg);
 
-		JLabel lblLightning = new JLabel("Lightning" + level.getLevelName());
+		JLabel lblLightning = new JLabel("Lightning: " + level.getLevelName());
 		lblLightning.setBounds(392, 34, 400, 37);
 		lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLightning.setFont(new Font("Gill Sans MT", Font.BOLD, 24));
