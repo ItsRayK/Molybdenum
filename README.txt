@@ -1,6 +1,8 @@
 # Molybdenum
 Letter Craze
 
+Git Repository: https://github.com/ItsRayK/Molybdenum.git
+
 ---This Document Contains---
 *Testing Note*
 *Player Instructions*
