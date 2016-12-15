@@ -34,7 +34,7 @@ public class ClearAllProgress {
 				bw.write("0");
 				bw.newLine();
 				bw.flush();
-
+				
 			}
 			bw = new BufferedWriter(new FileWriter(scorePath, false));
 			for (int i = 0; i < 15; i++) {
@@ -42,6 +42,7 @@ public class ClearAllProgress {
 				bw.newLine();
 				bw.flush();
 			}
+			bw.close();
 		} catch (Exception e) {
 
 		}

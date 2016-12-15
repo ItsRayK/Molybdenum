@@ -3,6 +3,10 @@ package player;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.awt.event.ActionEvent;
 
 
 public class PlayerSplash extends JFrame {
@@ -69,6 +73,32 @@ public class PlayerSplash extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("...");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String path = "src/SavedStars.txt";
+				String scorePath = "src/SavedScores.txt";
+				BufferedWriter bw;
+				try {
+					bw = new BufferedWriter(new FileWriter(path, false));
+					for (int i = 0; i < 15; i++) {
+						bw.write("3");
+						bw.newLine();
+						bw.flush();
+						
+					}
+					bw.close();
+				} catch (Exception e) {
+
+				}
+			}
+		});
+		btnNewButton.setToolTipText("ULTIMATE CHEATER!!!");
+		btnNewButton.setBounds(5, 507, 30, 29);
+		btnNewButton.setFocusPainted(false);
+		contentPane.add(btnNewButton);
 
 		JLabel bg = new JLabel("");
 		bg.setBounds(5, 5, 984, 531);

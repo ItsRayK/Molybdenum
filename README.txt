@@ -106,5 +106,12 @@ Khan
 Hahn
 Hagen
 
+**ULTIMATE CHEATER**
+
+How to unlock all of the levels with 3 Stars!!!
+	Run Player.java
+	When the splash screen appears click on the button located at the bottom left of the screen.
+	This will unlock all of the Levels and give you 3 stars!
+	However, your high scores will remain the same.
 
 
