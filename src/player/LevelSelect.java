@@ -36,6 +36,7 @@ public class LevelSelect extends JFrame {
 	private JLabel lvlStars[], lblScore[];
 	private JButton btnMainMenu, btnClearStars, btnCustom;
 	private JButton[] btnLevel;
+	private JLabel cheater;
 
 
 	/**
@@ -137,6 +138,7 @@ public class LevelSelect extends JFrame {
 		btnMainMenu = new JButton("Main Menu");
 		btnClearStars = new JButton("Clear All Data");
 		btnCustom = new JButton("Custom Levels");
+		cheater = new JLabel("");
 	}
 
 	/**
@@ -157,6 +159,13 @@ public class LevelSelect extends JFrame {
 		btnCustom.setBounds(110, 190, 110, 30);
 		btnCustom.setFocusPainted(false);
 		contentPane.add(btnCustom);
+		
+		cheater.setBounds(110, 250, 100, 100);
+		cheater.setIcon(new ImageIcon(player.LevelSelect.class.getResource("/images/cheater.png")));
+		cheater.setVisible(false);
+		contentPane.add(cheater);
+		
+		
 
 		try {
 			initializeStars();
@@ -227,6 +236,9 @@ public class LevelSelect extends JFrame {
 			contentPane.add(lblScore[i]);
 			contentPane.add(lvlStars[i]);
 			j++;
+		}
+		if((Integer.parseInt(Files.readAllLines(Paths.get(path)).get(15)) == 3)){
+			cheater.setVisible(true);
 		}
 	}
 

@@ -30,7 +30,7 @@ public class ClearAllProgress {
 		BufferedWriter bw;
 		try {
 			bw = new BufferedWriter(new FileWriter(path, false));
-			for (int i = 0; i < 15; i++) {
+			for (int i = 0; i < 16; i++) {
 				bw.write("0");
 				bw.newLine();
 				bw.flush();

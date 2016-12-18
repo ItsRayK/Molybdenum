@@ -43,8 +43,8 @@ public class UpdateLevelSelectStars {
 			int scoreLineNum = Integer.parseInt(level.getLevelName().replace("Level ", ""));
 			String path = "src/SavedStars.txt";
 
-			savedStars = new int[15];
-			for (int i = 0; i < 15; i++) {
+			savedStars = new int[16];
+			for (int i = 0; i < 16; i++) {
 				int readCheck = Integer.parseInt(Files.readAllLines(Paths.get(path)).get(i));
 				savedStars[i] = readCheck;
 
@@ -70,7 +70,7 @@ public class UpdateLevelSelectStars {
 			}
 
 			bw = new BufferedWriter(new FileWriter("src/SavedStars.txt", false));
-			for (int i = 0; i < 15; i++) {
+			for (int i = 0; i < 16; i++) {
 
 				bw.write("" + savedStars[i]);
 				bw.newLine();

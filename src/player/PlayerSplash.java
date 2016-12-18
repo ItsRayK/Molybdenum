@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 
 public class PlayerSplash extends JFrame {
 	private JPanel contentPane;
+	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -74,8 +75,8 @@ public class PlayerSplash extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("...");
-		btnNewButton.addActionListener(new ActionListener() {
+		button = new JButton("Loading dubloon game metrics...");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String path = "src/SavedStars.txt";
@@ -83,7 +84,7 @@ public class PlayerSplash extends JFrame {
 				BufferedWriter bw;
 				try {
 					bw = new BufferedWriter(new FileWriter(path, false));
-					for (int i = 0; i < 15; i++) {
+					for (int i = 0; i < 16; i++) {
 						bw.write("3");
 						bw.newLine();
 						bw.flush();
@@ -95,18 +96,31 @@ public class PlayerSplash extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setToolTipText("ULTIMATE CHEATER!!!");
-		btnNewButton.setBounds(5, 507, 30, 29);
-		btnNewButton.setFocusPainted(false);
-		contentPane.add(btnNewButton);
+		button.setToolTipText("ULTIMATE CHEATER!!!");
+		button.setBounds(5, 507, 984, 29);
+		button.setFocusPainted(false);
+		contentPane.add(button);
 
 		JLabel bg = new JLabel("");
 		bg.setBounds(5, 5, 984, 531);
 		bg.setIcon(new ImageIcon(PlayerSplash.class.getResource("/images/PlayerSplash.gif")));
 		contentPane.add(bg);
 		
+		Timer timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				button.setText("Loading sheep puns...");
+			}
+		});
+		timer.setRepeats(false);
+		timer.start();
 		
-		
+		Timer newtimer = new Timer(2000, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				button.setText("Calculating turbo encabulator constants...");
+			}
+		});
+		newtimer.setRepeats(false);
+		newtimer.start();
 		
 	}
 }
