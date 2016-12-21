@@ -355,6 +355,7 @@ public class ThemeView extends JFrame {
 						for (int i = 0; i < 6; i++) {
 							for (int j = 0; j < 6; j++) {
 								if (p.getBoard().squares[i][j].isActive()) {
+									pV.btnSubmitWord.setEnabled(false);
 									pV.boardSquares[i][j].setEnabled(false);
 								}
 							}

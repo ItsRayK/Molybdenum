@@ -47,7 +47,7 @@ public class LightningView extends JFrame {
 	private ImageIcon starFilled, starEmpty;
 	Square[][] squares = new Square[6][6];
 	private JLabel starimg1, starimg2, starimg3, starimg4, starimg5, starimg6;
-	JLabel lblTimeLeft, lblTimeIsUp, lblScore;
+	JLabel lblTimeLeft, lblTimeIsUp, lblScore, lblTimeUp;
 	String name;
 	Lightning level;
 	int timer;
@@ -109,6 +109,15 @@ public class LightningView extends JFrame {
 		btnExitLevel = new JButton("Exit Level");
 		btnReset = new JButton("Reset");
 		btnSubmitWord = new JButton("Submit Word");
+
+		lblTimeUp = new JLabel("Time's Up!", SwingConstants.CENTER);
+		lblTimeUp.setFont(new Font("Gill Sans MT", Font.BOLD, 30));
+		lblTimeUp.setBounds(442, 100, 300, 35);
+		lblTimeUp.setForeground(Color.WHITE);
+		lblTimeUp.setBackground(Color.GRAY);
+		lblTimeUp.setVisible(false);
+		lblTimeUp.setOpaque(false);
+		contentPane.add(lblTimeUp);
 
 		createGrid();
 
@@ -299,11 +308,12 @@ public class LightningView extends JFrame {
 	}
 
 	/**
-	 * Set the timer based on created level and count down 
+	 * Set the timer based on created level and count down
 	 */
 	private void loadTimer() {
 		timer = level.getTimer();
 		Lightning l = this.level;
+		LightningView lV = this;
 		count = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				timer--;
@@ -314,17 +324,16 @@ public class LightningView extends JFrame {
 				if (timer == 0) {
 					count.stop();
 
-					UpdateLevelSelectStars updateStars = new UpdateLevelSelectStars(l);
-					try {
-						updateStars.updateSavedStars();
-						updateStars.updateSavedScore();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					lblTimeUp.setVisible(true);
+					lblTimeUp.setOpaque(true);
+					btnSubmitWord.setEnabled(false);
+					for (int i = 0; i < 6; i++) {
+						for (int j = 0; j < 6; j++) {
+							if (l.getBoard().squares[i][j].isActive()) {
+								lV.boardSquares[i][j].setEnabled(false);
+							}
+						}
 					}
-					LevelSelect levelSelect = new LevelSelect();
-					levelSelect.setVisible(true);
-					dispose();
 
 				}
 			}
@@ -337,7 +346,9 @@ public class LightningView extends JFrame {
 
 	/**
 	 * Add given string to array of words found.
-	 * @param s String to add to array
+	 * 
+	 * @param s
+	 *            String to add to array
 	 */
 	public void addToWordsFound(String s) {
 		wordsFound.addElement(s);

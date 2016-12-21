@@ -376,6 +376,7 @@ public class PuzzleView extends JFrame {
 						for (int j = 0; j < 6; j++) {
 							if (p.getBoard().squares[i][j].isActive()) {
 								pV.boardSquares[i][j].setEnabled(true);
+								btnSubmitWord.setEnabled(true);
 							}
 						}
 					}
@@ -436,6 +437,7 @@ public class PuzzleView extends JFrame {
 					if (p.getWordLimit() == 0) {
 						lblNoMoreMoves.setVisible(true);
 						lblNoMoreMoves.setOpaque(true);
+						btnSubmitWord.setEnabled(false);
 						for (int i = 0; i < 6; i++) {
 							for (int j = 0; j < 6; j++) {
 								if (p.getBoard().squares[i][j].isActive()) {
