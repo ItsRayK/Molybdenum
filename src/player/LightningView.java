@@ -182,6 +182,7 @@ public class LightningView extends JFrame {
 		txtTimeResetNote.setBackground(Color.LIGHT_GRAY);
 		txtTimeResetNote.setFont(new Font("Gill Sans MT", Font.PLAIN, 13));
 		txtTimeResetNote.setText("Note: The time\r\nwill continue to\r\ncountdown on\r\nreset.");
+		txtTimeResetNote.setEditable(false);
 		contentPane.add(txtTimeResetNote);
 
 		lblTimeLeft = new JLabel("Time Left: " + timer);
